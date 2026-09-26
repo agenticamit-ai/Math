@@ -71,6 +71,8 @@ export function Progress() {
   const data = useProgress();
   const stats = topicStats(data);
   const fileRef = useRef<HTMLInputElement>(null);
+  const [confirmReset, setConfirmReset] = useState(false);
+  const [message, setMessage] = useState("");
   const correct = data.attempts.filter((a) => a.correct).length;
   const weakest = strands
     .flatMap((s) => s.topics)
@@ -90,9 +92,9 @@ export function Progress() {
   const upload = async (f: File) => {
     try {
       progress.importJson(await f.text());
-      alert("Progress restored!");
+      setMessage("Progress restored from backup.");
     } catch (e) {
-      alert(`Couldn't restore: ${(e as Error).message}`);
+      setMessage(`Couldn't restore: ${(e as Error).message}`);
     }
   };
 
@@ -206,15 +208,39 @@ export function Progress() {
             type="file"
             accept="application/json"
             hidden
-            onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])}
+            onChange={(e) => {
+              if (e.target.files?.[0]) upload(e.target.files[0]);
+              e.target.value = "";
+            }}
           />
-          <button
-            className="btn ghost danger"
-            onClick={() => confirm("Erase all progress? This can't be undone.") && progress.reset()}
-          >
-            Reset everything
-          </button>
+          {confirmReset ? (
+            <>
+              <span className="danger-text">Erase all progress? This can't be undone.</span>
+              <button
+                className="btn danger"
+                onClick={() => {
+                  progress.reset();
+                  setConfirmReset(false);
+                  setMessage("All progress erased.");
+                }}
+              >
+                Yes, erase
+              </button>
+              <button className="btn ghost" onClick={() => setConfirmReset(false)}>
+                Cancel
+              </button>
+            </>
+          ) : (
+            <button className="btn ghost danger" onClick={() => setConfirmReset(true)}>
+              Reset everything
+            </button>
+          )}
         </div>
+        {message && (
+          <p className="muted" role="status">
+            {message}
+          </p>
+        )}
       </div>
     </div>
   );

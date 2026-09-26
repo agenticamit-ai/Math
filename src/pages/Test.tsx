@@ -29,6 +29,7 @@ export function Test() {
   const [run, setRun] = useState<Running | null>(null);
   const [idx, setIdx] = useState(0);
   const [now, setNow] = useState(Date.now());
+  const [confirmBlank, setConfirmBlank] = useState(false);
   const [result, setResult] = useState<{ run: Running; correct: boolean[]; durationMs: number } | null>(null);
   const submitted = useRef(false);
 
@@ -71,6 +72,7 @@ export function Test() {
     const qs = buildTest(format);
     const t = Date.now();
     submitted.current = false;
+    setConfirmBlank(false);
     setResult(null);
     setIdx(0);
     setNow(t);
@@ -141,13 +143,22 @@ export function Test() {
                 className="btn primary"
                 onClick={() => {
                   const blank = run.answers.filter((a) => !a.trim()).length;
-                  if (!blank || confirm(`${blank} problem${blank > 1 ? "s are" : " is"} blank. Submit anyway?`)) submit(run);
+                  if (!blank || confirmBlank) submit(run);
+                  else setConfirmBlank(true);
                 }}
               >
-                Submit test
+                {confirmBlank ? "Yes, submit anyway" : "Submit test"}
               </button>
             )}
           </div>
+          {confirmBlank && (
+            <p className="feedback bad">
+              {(() => {
+                const blank = run.answers.filter((a) => !a.trim()).length;
+                return `${blank} problem${blank > 1 ? "s are" : " is"} still blank. Click the numbers above to go back, or submit anyway.`;
+              })()}
+            </p>
+          )}
         </div>
       </div>
     );
