@@ -1,0 +1,596 @@
+{
+  "strand": "logic",
+  "name": "Logic & Problem-Solving Strategies",
+  "description": "Sharpen your reasoning with logic puzzles, smart guess-and-check tables, clock and calendar problems, and magic squares.",
+  "topics": [
+    {
+      "id": "logic-puzzles",
+      "name": "Logic Puzzles",
+      "lesson": {
+        "intro": "Logic puzzles are like detective stories: you get a handful of clues, and you have to figure out who did what. You don't need any fancy math, just careful thinking and a good way to keep track of what you know. Once you learn to organize clues in a grid or a line, even tricky puzzles fall apart one clue at a time.",
+        "keyIdeas": [
+          "For who-owns-what puzzles, draw a grid with people down the side and items across the top. Mark X for impossible and O for a match.",
+          "Each row and each column of a matching grid gets exactly one O. When a row has only one blank left, that blank must be the O.",
+          "For ordering puzzles, draw a line of blanks (1st, 2nd, 3rd, ...) and place the most restrictive clues first, like \"right after\" or \"not last\".",
+          "In truth-teller/liar puzzles, suppose one person is telling the truth and follow the consequences. If you reach a contradiction, the opposite must be true.",
+          "When exactly one statement is true (or exactly one is false), test each possible answer and count how many statements come out true."
+        ],
+        "examples": [
+          {
+            "problem": "Three friends, Rae, Sam, and Tia, each have a different favorite fruit: apple, banana, or cherry. Rae does not like apples or cherries. Sam does not like apples. What is each person's favorite fruit?",
+            "solution": "Make a grid with Rae, Sam, Tia down the side and apple, banana, cherry across the top.\n\nRae: X under apple, X under cherry. Only banana is left, so **Rae likes the banana**.\n\nNow nobody else can have the banana. Sam can't have apple (clue) or banana (taken), so **Sam likes the cherry**.\n\nThat leaves the apple for **Tia**. Check: Rae has no apple or cherry, and Sam has no apple. Every clue works."
+          },
+          {
+            "problem": "On an island, knights always tell the truth and knaves always lie. Pat says, \"Quinn and I are both knaves.\" What are Pat and Quinn?",
+            "solution": "Suppose Pat is a knight. Then Pat's statement is true, so Pat is a knave. That's a contradiction, so Pat is a **knave**.\n\nSince Pat is a knave, the statement \"Quinn and I are both knaves\" is false. Pat really is a knave, so the part that must be false is \"Quinn is a knave.\" So Quinn is a **knight**."
+          }
+        ],
+        "tip": "Never guess on a logic puzzle. After you find an answer, reread every clue once and check that your answer obeys it."
+      }
+    },
+    {
+      "id": "logic-strategies",
+      "name": "Guess & Check and Make a Table",
+      "lesson": {
+        "intro": "Some problems look like they need algebra, but you can crack them with a smart guess and a quick check. The trick is to guess in an organized way, usually with a table, so each guess teaches you how to fix the next one. For counting problems like making change, a neat table makes sure you don't miss or double-count any way.",
+        "keyIdeas": [
+          "Guess & check: make a guess, check it against ALL the facts, then adjust. Keep your guesses in a table so you can see the pattern.",
+          "\"Pretend everyone is the same\" trick: in heads-and-legs problems, pretend every animal is a chicken, count the missing legs, and trade chickens for cows.",
+          "Each trade changes the total by the same amount (a chicken becoming a cow adds 2 legs), so divide the difference by that amount.",
+          "For coin combinations, make a table starting with the biggest coin: try the most quarters, then fewer, and fill in the smaller coins in order.",
+          "Always check your final answer in the original problem."
+        ],
+        "examples": [
+          {
+            "problem": "A farm has chickens and cows. There are 15 heads and 44 legs in all. How many cows are there?",
+            "solution": "Pretend all 15 animals are chickens: that gives $15 \\times 2 = 30$ legs.\n\nWe need 44 legs, so we are short $44 - 30 = 14$ legs.\n\nChanging one chicken into a cow adds 2 legs. So we need $14 \\div 2 = 7$ changes: **7 cows** (and 8 chickens).\n\nCheck: $7 \\times 4 + 8 \\times 2 = 28 + 16 = 44$ legs. Correct!"
+          },
+          {
+            "problem": "In how many ways can you make 30 cents using nickels and dimes (you don't have to use both kinds)?",
+            "solution": "Make a table, starting with the most dimes:\n\n- 3 dimes, 0 nickels\n- 2 dimes, 2 nickels\n- 1 dime, 4 nickels\n- 0 dimes, 6 nickels\n\nEach time we remove a dime, we add 2 nickels. There are **4 ways**."
+          }
+        ],
+        "tip": "In a guess & check problem, make your first guess the \"everything is the same kind\" case. It's easy to compute and tells you exactly how far off you are."
+      }
+    },
+    {
+      "id": "logic-time",
+      "name": "Clocks, Calendars & Time",
+      "lesson": {
+        "intro": "Days of the week repeat every 7 days, and a clock repeats every 12 hours. That means many time problems are really about remainders and patterns! In this topic you'll learn to jump far into the future without counting every day, add up elapsed time without mistakes, and work out angles on a clock face.",
+        "keyIdeas": [
+          "Days of the week repeat every 7 days. To find the day $N$ days from now, divide $N$ by 7 and move forward by the remainder.",
+          "A regular year has 365 days $= 52$ weeks $+ 1$ day, so the same date moves 1 weekday later next year. After a leap year (366 days) it moves 2 weekdays.",
+          "Leap years are divisible by 4 (like 2028, 2032). The extra day is February 29.",
+          "For elapsed time, add hours and minutes separately, then turn every 60 minutes into 1 hour.",
+          "The minute hand moves $6^\\circ$ per minute. The hour hand moves $30^\\circ$ per hour, which is $\\frac{1}{2}^\\circ$ per minute."
+        ],
+        "examples": [
+          {
+            "problem": "Today is Tuesday. What day of the week will it be 50 days from today?",
+            "solution": "Weeks don't change the day, so divide by 7: $50 = 7 \\times 7 + 1$.\n\nThe 7 full weeks bring us back to Tuesday, and 1 more day makes it **Wednesday**."
+          },
+          {
+            "problem": "What is the angle between the hands of a clock at 2:20?",
+            "solution": "Minute hand: 20 minutes $\\times 6^\\circ = 120^\\circ$ from the 12.\n\nHour hand: at 2:00 it is at $60^\\circ$. In 20 more minutes it moves $20 \\times \\frac{1}{2}^\\circ = 10^\\circ$, so it's at $70^\\circ$.\n\nAngle between them: $120^\\circ - 70^\\circ = $ **$50^\\circ$**."
+          }
+        ],
+        "tip": "For \"what day of the week\" questions, only the remainder after dividing by 7 matters. Throw away full weeks right away."
+      }
+    },
+    {
+      "id": "logic-magic",
+      "name": "Magic Squares & Number Arrangements",
+      "lesson": {
+        "intro": "In a magic square, every row, every column, and both diagonals add up to the same number, called the magic sum. Arrangement puzzles and cryptarithms (where letters stand for digits) are close cousins: you use totals and place value to narrow down the possibilities. Instead of guessing randomly, you'll learn to find the key number first and let it guide everything else.",
+        "keyIdeas": [
+          "Magic sum = (total of all the numbers) $\\div$ (number of rows). For 1 through 9 in a 3-by-3 square, that's $45 \\div 3 = 15$.",
+          "In a 3-by-3 magic square, the center number is always the magic sum divided by 3 (it's the middle number of the list).",
+          "When sums overlap (like the sides of a triangle sharing corners), add up all the sums: the shared numbers get counted more than once.",
+          "In a cryptarithm, use place value: the two-digit number $AB$ means $10A + B$. So $AB + BA = 11(A + B)$.",
+          "When two numbers are added, a carry into the next column is at most 1. That often tells you a leading digit must be 1."
+        ],
+        "examples": [
+          {
+            "problem": "The numbers 2, 4, 6, 8, 10, 12, 14, 16, 18 are placed in a 3-by-3 magic square. What is the magic sum, and what number must be in the center?",
+            "solution": "The total is $2 + 4 + \\cdots + 18 = 90$. There are 3 rows, so the magic sum is $90 \\div 3 = $ **30**.\n\nThe center is the magic sum divided by 3: $30 \\div 3 = $ **10**, which is also the middle number of the list."
+          },
+          {
+            "problem": "In the addition $AB + BA = 132$, $A$ and $B$ are digits and $A > B + 4$. Find the two-digit number $AB$.",
+            "solution": "$AB + BA = (10A + B) + (10B + A) = 11A + 11B = 11(A + B)$.\n\nSo $11(A + B) = 132$, which means $A + B = 12$.\n\nPairs of digits with sum 12 and $A$ bigger than $B + 4$: $(9, 3)$ works since $9 > 7$. $(8, 4)$ fails since $8 > 8$ is false. So $AB = $ **93**.\n\nCheck: $93 + 39 = 132$."
+          }
+        ],
+        "tip": "In any arrangement puzzle, add up ALL the required sums at once. Comparing that to the total of the numbers usually reveals the hidden key, like the magic sum or which numbers go in the corners."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "logic-puzzles-01",
+      "topic": "logic-puzzles",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "Ana is taller than Ben. Cal is shorter than Ben. Dee is taller than Ana.\n\nWho is the shortest of the four?",
+      "answer": "Cal",
+      "hints": [
+        "Draw a vertical line and put the tallest person at the top.",
+        "Ben is below Ana, and Cal is below Ben. Where does Dee go?"
+      ],
+      "solution": "Place people from tallest to shortest.\n\n1. Dee is taller than Ana, so Dee is above Ana.\n2. Ana is taller than Ben.\n3. Ben is taller than Cal.\n\nOrder from tallest: Dee, Ana, Ben, Cal. The shortest is **Cal**."
+    },
+    {
+      "id": "logic-puzzles-02",
+      "topic": "logic-puzzles",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "Ava, Ben, and Cole each own exactly one pet: a cat, a dog, or a fish (all different).\n\n- Ben is allergic to cats, so he does not own the cat.\n- The dog's owner walks it to Ava's house every day.\n- Cole does not own the fish.\n- Ava's pet has fur.\n\nWho owns the fish?",
+      "answer": "Ben",
+      "hints": [
+        "The dog's owner walks to Ava's house, so is Ava the dog owner?",
+        "Cats and dogs have fur, fish do not. Combine that with the second clue to find Ava's pet."
+      ],
+      "solution": "Clue 2: the dog owner visits Ava, so Ava does not own the dog.\n\nClue 4: Ava's pet has fur, so it is a cat or a dog. Since it isn't the dog, **Ava owns the cat**.\n\nCole does not own the fish (clue 3), and the cat is taken, so Cole owns the dog.\n\nThat leaves the fish for **Ben**. (Check: Ben does not own the cat.)"
+    },
+    {
+      "id": "logic-puzzles-03",
+      "topic": "logic-puzzles",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "On an island, knights always tell the truth and knaves always lie. You meet two islanders, Abe and Bo.\n\nAbe says: \"Bo is a knave.\"\n\nBo says: \"We are both knights.\"\n\nWhich of them is a knight?",
+      "choices": [
+        "Only Abe",
+        "Only Bo",
+        "Both are knights",
+        "Neither is a knight",
+        "It cannot be determined"
+      ],
+      "answer": "A",
+      "hints": [
+        "Could Bo's statement be true? What would that mean about Abe's statement?",
+        "If Bo were a knight, then Abe would be a knight too, but Abe calls Bo a knave."
+      ],
+      "solution": "Try Bo as a knight. Then \"we are both knights\" is true, so Abe is a knight too. But then Abe's statement \"Bo is a knave\" would be true, which is impossible. So **Bo is a knave**.\n\nNow Abe's statement \"Bo is a knave\" is true, so Abe is a knight.\n\nCheck: Bo, a knave, says \"we are both knights,\" which is false. Good. The answer is only Abe: **A**."
+    },
+    {
+      "id": "logic-puzzles-04",
+      "topic": "logic-puzzles",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Five runners, Fay, Gus, Hal, Ivy, and Jo, finished a race with no ties.\n\n- Gus finished immediately after Fay.\n- Jo finished ahead of Fay.\n- Ivy finished ahead of Hal, but Ivy was not first.\n- Hal did not finish last.\n\nWho finished in 3rd place?",
+      "answer": "Hal",
+      "hints": [
+        "Start by figuring out who finished last. Go through the runners one at a time.",
+        "Anyone who finished ahead of someone else can't be last. Once you know who is last, clue 1 tells you who is 4th."
+      ],
+      "solution": "Who could be last (5th)?\n\n- Fay can't be: Gus finishes right after her.\n- Jo can't be: Jo is ahead of Fay.\n- Ivy can't be: Ivy is ahead of Hal.\n- Hal can't be: clue 4.\n\nSo **Gus is 5th**, and Fay, right before him, is 4th.\n\nJo, Ivy, and Hal fill places 1, 2, 3. Ivy is not first, and Ivy is ahead of Hal, so Ivy is 2nd and Hal is 3rd. Jo is 1st.\n\nOrder: Jo, Ivy, **Hal**, Fay, Gus."
+    },
+    {
+      "id": "logic-puzzles-05",
+      "topic": "logic-puzzles",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Mia, Noah, Olive, and Pete each do exactly one after-school activity: soccer, tennis, swimming, or chess (all different).\n\n- Mia's activity does not use a ball.\n- Noah and the swimmer are cousins.\n- Olive plays either tennis or chess.\n- Pete does not swim and does not play tennis.\n- Noah does not play soccer or chess.\n\nWhich activity does Pete do?",
+      "answer": "soccer",
+      "hints": [
+        "Make a 4-by-4 grid. Which activities use a ball?",
+        "Figure out who the swimmer is first. Cross off everyone who can't be the swimmer."
+      ],
+      "solution": "Soccer and tennis use a ball, so Mia does swimming or chess.\n\n**Who swims?** Not Noah (he is the swimmer's cousin), not Olive (tennis or chess), not Pete (clue 4). So **Mia swims**.\n\nPete can't swim or play tennis, so Pete does soccer or chess.\n\nNoah can't play soccer or chess, and he doesn't swim, so **Noah plays tennis**. Olive plays tennis or chess, so **Olive plays chess**. That leaves **soccer for Pete**.\n\n(Check: Pete doesn't swim or play tennis. Every clue works.)"
+    },
+    {
+      "id": "logic-puzzles-06",
+      "topic": "logic-puzzles",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "One of five students, Amy, Ben, Cara, Dan, or Eli, knocked over the class plant. Each student made one statement:\n\n- Amy: \"Ben did it.\"\n- Ben: \"Dan did it.\"\n- Cara: \"I didn't do it.\"\n- Dan: \"Ben is lying.\"\n- Eli: \"Amy did it.\"\n\nExactly ONE of the five statements is true. Who knocked over the plant?",
+      "answer": "Cara",
+      "hints": [
+        "Look at Cara's and Dan's statements. Could they both be true at the same time?",
+        "Dan's statement is true exactly when Dan is not the culprit. If the culprit is neither Cara nor Dan, how many true statements are there?"
+      ],
+      "solution": "Dan's statement \"Ben is lying\" is true exactly when Dan did NOT do it.\n\nIf the culprit were anyone other than Cara or Dan, then Cara's statement AND Dan's statement would both be true. That's two true statements, too many. So the culprit is Cara or Dan.\n\n- If **Dan** did it: Ben's statement is true and Cara's statement is true. Two true statements, not allowed.\n- If **Cara** did it: Amy (false), Ben (false), Cara (false), Dan (true, since Dan didn't do it), Eli (false). Exactly one true statement.\n\nSo **Cara** knocked over the plant."
+    },
+    {
+      "id": "logic-puzzles-07",
+      "topic": "logic-puzzles",
+      "difficulty": 4,
+      "style": "mc",
+      "prompt": "Knights always tell the truth and knaves always lie. Three islanders, A, B, and C, make these statements:\n\nA: \"B is a knave.\"\n\nB: \"C is a knave.\"\n\nC: \"A and B are both knaves.\"\n\nWho is a knight?",
+      "choices": [
+        "Only A",
+        "Only B",
+        "Only C",
+        "A and C",
+        "All three"
+      ],
+      "answer": "B",
+      "hints": [
+        "Suppose C is a knight. What would that say about A and B? Does that lead to trouble?",
+        "If C is a knight, A is a knave, so A's statement \"B is a knave\" is false. What does that make B?"
+      ],
+      "solution": "**Test C as a knight.** Then A and B are both knaves. But A is a knave, so \"B is a knave\" is false, meaning B is a knight. That contradicts B being a knave. So **C is a knave**.\n\nNow B's statement \"C is a knave\" is true, so **B is a knight**.\n\nA says \"B is a knave,\" which is false, so **A is a knave**.\n\nCheck C: \"A and B are both knaves\" is false (B is a knight), which fits C being a knave. Only B is a knight: **B**."
+    },
+    {
+      "id": "logic-puzzles-08",
+      "topic": "logic-puzzles",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Four houses stand in a row, numbered 1, 2, 3, 4 from left to right. They are painted red, blue, green, and yellow (one color each). Kai, Lena, Omar, and Rosa each live in a different house.\n\n- The red house is immediately to the left of the blue house.\n- Kai lives in the blue house.\n- Lena lives in the green house.\n- Omar lives right next door to the yellow house.\n- Rosa lives in house 1 or house 4.\n\nWhat is the number of the green house?",
+      "answer": "4",
+      "hints": [
+        "Kai and Lena's colors are known. Which two colors are left for Omar and Rosa?",
+        "Omar lives next to the yellow house, so he can't live in it. Which color is Omar's house?",
+        "Omar's house touches both the yellow house and the blue house. What three houses must be in a row?"
+      ],
+      "solution": "Kai has blue and Lena has green, so Omar and Rosa live in the red and yellow houses.\n\nOmar lives *next to* the yellow house, so he isn't in it. So **Omar is in red** and **Rosa is in yellow**.\n\nThe red house has blue immediately on its right. Omar's red house is also next to yellow, so yellow must be on its left. That makes three houses in a row: **yellow, red, blue**.\n\nRosa (yellow) lives in house 1 or 4. Yellow is the leftmost of the three, so it can't be house 4. So yellow = 1, red = 2, blue = 3, and green = **4**."
+    },
+    {
+      "id": "logic-strategies-01",
+      "topic": "logic-strategies",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "A farmer has some chickens and some cows. Together they have 10 heads and 28 legs. How many cows does the farmer have?",
+      "answer": "4",
+      "unit": "cows",
+      "hints": [
+        "Pretend all 10 animals are chickens. How many legs would that be?",
+        "Each time you change a chicken into a cow, you add 2 legs."
+      ],
+      "solution": "If all 10 animals were chickens, there would be $10 \\times 2 = 20$ legs.\n\nWe need 28, so we're short $28 - 20 = 8$ legs.\n\nEach cow has 2 more legs than a chicken, so there are $8 \\div 2 = $ **4 cows** (and 6 chickens).\n\nCheck: $4 \\times 4 + 6 \\times 2 = 16 + 12 = 28$."
+    },
+    {
+      "id": "logic-strategies-02",
+      "topic": "logic-strategies",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "Liam has 12 coins. Every coin is either a nickel or a dime, and the coins are worth 85 cents in all. How many dimes does Liam have?",
+      "answer": "5",
+      "unit": "dimes",
+      "hints": [
+        "What if all 12 coins were nickels? How much would that be?",
+        "Swapping a nickel for a dime adds 5 cents."
+      ],
+      "solution": "If all 12 coins were nickels: $12 \\times 5 = 60$ cents.\n\nWe need 85 cents, so we're short $85 - 60 = 25$ cents.\n\nEach swap of a nickel for a dime adds 5 cents, so we need $25 \\div 5 = 5$ swaps. Liam has **5 dimes** (and 7 nickels).\n\nCheck: $5 \\times 10 + 7 \\times 5 = 50 + 35 = 85$ cents."
+    },
+    {
+      "id": "logic-strategies-03",
+      "topic": "logic-strategies",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "In how many different ways can you make 20 cents using pennies, nickels, and dimes? (You don't have to use every kind of coin.)",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "D",
+      "hints": [
+        "Make a table. Start with the number of dimes: 2, 1, or 0.",
+        "Once the dimes and nickels are chosen, the pennies are decided. So just count the choices for nickels in each case."
+      ],
+      "solution": "Organize by the number of dimes. Pennies fill in whatever is left.\n\n- **2 dimes:** that's already 20 cents. 1 way.\n- **1 dime:** 10 cents left: 0, 1, or 2 nickels. 3 ways.\n- **0 dimes:** 20 cents left: 0, 1, 2, 3, or 4 nickels. 5 ways.\n\nTotal: $1 + 3 + 5 = 9$ ways. The answer is **D**."
+    },
+    {
+      "id": "logic-strategies-04",
+      "topic": "logic-strategies",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A bike shop has only bicycles (2 wheels) and tricycles (3 wheels). There are 20 vehicles with a total of 47 wheels. How many tricycles are there?",
+      "answer": "7",
+      "unit": "tricycles",
+      "hints": [
+        "Pretend all 20 vehicles are bicycles.",
+        "Each tricycle has exactly one more wheel than a bicycle."
+      ],
+      "solution": "If all 20 were bicycles: $20 \\times 2 = 40$ wheels.\n\nThere are 47 wheels, which is $47 - 40 = 7$ extra.\n\nEach tricycle adds 1 extra wheel, so there are **7 tricycles** (and 13 bicycles).\n\nCheck: $7 \\times 3 + 13 \\times 2 = 21 + 26 = 47$."
+    },
+    {
+      "id": "logic-strategies-05",
+      "topic": "logic-strategies",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A quiz has 20 questions. You earn 5 points for each correct answer and lose 2 points for each wrong answer. Zoe answered all 20 questions and scored 58 points. How many questions did she answer correctly?",
+      "answer": "14",
+      "unit": "questions",
+      "hints": [
+        "What would Zoe's score be if she got all 20 right?",
+        "Changing one answer from right to wrong costs 5 points AND takes away 2 more, so it lowers the score by 7."
+      ],
+      "solution": "If Zoe got all 20 right, she would score $20 \\times 5 = 100$ points.\n\nShe scored 58, which is $100 - 58 = 42$ points less.\n\nEach wrong answer loses the 5 points she would have earned and costs 2 more, a drop of 7 points. So she had $42 \\div 7 = 6$ wrong answers.\n\nCorrect answers: $20 - 6 = $ **14**.\n\nCheck: $14 \\times 5 - 6 \\times 2 = 70 - 12 = 58$."
+    },
+    {
+      "id": "logic-strategies-06",
+      "topic": "logic-strategies",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "A bug collection has spiders, beetles, and dragonflies, 18 creatures in all.\n\n- Each spider has 8 legs and no wings.\n- Each beetle has 6 legs and 1 pair of wings.\n- Each dragonfly has 6 legs and 2 pairs of wings.\n\nAltogether there are 118 legs and 20 pairs of wings. How many dragonflies are there?",
+      "answer": "7",
+      "unit": "dragonflies",
+      "hints": [
+        "Use the legs first. Beetles and dragonflies both have 6 legs, so pretend all 18 creatures have 6 legs.",
+        "The extra legs come from spiders (2 extra each). Once you know the spiders, you know how many beetles and dragonflies there are together.",
+        "Now pretend all the six-legged bugs are beetles and use the wings."
+      ],
+      "solution": "**Legs:** If all 18 had 6 legs, that would be $18 \\times 6 = 108$ legs. There are $118 - 108 = 10$ extra legs. Each spider has 2 extra legs, so there are $10 \\div 2 = 5$ spiders.\n\nThat leaves $18 - 5 = 13$ beetles and dragonflies.\n\n**Wings:** If all 13 were beetles, there would be 13 pairs of wings. There are 20 pairs, so there are $20 - 13 = 7$ extra pairs. Each dragonfly has 1 extra pair, so there are **7 dragonflies** (and 6 beetles).\n\nCheck: legs $5 \\times 8 + 6 \\times 6 + 7 \\times 6 = 40 + 36 + 42 = 118$; wings $6 + 14 = 20$ pairs."
+    },
+    {
+      "id": "logic-strategies-07",
+      "topic": "logic-strategies",
+      "difficulty": 4,
+      "style": "mc",
+      "prompt": "In how many different ways can you make exactly one dollar (100 cents) using nickels, dimes, and quarters, if you must use **at least one** of each kind of coin?",
+      "choices": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "18"
+      ],
+      "answer": "C",
+      "hints": [
+        "Set aside one nickel, one dime, and one quarter first. How much money is left to make?",
+        "Now make 60 cents with nickels, dimes, and quarters, with any number of each (including zero). Organize a table by the number of quarters."
+      ],
+      "solution": "Put aside one of each coin: $5 + 10 + 25 = 40$ cents. Now count the ways to make the remaining 60 cents with any number of nickels, dimes, and quarters.\n\n- **0 quarters:** 60 cents from dimes and nickels: 0 to 6 dimes, 7 ways.\n- **1 quarter:** 35 cents left: 0 to 3 dimes, 4 ways.\n- **2 quarters:** 10 cents left: 0 or 1 dime, 2 ways.\n\n(3 quarters would be 75 cents, too much.)\n\nTotal: $7 + 4 + 2 = 13$ ways. The answer is **C**."
+    },
+    {
+      "id": "logic-strategies-08",
+      "topic": "logic-strategies",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "A school store sells notebooks for 6 dollars each, pens for 4 dollars each, and erasers at 2 for 1 dollar. Mr. Ruiz buys exactly 100 items and spends exactly 100 dollars. He buys at least one of each item. How many pens does he buy?",
+      "answer": "8",
+      "unit": "pens",
+      "hints": [
+        "Let $n$, $p$, $e$ be the numbers of notebooks, pens, and erasers. Write one equation for the number of items and one for the cost. Doubling the cost equation gets rid of the fraction.",
+        "Subtract the items equation from the doubled cost equation. You should get $11n + 7p = 100$.",
+        "Now make a table: try $n = 1, 2, 3, \\ldots$ and see when $100 - 11n$ is a multiple of 7."
+      ],
+      "solution": "Let $n$ = notebooks, $p$ = pens, $e$ = erasers.\n\nItems: $n + p + e = 100$.\n\nCost (each eraser costs half a dollar): $6n + 4p + \\frac{e}{2} = 100$. Double it: $12n + 8p + e = 200$.\n\nSubtract the items equation: $11n + 7p = 100$.\n\nMake a table of $n$ and $100 - 11n$:\n\n- $n=1$: 89, $n=2$: 78, $n=3$: 67 (none divisible by 7)\n- $n=4$: 56, and $56 \\div 7 = 8$. Yes!\n- $n=5$: 45, $n=6$: 34, $n=7$: 23, $n=8$: 12, $n=9$: 1 (none work)\n\nSo $n = 4$, $p = 8$, and $e = 100 - 4 - 8 = 88$.\n\nCheck: $4 \\times 6 + 8 \\times 4 + 88 \\div 2 = 24 + 32 + 44 = 100$ dollars. He buys **8 pens**."
+    },
+    {
+      "id": "logic-time-01",
+      "topic": "logic-time",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "Today is Wednesday. What day of the week will it be 100 days from today?",
+      "answer": "Friday",
+      "acceptable": [
+        "Fri"
+      ],
+      "hints": [
+        "Every 7 days, the day of the week repeats.",
+        "What is the remainder when 100 is divided by 7?"
+      ],
+      "solution": "Divide by 7: $100 = 14 \\times 7 + 2$.\n\nAfter 14 full weeks it is Wednesday again. Then 2 more days: Thursday, **Friday**."
+    },
+    {
+      "id": "logic-time-02",
+      "topic": "logic-time",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "A movie starts at 1:45 PM and lasts 2 hours 38 minutes. The movie ends how many minutes after 4:00 PM?",
+      "answer": "23",
+      "unit": "minutes",
+      "hints": [
+        "Add the hours first: 1:45 plus 2 hours is 3:45.",
+        "From 3:45, it takes 15 minutes to reach 4:00. How many of the 38 minutes are left after that?"
+      ],
+      "solution": "Start at 1:45 PM. Add 2 hours: 3:45 PM.\n\nNow add 38 minutes. 15 minutes gets us to 4:00 PM, leaving $38 - 15 = 23$ minutes.\n\nThe movie ends at 4:23 PM, which is **23** minutes after 4:00 PM."
+    },
+    {
+      "id": "logic-time-03",
+      "topic": "logic-time",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "What is the smaller angle between the hour hand and the minute hand of a clock at 3:30?",
+      "choices": [
+        "$60^\\circ$",
+        "$75^\\circ$",
+        "$80^\\circ$",
+        "$90^\\circ$",
+        "$105^\\circ$"
+      ],
+      "answer": "B",
+      "hints": [
+        "At 3:30 the minute hand points straight at the 6. But where is the hour hand? It is not exactly on the 3!",
+        "The hour hand moves $30^\\circ$ each hour, so in half an hour it moves $15^\\circ$ past the 3."
+      ],
+      "solution": "The minute hand points at the 6, which is $180^\\circ$ from the 12.\n\nThe hour hand is halfway between the 3 and the 4. The 3 is at $90^\\circ$, and halfway to the 4 adds $15^\\circ$, so the hour hand is at $105^\\circ$.\n\nAngle: $180^\\circ - 105^\\circ = 75^\\circ$. The answer is **B**."
+    },
+    {
+      "id": "logic-time-04",
+      "topic": "logic-time",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "In a certain year that is NOT a leap year, January 1 is a Monday. What day of the week is December 31 of that same year?",
+      "answer": "Monday",
+      "acceptable": [
+        "Mon"
+      ],
+      "hints": [
+        "A non-leap year has 365 days. December 31 is day number 365.",
+        "How many days after January 1 is December 31? Divide that number by 7."
+      ],
+      "solution": "December 31 is the 365th day, so it comes $365 - 1 = 364$ days after January 1.\n\n$364 = 52 \\times 7$ exactly, with remainder 0.\n\nSo December 31 falls on the same weekday as January 1: **Monday**."
+    },
+    {
+      "id": "logic-time-05",
+      "topic": "logic-time",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A month with 30 days has exactly five Saturdays and exactly five Sundays. On what day of the week does the month begin?",
+      "answer": "Saturday",
+      "acceptable": [
+        "Sat"
+      ],
+      "hints": [
+        "30 days is 4 full weeks plus 2 extra days.",
+        "In 4 full weeks every weekday appears 4 times. Which days get a 5th appearance? The extra days are the 1st and the 2nd... or are they?"
+      ],
+      "solution": "30 days = 4 weeks (28 days) + 2 more days.\n\nThe first 28 days (the 1st through the 28th) contain each weekday exactly 4 times. The 29th and 30th add one more of two days. Those two days are the same weekdays as the 1st and the 2nd.\n\nSo the weekdays that appear five times are the weekdays of the 1st and 2nd. We need them to be Saturday and Sunday, in that order, so the 1st is a **Saturday**."
+    },
+    {
+      "id": "logic-time-06",
+      "topic": "logic-time",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "A 12-hour digital clock shows times from 1:00 up to 12:59 (with no zero in front of one-digit hours, so it shows 7:05, not 07:05). A time is a *palindrome* if its digits read the same forwards and backwards when you ignore the colon, like 4:14 or 12:21.\n\nHow many different palindrome times does the clock show between 1:00 and 12:59, inclusive?",
+      "answer": "57",
+      "unit": "times",
+      "hints": [
+        "Split into two cases: one-digit hours (1 to 9) and two-digit hours (10, 11, 12).",
+        "For a one-digit hour like 3, the time looks like 3:_3. How many choices are there for the middle digit? Remember minutes' tens digit only goes from 0 to 5.",
+        "For a two-digit hour, the minutes are the hour digits reversed. Is that a real time?"
+      ],
+      "solution": "**Hours 1 to 9:** The time looks like $h{:}\\,a\\,h$. The last digit must equal the hour. The middle digit (the tens of the minutes) can be 0, 1, 2, 3, 4, or 5: that's 6 choices. So $9 \\times 6 = 54$ times.\n\n**Hours 10, 11, 12:** The minutes must be the hour digits reversed: 10:01, 11:11, 12:21. All three are real times: 3 more.\n\nTotal: $54 + 3 = $ **57**."
+    },
+    {
+      "id": "logic-time-07",
+      "topic": "logic-time",
+      "difficulty": 4,
+      "style": "mc",
+      "prompt": "July 4, 2026 is a Saturday. On what day of the week will July 4, 2036 fall? (Leap years in this period are 2028, 2032, and 2036.)",
+      "choices": [
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "answer": "C",
+      "hints": [
+        "Each ordinary year moves the date forward 1 weekday. A year that includes a February 29 moves it forward 2.",
+        "Between July 4, 2026 and July 4, 2036, how many February 29ths are there? Don't forget that February 2036 comes before July 2036."
+      ],
+      "solution": "From July 4, 2026 to July 4, 2036 is 10 years. Each year shifts the weekday by 1, plus 1 extra for every February 29 in between.\n\nThe February 29ths in this stretch are in 2028, 2032, and 2036 (February 2036 is before July 4, 2036). That's 3 leap days.\n\nTotal shift: $10 + 3 = 13$ days. $13 = 7 + 6$, so move forward 6 weekdays from Saturday: Sunday, Monday, Tuesday, Wednesday, Thursday, **Friday**. The answer is **C**."
+    },
+    {
+      "id": "logic-time-08",
+      "topic": "logic-time",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "\"Friday the 13th\" happens when the 13th day of a month is a Friday. What is the greatest number of Friday the 13ths that can happen in a single calendar year (January through December)?",
+      "answer": "3",
+      "unit": "times",
+      "hints": [
+        "The 13th of each month falls on a Friday exactly when the 1st of that month is a Sunday. So look at which weekday each month starts on.",
+        "Measure each month's start as a shift from January 1: January 0, February +31, March +59 (in a normal year)... Take each shift mod 7.",
+        "For a normal year the remainders (Jan to Dec) are 0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5. What is the largest number of times any one remainder appears? Check leap years too."
+      ],
+      "solution": "The 13th is a Friday exactly when the 1st of the month is a Sunday. So we want as many months as possible to start on the same weekday.\n\nCount how many days after January 1 each month starts, and take the remainder mod 7.\n\n**Normal year:** Jan 0, Feb 31→3, Mar 59→3, Apr 90→6, May 120→1, Jun 151→4, Jul 181→6, Aug 212→2, Sep 243→5, Oct 273→0, Nov 304→3, Dec 334→5.\n\nRemainder 3 appears 3 times (Feb, Mar, Nov). No remainder appears more than 3 times.\n\n**Leap year:** from March on, add 1: Jan 0, Feb 3, Mar 4, Apr 0, May 2, Jun 5, Jul 0, Aug 3, Sep 6, Oct 1, Nov 4, Dec 6. Remainder 0 appears 3 times (Jan, Apr, Jul), and nothing appears more.\n\nSo the most possible is **3** (for example, a normal year where February 1 is a Sunday has Friday the 13th in February, March, and November)."
+    },
+    {
+      "id": "logic-magic-01",
+      "topic": "logic-magic",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "The numbers 1 through 9 are placed in a 3-by-3 grid to make a magic square: each row, each column, and each of the two diagonals has the same sum. What is that sum?",
+      "answer": "15",
+      "hints": [
+        "Add up all the numbers from 1 to 9.",
+        "The three rows use every number once, and each row has the same sum."
+      ],
+      "solution": "$1 + 2 + \\cdots + 9 = 45$.\n\nThe three rows together use each number exactly once, so they add to 45. Each row has the same sum, so each row adds to $45 \\div 3 = $ **15**."
+    },
+    {
+      "id": "logic-magic-02",
+      "topic": "logic-magic",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "The numbers 1 through 9 are placed in a 3-by-3 magic square (every row, column, and diagonal has the same sum). Which number MUST be in the center square?",
+      "answer": "5",
+      "hints": [
+        "First find the magic sum.",
+        "The middle row, the middle column, and both diagonals all pass through the center. Add those four lines together."
+      ],
+      "solution": "The magic sum is $45 \\div 3 = 15$.\n\nThe middle row, middle column, and two diagonals all go through the center. Together they add to $4 \\times 15 = 60$.\n\nThose four lines cover every square once, except the center, which is counted 4 times (3 extra times). So $60 = 45 + 3 \\times \\text{center}$.\n\n$3 \\times \\text{center} = 15$, so the center is **5**."
+    },
+    {
+      "id": "logic-magic-03",
+      "topic": "logic-magic",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "$A$ and $B$ are digits. The two-digit numbers $AB$ and $BA$ add up to 121, and $A - B = 5$. What is the two-digit number $AB$?",
+      "answer": "83",
+      "hints": [
+        "$AB$ means $10A + B$ and $BA$ means $10B + A$. Add them.",
+        "You should get $11(A + B) = 121$. So what is $A + B$?"
+      ],
+      "solution": "$AB + BA = (10A + B) + (10B + A) = 11A + 11B = 11(A + B)$.\n\nSo $11(A + B) = 121$, and $A + B = 11$.\n\nTwo digits with sum 11 and difference 5: the bigger one is $(11 + 5) \\div 2 = 8$ and the smaller is 3. So $A = 8$, $B = 3$, and $AB = $ **83**.\n\nCheck: $83 + 38 = 121$."
+    },
+    {
+      "id": "logic-magic-04",
+      "topic": "logic-magic",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "In the addition below, each letter stands for a different digit, and no number starts with 0.\n\n$AB + BA = CAC$\n\n(Here $AB$ and $BA$ are two-digit numbers and $CAC$ is a three-digit number.) What is the two-digit number $AB$?",
+      "answer": "29",
+      "hints": [
+        "The sum of two two-digit numbers is less than 200. What does that tell you about $C$?",
+        "$C = 1$, so the sum looks like $1A1$. Also, $AB + BA = 11(A + B)$.",
+        "Which multiples of 11 between 100 and 199 start and end with 1?"
+      ],
+      "solution": "Two two-digit numbers add to less than 200, so $C = 1$. The sum is $1A1$.\n\nAlso $AB + BA = 11(A + B)$, so $1A1$ is a multiple of 11. The multiples of 11 from 100 to 199 that start and end in 1 are just **121** ($11 \\times 11$).\n\nSo $A = 2$ and $A + B = 11$, giving $B = 9$. All three letters are different ($A=2, B=9, C=1$).\n\n$AB = $ **29**. Check: $29 + 92 = 121$."
+    },
+    {
+      "id": "logic-magic-05",
+      "topic": "logic-magic",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "The numbers 1, 2, 3, 4, 5, 6 are placed on a triangle: one number at each of the 3 corners and one number in the middle of each of the 3 sides, using each number once. Each side of the triangle (corner + middle + corner) must have the same sum.\n\nWhat is the LARGEST possible side sum?",
+      "answer": "12",
+      "hints": [
+        "Add the three side sums together. Which numbers get counted twice?",
+        "Three side sums $= 21 + (\\text{sum of the corners})$. To make the side sum big, what should go in the corners?",
+        "Try 4, 5, 6 in the corners. Can you actually fill in the middles to make it work?"
+      ],
+      "solution": "Adding all three sides counts every number once, plus the corners a second time (each corner is on two sides). So\n\n$3 \\times (\\text{side sum}) = 21 + (\\text{corners})$.\n\nThe corners can add to at most $4 + 5 + 6 = 15$, which gives $3 \\times (\\text{side sum}) = 36$, a side sum of 12.\n\nDoes it work? Corners 4, 5, 6. Side 4–?–5 needs 3; side 5–?–6 needs 1; side 6–?–4 needs 2. Each side: $4+3+5 = 12$, $5+1+6 = 12$, $6+2+4 = 12$. Yes!\n\nThe largest side sum is **12**."
+    },
+    {
+      "id": "logic-magic-06",
+      "topic": "logic-magic",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "The numbers 2, 3, 4, 5, 6, 7, 8, 9, 10 are placed in a 3-by-3 magic square (every row, column, and diagonal has the same sum). The top-left corner is 3 and the top-right corner is 7.\n\nWhat number is in the middle square of the BOTTOM row?",
+      "answer": "4",
+      "hints": [
+        "Find the magic sum first: add 2 through 10 and divide by 3.",
+        "The center of a 3-by-3 magic square is the magic sum divided by 3.",
+        "Use the top row to find the top-middle number. Then use the middle column."
+      ],
+      "solution": "Total: $2 + 3 + \\cdots + 10 = 54$, so the magic sum is $54 \\div 3 = 18$.\n\nThe center is $18 \\div 3 = 6$.\n\nTop row: $3 + \\text{(top middle)} + 7 = 18$, so the top middle is 8.\n\nMiddle column: $8 + 6 + \\text{(bottom middle)} = 18$, so the bottom middle is **4**.\n\n(The full square is: top row 3, 8, 7; middle row 10, 6, 2; bottom row 5, 4, 9. Every line adds to 18.)"
+    },
+    {
+      "id": "logic-magic-07",
+      "topic": "logic-magic",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "In the addition below, $A$, $B$, and $C$ are three different nonzero digits.\n\n$AA + BB + CC = ABC$\n\n(Here $AA$, $BB$, $CC$ are two-digit numbers like 44, and $ABC$ is a three-digit number.) What is the three-digit number $ABC$?",
+      "answer": "198",
+      "hints": [
+        "$AA = 11 \\times A$. So the left side is $11(A + B + C)$.",
+        "Three two-digit numbers add to less than 300. And the biggest possible sum is $99 + 88 + 77$. What does that tell you about $A$?",
+        "Once you know $A$, write $ABC = 100 + 10B + C$ and set it equal to $11(1 + B + C)$."
+      ],
+      "solution": "The left side is $11A + 11B + 11C = 11(A + B + C)$.\n\nSince the digits are different, the sum is at most $99 + 88 + 77 = 264$. So $A$ is 1 or 2.\n\n**Try $A = 1$:** $11(1 + B + C) = 100 + 10B + C$. Expand: $11 + 11B + 11C = 100 + 10B + C$, so $B + 10C = 89$. Then $C = 8$ and $B = 9$. Digits 1, 9, 8 are all different.\n\n**Try $A = 2$:** $11(2 + B + C) = 200 + 10B + C$ gives $B + 10C = 178$, impossible for digits.\n\nSo $ABC = $ **198**. Check: $11 + 99 + 88 = 198$."
+    },
+    {
+      "id": "logic-magic-08",
+      "topic": "logic-magic",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "How many different 3-by-3 magic squares can be made using each of the numbers 1 through 9 exactly once? (Squares that are rotations or mirror images of each other count as different.)",
+      "answer": "8",
+      "unit": "squares",
+      "hints": [
+        "The center must be 5 and the magic sum is 15. Where can the 1 go: a corner or an edge (middle of a side)?",
+        "If 1 were in a corner, the three lines through that corner would each need two other numbers adding to 14. How many pairs from 2–9 add to 14?",
+        "So 1 goes in an edge square, and 9 is opposite it. After choosing where 1 goes, how many ways can you finish?"
+      ],
+      "solution": "The magic sum is 15 and the center is 5.\n\n**Where is the 1?** A corner is on 3 lines (a row, a column, a diagonal), so it would need 3 different pairs adding to 14. The only pairs from 2–9 that add to 14 are $5 + 9$ and $6 + 8$, just 2 pairs. So **1 is on an edge** (the middle of a side), and 9 is on the opposite edge.\n\n**Choose the edge for 1:** 4 choices. Say 1 is top-middle. The top row needs two corners adding to 14 using 6 and 8 (5 and 9 are used). That's 2 ways to order them.\n\nAfter that, everything else is forced: each remaining square is the only number that completes its line. For example, top row 6, 1, 8 gives middle row 7, 5, 3 and bottom row 2, 9, 4.\n\nTotal: $4 \\times 2 = $ **8** magic squares."
+    }
+  ]
+}
