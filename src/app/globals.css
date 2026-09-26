@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #fff6e8;
+  background-image:
+    radial-gradient(circle at 8% -8%, #ffe7c2 0, transparent 36%),
+    radial-gradient(circle at 110% 0%, #ffd5c4 0, transparent 32%),
+    radial-gradient(circle at 70% 120%, #d8f3ee 0, transparent 42%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: #ffd7a8;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-center font-display text-lg leading-none transition hover:brightness-105 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-coral text-white shadow-pop;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-ink ring-2 ring-[#eadccb];
+  }
+
+  .btn-leaf {
+    @apply btn bg-leaf text-white;
+  }
+
+  .card {
+    @apply rounded-[1.75rem] bg-white p-6 shadow-card sm:p-8;
+  }
+
+  .eyebrow {
+    @apply text-sm font-extrabold uppercase tracking-[0.16em] text-cocoa;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
