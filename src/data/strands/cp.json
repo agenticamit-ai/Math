@@ -1,0 +1,650 @@
+{
+  "strand": "cp",
+  "name": "Counting & Probability",
+  "description": "Count cleverly with lists, arrangements, and Venn diagrams, then use counting to find probabilities and guarantee outcomes with the Pigeonhole Principle.",
+  "topics": [
+    {
+      "id": "cp-lists",
+      "name": "Organized Lists & the Multiplication Principle",
+      "lesson": {
+        "intro": "Many contest problems ask \"how many ways?\" The trick is to count in an organized way so you never miss a case or count one twice. When a choice happens in steps, you can often just multiply!",
+        "keyIdeas": [
+          "Make an organized list (or tree) when the numbers are small: fix the first choice, then run through all the second choices, and so on.",
+          "Multiplication Principle: if one step can be done in $a$ ways and the next step in $b$ ways, the two steps together can be done in $a \\times b$ ways.",
+          "Watch for restrictions such as \"the first digit can't be 0\" or \"digits must be different.\" Handle the most restricted spot first.",
+          "Sometimes it is easier to count what you DON'T want and subtract from the total (complementary counting)."
+        ],
+        "examples": [
+          {
+            "problem": "A cafe offers 3 kinds of bread, 4 kinds of cheese, and 2 kinds of soup. A lunch special is one bread, one cheese, and one soup. How many different lunch specials are possible?",
+            "solution": "Step 1: Choose the bread: 3 ways.\n\nStep 2: For each bread, choose the cheese: 4 ways. That makes $3 \\times 4 = 12$ bread-and-cheese pairs.\n\nStep 3: For each pair, choose the soup: 2 ways.\n\nTotal: $3 \\times 4 \\times 2 = 24$ lunch specials."
+          },
+          {
+            "problem": "How many three-digit numbers have three different digits?",
+            "solution": "Fill the digits from left to right, starting with the most restricted spot.\n\nHundreds digit: it can't be 0, so there are 9 choices (1–9).\n\nTens digit: any digit 0–9 except the one already used, so 9 choices.\n\nOnes digit: any digit except the two already used, so 8 choices.\n\nTotal: $9 \\times 9 \\times 8 = 648$."
+          }
+        ],
+        "tip": "Before multiplying, ask: \"Does the number of choices at each step stay the same no matter what I picked earlier?\" If yes, multiply. If not, split into cases and add."
+      }
+    },
+    {
+      "id": "cp-arrangements",
+      "name": "Arrangements & Choosing Groups",
+      "lesson": {
+        "intro": "Lining people up and picking teams are two of the most common counting problems. The big question to ask every time is: does ORDER matter? If swapping two people gives something new, order matters; if not, you are just choosing a group.",
+        "keyIdeas": [
+          "Arranging $n$ different things in a row: $n \\times (n-1) \\times \\cdots \\times 2 \\times 1$ ways. For example, 4 people can line up in $4 \\times 3 \\times 2 \\times 1 = 24$ ways.",
+          "Filling different jobs (like president and vice-president) is an ordered choice: multiply the choices for each job.",
+          "Choosing a group where order does NOT matter: count as if order mattered, then divide by the number of ways to order the group. Handshakes: $\\frac{n \\times (n-1)}{2}$.",
+          "Repeated letters: if a word has repeated letters, divide by the number of ways to rearrange the identical letters among themselves.",
+          "\"Must be together\" trick: glue the items together into one block, arrange the blocks, then arrange inside the block."
+        ],
+        "examples": [
+          {
+            "problem": "In how many different orders can 5 different books be placed on a shelf?",
+            "solution": "The first spot on the shelf can hold any of the 5 books.\n\nThe second spot can hold any of the 4 books left, the third any of 3, then 2, then 1.\n\nTotal: $5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$ orders."
+          },
+          {
+            "problem": "A pizza shop has 5 toppings. How many different pizzas can you make with exactly 2 different toppings?",
+            "solution": "If order mattered, there would be $5 \\times 4 = 20$ ways to pick a first topping and then a second topping.\n\nBut \"pepperoni then mushroom\" is the same pizza as \"mushroom then pepperoni.\" Every pizza was counted exactly 2 times.\n\nSo the number of pizzas is $20 \\div 2 = 10$."
+          }
+        ],
+        "tip": "Test whether order matters by swapping two chosen items. If you get the same result (same team, same handshake, same pizza), divide out the repeats."
+      }
+    },
+    {
+      "id": "cp-venn",
+      "name": "Venn Diagrams & Overlaps",
+      "lesson": {
+        "intro": "When some people belong to two groups at once (like kids who play soccer AND piano), it is easy to count them twice. A Venn diagram is a picture of overlapping circles that helps you sort everyone into exactly one region. You can draw one on scratch paper for any of these problems!",
+        "keyIdeas": [
+          "Picture two overlapping circles. The middle part is \"both,\" each side part is \"only this one,\" and the outside is \"neither.\"",
+          "Fill in the overlap FIRST, then work outward: \"only A\" = (all of A) − (both).",
+          "Two groups: (in A or B) = (in A) + (in B) − (in both). The subtraction fixes the double counting.",
+          "Three groups: add the three circles, subtract the three pairwise overlaps, then add back the middle (all three).",
+          "Everyone is somewhere: total = (in at least one group) + (in neither)."
+        ],
+        "examples": [
+          {
+            "problem": "In a class of 30 students, 17 have a dog, 14 have a cat, and 6 have both. How many students have neither a dog nor a cat?",
+            "solution": "Put 6 in the overlap (both).\n\nDog only: $17 - 6 = 11$. Cat only: $14 - 6 = 8$.\n\nStudents with at least one pet: $11 + 8 + 6 = 25$. (Check: $17 + 14 - 6 = 25$.)\n\nNeither: $30 - 25 = 5$ students."
+          },
+          {
+            "problem": "How many whole numbers from 1 to 60 are multiples of 4 or multiples of 6 (or both)?",
+            "solution": "Multiples of 4 up to 60: $60 \\div 4 = 15$.\n\nMultiples of 6 up to 60: $60 \\div 6 = 10$.\n\nNumbers that are multiples of both 4 and 6 are multiples of 12: $60 \\div 12 = 5$. These were counted twice.\n\nTotal: $15 + 10 - 5 = 20$."
+          }
+        ],
+        "tip": "Always start filling a Venn diagram from the innermost region (the part in all the groups) and work outward. Most mistakes come from forgetting to subtract the overlap."
+      }
+    },
+    {
+      "id": "cp-probability",
+      "name": "Probability",
+      "lesson": {
+        "intro": "Probability measures how likely something is, using a number from 0 (impossible) to 1 (certain). When all outcomes are equally likely, probability is just counting: favorable outcomes divided by total outcomes. Contest answers are usually fractions in simplest form.",
+        "keyIdeas": [
+          "Probability = $\\frac{\\text{number of favorable outcomes}}{\\text{number of possible outcomes}}$, when every outcome is equally likely.",
+          "For two dice, think of 36 equally likely outcomes (6 for the first die times 6 for the second). A table or grid helps.",
+          "P(not A) = 1 − P(A). Sometimes the opposite event is much easier to count.",
+          "Without replacement means the first item is NOT put back, so there are fewer items for the second draw.",
+          "Always simplify your fraction at the end."
+        ],
+        "examples": [
+          {
+            "problem": "A fair six-sided die is rolled. What is the probability of rolling an even number?",
+            "solution": "There are 6 equally likely outcomes: 1, 2, 3, 4, 5, 6.\n\nThe even ones are 2, 4, 6: that is 3 favorable outcomes.\n\nProbability: $\\frac{3}{6} = \\frac{1}{2}$."
+          },
+          {
+            "problem": "Two fair coins are flipped. What is the probability of getting at least one head?",
+            "solution": "List the equally likely outcomes: HH, HT, TH, TT. There are 4.\n\nThe opposite of \"at least one head\" is \"no heads,\" which is only TT: probability $\\frac{1}{4}$.\n\nSo P(at least one head) $= 1 - \\frac{1}{4} = \\frac{3}{4}$."
+          }
+        ],
+        "tip": "Be careful that your outcomes are equally likely. With two coins, \"two heads, one of each, two tails\" are NOT equally likely — list HT and TH separately."
+      }
+    },
+    {
+      "id": "cp-pigeonhole",
+      "name": "Pigeonhole & Worst Case",
+      "lesson": {
+        "intro": "If 5 pigeons fly into 4 holes, at least one hole must get 2 pigeons — that's the Pigeonhole Principle! In \"how many must you take to be SURE\" problems, imagine you are as unlucky as possible, then add one more.",
+        "keyIdeas": [
+          "Pigeonhole Principle: if you put more than $n$ objects into $n$ boxes, some box gets at least 2 objects.",
+          "To GUARANTEE something, find the worst case: the largest number you could pick and still NOT have what you want. The answer is that number plus 1.",
+          "To guarantee $k$ of the same kind with $n$ kinds: worst case is $k-1$ of each kind, so the answer is $n(k-1) + 1$ (as long as each kind has enough).",
+          "To guarantee a specific kind (like 2 red socks), the worst case is taking ALL of the other kinds first.",
+          "The \"boxes\" can be anything: colors, months, remainders, or pairs of numbers."
+        ],
+        "examples": [
+          {
+            "problem": "A drawer has 7 red, 7 blue, and 7 green gloves (all fit either hand). In the dark, how many gloves must you take to be sure of getting two of the same color?",
+            "solution": "Worst case: you are unlucky and your first gloves are all different colors — one red, one blue, one green. That's 3 gloves with no match.\n\nThe next glove must match one of the three colors.\n\nAnswer: $3 + 1 = 4$ gloves."
+          },
+          {
+            "problem": "Explain why in any group of 367 people, at least two share a birthday.",
+            "solution": "The boxes are the possible birthdays. Including February 29, there are 366 of them.\n\nWith 367 people and only 366 boxes, the people can't all go into different boxes.\n\nSo at least two people must share a birthday."
+          }
+        ],
+        "tip": "Write down an actual unlucky draw that fails. The biggest failing draw plus one is your answer — and it also proves the answer isn't smaller."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "cp-lists-01",
+      "topic": "cp-lists",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "A sandwich is made with one kind of bread, one kind of filling, and one kind of sauce. There are 3 kinds of bread, 4 kinds of filling, and 2 kinds of sauce. How many different sandwiches can be made?",
+      "answer": "24",
+      "unit": "sandwiches",
+      "hints": [
+        "Each sandwich is made in three steps: bread, then filling, then sauce.",
+        "Multiply the number of choices at each step."
+      ],
+      "solution": "Bread: 3 choices. Filling: 4 choices. Sauce: 2 choices.\n\nBy the Multiplication Principle: $3 \\times 4 \\times 2 = 24$ sandwiches."
+    },
+    {
+      "id": "cp-lists-02",
+      "topic": "cp-lists",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "Three-digit numbers are made using only the digits 1, 3, 5, and 7. Digits may be repeated (for example, 355 is allowed). How many of these numbers are greater than 500?",
+      "answer": "32",
+      "hints": [
+        "Which hundreds digits make the number greater than 500?",
+        "The hundreds digit must be 5 or 7. How many choices are there for each of the other two digits?"
+      ],
+      "solution": "For the number to be greater than 500, the hundreds digit must be 5 or 7: 2 choices. (Any number starting with 5 using these digits, like 511, is already more than 500.)\n\nThe tens digit can be any of the 4 digits, and so can the ones digit.\n\nTotal: $2 \\times 4 \\times 4 = 32$."
+    },
+    {
+      "id": "cp-lists-03",
+      "topic": "cp-lists",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "A club makes secret codes that are two letters followed by one digit, such as BA7. The letters must come from A, B, and C (a letter may be used twice, like CC), and the digit can be any digit from 0 to 9. How many different codes are possible?",
+      "choices": [
+        "60",
+        "90",
+        "30",
+        "100",
+        "900"
+      ],
+      "answer": "B",
+      "hints": [
+        "There are three spots to fill: letter, letter, digit.",
+        "Count the choices for each spot and multiply."
+      ],
+      "solution": "First letter: 3 choices. Second letter: 3 choices (repeats allowed). Digit: 10 choices.\n\nTotal: $3 \\times 3 \\times 10 = 90$. The answer is B."
+    },
+    {
+      "id": "cp-lists-04",
+      "topic": "cp-lists",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "How many positive whole numbers less than 1000 have only odd digits? (For example, 7, 35, and 519 count, but 70 and 124 do not.)",
+      "answer": "155",
+      "hints": [
+        "Split the numbers into one-digit, two-digit, and three-digit numbers.",
+        "There are 5 odd digits: 1, 3, 5, 7, 9. Each position can be any of them."
+      ],
+      "solution": "There are 5 odd digits: 1, 3, 5, 7, 9.\n\nOne-digit numbers: 5.\n\nTwo-digit numbers: $5 \\times 5 = 25$.\n\nThree-digit numbers: $5 \\times 5 \\times 5 = 125$.\n\nTotal: $5 + 25 + 125 = 155$."
+    },
+    {
+      "id": "cp-lists-05",
+      "topic": "cp-lists",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "In how many different ways can you make 20 cents using pennies, nickels, and dimes? (You may use any number of each coin, including none. Only the number of each kind of coin matters, not the order.)",
+      "answer": "9",
+      "unit": "ways",
+      "hints": [
+        "Make an organized list. Start with the biggest coin: how many dimes can you use?",
+        "You can use 0, 1, or 2 dimes. For each case, count how many nickels are possible; pennies fill in the rest."
+      ],
+      "solution": "Organize by the number of dimes.\n\n2 dimes: that's already 20 cents. 1 way.\n\n1 dime: 10 cents left. Use 0, 1, or 2 nickels (pennies make the rest). 3 ways.\n\n0 dimes: 20 cents left. Use 0, 1, 2, 3, or 4 nickels. 5 ways.\n\nTotal: $1 + 3 + 5 = 9$ ways."
+    },
+    {
+      "id": "cp-lists-06",
+      "topic": "cp-lists",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "How many even three-digit numbers have three different digits?",
+      "answer": "328",
+      "hints": [
+        "The ones digit must be even, and 0 is a special case because the hundreds digit can't be 0.",
+        "Split into two cases: the ones digit is 0, or the ones digit is 2, 4, 6, or 8."
+      ],
+      "solution": "Case 1: the ones digit is 0. The hundreds digit can be 1–9 (9 choices), and the tens digit can be any of the 8 digits left. That's $9 \\times 8 = 72$.\n\nCase 2: the ones digit is 2, 4, 6, or 8 (4 choices). The hundreds digit can't be 0 and can't be the ones digit: 8 choices. The tens digit can be any of the 8 digits not yet used (0 is allowed here). That's $4 \\times 8 \\times 8 = 256$.\n\nTotal: $72 + 256 = 328$."
+    },
+    {
+      "id": "cp-lists-07",
+      "topic": "cp-lists",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "How many whole numbers from 1 to 999 contain at least one digit 7?",
+      "answer": "271",
+      "hints": [
+        "Counting numbers WITH a 7 is messy. Try counting the numbers with NO 7 instead.",
+        "Think of every number from 0 to 999 as a three-digit string like 007 or 042. How many such strings have no 7?"
+      ],
+      "solution": "Count the opposite: numbers with no 7.\n\nWrite every number from 0 to 999 with three digits (like 005 or 083). Each digit can be anything except 7: 9 choices. So $9 \\times 9 \\times 9 = 729$ strings have no 7.\n\nOne of those strings is 000, which is not in our range, so 728 of the numbers from 1 to 999 have no 7.\n\nNumbers with at least one 7: $999 - 728 = 271$."
+    },
+    {
+      "id": "cp-arrangements-01",
+      "topic": "cp-arrangements",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "Four friends — Ana, Ben, Cal, and Dee — line up in a row for a photo. How many different orders are possible?",
+      "answer": "24",
+      "unit": "orders",
+      "hints": [
+        "How many friends could stand in the first spot? Once that is decided, how many could stand in the second spot?"
+      ],
+      "solution": "First spot: 4 choices. Second spot: 3 choices. Third spot: 2 choices. Last spot: 1 choice.\n\nTotal: $4 \\times 3 \\times 2 \\times 1 = 24$ orders."
+    },
+    {
+      "id": "cp-arrangements-02",
+      "topic": "cp-arrangements",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "At a party, each of 8 people shakes hands exactly once with every other person. How many handshakes take place?",
+      "answer": "28",
+      "unit": "handshakes",
+      "hints": [
+        "Each person shakes hands with 7 others. What happens if you just multiply $8 \\times 7$?",
+        "Each handshake involves two people, so $8 \\times 7$ counts every handshake twice."
+      ],
+      "solution": "Each of the 8 people shakes 7 hands, which gives $8 \\times 7 = 56$.\n\nBut the handshake between Ana and Ben was counted once for Ana and once for Ben, so every handshake was counted twice.\n\nHandshakes: $56 \\div 2 = 28$."
+    },
+    {
+      "id": "cp-arrangements-03",
+      "topic": "cp-arrangements",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "A club has 6 members. They will choose a president and a vice-president, and these must be two different people. In how many ways can this be done?",
+      "choices": [
+        "12",
+        "15",
+        "30",
+        "36",
+        "720"
+      ],
+      "answer": "C",
+      "hints": [
+        "Does order matter here? Is \"Ana president, Ben vice-president\" the same as \"Ben president, Ana vice-president\"?",
+        "The jobs are different, so order matters. Count the choices for president, then for vice-president."
+      ],
+      "solution": "The two jobs are different, so order matters.\n\nPresident: 6 choices. Vice-president: any of the other 5 members.\n\nTotal: $6 \\times 5 = 30$. The answer is C."
+    },
+    {
+      "id": "cp-arrangements-04",
+      "topic": "cp-arrangements",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "How many different arrangements of the five letters in the word LEVEL are there? (Arrangements don't have to be real words; for example, EELLV counts.)",
+      "answer": "30",
+      "hints": [
+        "If all five letters were different, there would be $5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$ arrangements.",
+        "LEVEL has two L's and two E's. Swapping the two L's (or the two E's) doesn't create a new arrangement. How many times is each arrangement counted?"
+      ],
+      "solution": "Pretend the letters are all different: $L_1, E_1, V, E_2, L_2$. Then there are $5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$ arrangements.\n\nBut the two L's can be swapped in 2 ways and the two E's can be swapped in 2 ways without changing the word. So each real arrangement was counted $2 \\times 2 = 4$ times.\n\nArrangements: $120 \\div 4 = 30$."
+    },
+    {
+      "id": "cp-arrangements-05",
+      "topic": "cp-arrangements",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A teacher needs to choose 3 students from a group of 7 to form a committee. All committee members have the same job. How many different committees are possible?",
+      "answer": "35",
+      "unit": "committees",
+      "hints": [
+        "First count the ways to pick a 1st, 2nd, and 3rd student in order.",
+        "Order doesn't matter for a committee. How many different orders can the same 3 students be picked in?"
+      ],
+      "solution": "If order mattered: $7 \\times 6 \\times 5 = 210$ ways.\n\nBut the same 3 students can be picked in $3 \\times 2 \\times 1 = 6$ different orders, and they all give the same committee.\n\nCommittees: $210 \\div 6 = 35$."
+    },
+    {
+      "id": "cp-arrangements-06",
+      "topic": "cp-arrangements",
+      "difficulty": 4,
+      "style": "mc",
+      "prompt": "Five students — Ann, Ben, Cora, Dev, and Eli — stand in a line. Ann and Ben insist on standing next to each other (in either order). How many different lines are possible?",
+      "choices": [
+        "24",
+        "36",
+        "48",
+        "60",
+        "120"
+      ],
+      "answer": "C",
+      "hints": [
+        "Glue Ann and Ben together into one \"block.\" How many things are you now arranging?",
+        "You arrange 4 things (the block plus 3 other students), then decide the order inside the block."
+      ],
+      "solution": "Glue Ann and Ben into one block. Now arrange 4 things: the block, Cora, Dev, and Eli. That's $4 \\times 3 \\times 2 \\times 1 = 24$ ways.\n\nInside the block, Ann and Ben can be in 2 orders (Ann-Ben or Ben-Ann).\n\nTotal: $24 \\times 2 = 48$. The answer is C."
+    },
+    {
+      "id": "cp-arrangements-07",
+      "topic": "cp-arrangements",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "A team of 4 players is to be chosen from 5 boys and 4 girls. The team must include at least one girl. How many different teams are possible? (All team members have the same role.)",
+      "answer": "121",
+      "unit": "teams",
+      "hints": [
+        "\"At least one girl\" has many cases. What is the opposite of \"at least one girl\"?",
+        "Count ALL teams of 4 from the 9 children, then subtract the teams with no girls (all boys)."
+      ],
+      "solution": "Count all teams of 4 from 9 children. In order: $9 \\times 8 \\times 7 \\times 6 = 3024$. Each team is counted $4 \\times 3 \\times 2 \\times 1 = 24$ times, so there are $3024 \\div 24 = 126$ teams.\n\nTeams with no girls use 4 of the 5 boys. Choosing 4 boys is the same as choosing which 1 boy to leave out: 5 teams.\n\nTeams with at least one girl: $126 - 5 = 121$."
+    },
+    {
+      "id": "cp-venn-01",
+      "topic": "cp-venn",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "In a class of 25 students, 15 like cats, 12 like dogs, and 5 like both cats and dogs. How many students like neither cats nor dogs?",
+      "answer": "3",
+      "unit": "students",
+      "hints": [
+        "Start with the overlap: 5 students like both. How many like only cats? Only dogs?",
+        "Add the \"only cats,\" \"only dogs,\" and \"both\" groups, then subtract from 25."
+      ],
+      "solution": "Both: 5. Cats only: $15 - 5 = 10$. Dogs only: $12 - 5 = 7$.\n\nLike at least one: $10 + 7 + 5 = 22$.\n\nLike neither: $25 - 22 = 3$ students."
+    },
+    {
+      "id": "cp-venn-02",
+      "topic": "cp-venn",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "There are 30 students in a gym class, and every student plays soccer, basketball, or both. If 18 play soccer and 20 play basketball, how many play both?",
+      "answer": "8",
+      "unit": "students",
+      "hints": [
+        "Add $18 + 20$. Why is that more than 30?",
+        "The students who play both were counted twice. The extra amount above 30 is exactly the number who play both."
+      ],
+      "solution": "Adding $18 + 20 = 38$ counts every student at least once, and counts the students who play both sports twice.\n\nThere are only 30 students, so the extra $38 - 30 = 8$ comes from double-counting.\n\nSo 8 students play both."
+    },
+    {
+      "id": "cp-venn-03",
+      "topic": "cp-venn",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "How many whole numbers from 1 to 50 are multiples of 3 or multiples of 5 (or both)?",
+      "choices": [
+        "26",
+        "23",
+        "20",
+        "13",
+        "3"
+      ],
+      "answer": "B",
+      "hints": [
+        "Count multiples of 3 and multiples of 5 separately.",
+        "Numbers that are multiples of both 3 and 5 are multiples of 15. Don't count them twice."
+      ],
+      "solution": "Multiples of 3 from 1 to 50: 3, 6, …, 48. That's 16 numbers.\n\nMultiples of 5: 5, 10, …, 50. That's 10 numbers.\n\nMultiples of 15 (counted in both lists): 15, 30, 45. That's 3 numbers.\n\nTotal: $16 + 10 - 3 = 23$. The answer is B."
+    },
+    {
+      "id": "cp-venn-04",
+      "topic": "cp-venn",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "In a group of 40 students, 22 take French, 15 take Spanish, and 10 take neither language. How many students take French but NOT Spanish?",
+      "answer": "15",
+      "unit": "students",
+      "hints": [
+        "How many students take at least one of the two languages?",
+        "Use (French) + (Spanish) − (both) = (at least one) to find how many take both."
+      ],
+      "solution": "Students taking at least one language: $40 - 10 = 30$.\n\n$22 + 15 = 37$, which is 7 more than 30, so 7 students take both.\n\nFrench but not Spanish: $22 - 7 = 15$ students."
+    },
+    {
+      "id": "cp-venn-05",
+      "topic": "cp-venn",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "At a school of 50 students, 25 are in chess club, 20 are in band, and 18 are in art club. Also, 8 are in both chess and band, 6 are in both chess and art, and 5 are in both band and art. (These pair counts include students in all three.) Exactly 3 students are in all three activities. How many students are in none of the three?",
+      "answer": "3",
+      "unit": "students",
+      "hints": [
+        "Draw three overlapping circles and put 3 in the very middle first.",
+        "\"Chess and band\" is 8, but 3 of those are in all three. So 5 are in chess and band only. Do the same for the other pairs."
+      ],
+      "solution": "Middle (all three): 3.\n\nPairs only: chess & band only $= 8 - 3 = 5$; chess & art only $= 6 - 3 = 3$; band & art only $= 5 - 3 = 2$.\n\nChess only: $25 - 5 - 3 - 3 = 14$. Band only: $20 - 5 - 2 - 3 = 10$. Art only: $18 - 3 - 2 - 3 = 10$.\n\nIn at least one activity: $14 + 10 + 10 + 5 + 3 + 2 + 3 = 47$.\n\n(Check with the formula: $25 + 20 + 18 - 8 - 6 - 5 + 3 = 47$.)\n\nIn none: $50 - 47 = 3$ students."
+    },
+    {
+      "id": "cp-venn-06",
+      "topic": "cp-venn",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "How many whole numbers from 1 to 100 are divisible by none of 2, 3, or 5?",
+      "answer": "26",
+      "hints": [
+        "Count the numbers divisible by at least one of 2, 3, 5, then subtract from 100.",
+        "Multiples of 2: 50, of 3: 33, of 5: 20. Now subtract the multiples of 6, 10, and 15, then add back multiples of 30."
+      ],
+      "solution": "Count numbers divisible by at least one of 2, 3, or 5.\n\nMultiples of 2: 50. Multiples of 3: 33. Multiples of 5: 20. Sum: 103.\n\nSubtract the overlaps: multiples of 6: 16; of 10: 10; of 15: 6. $103 - 32 = 71$.\n\nAdd back the numbers in all three (multiples of 30): 3. $71 + 3 = 74$.\n\nDivisible by none: $100 - 74 = 26$."
+    },
+    {
+      "id": "cp-venn-07",
+      "topic": "cp-venn",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "In a class of 32 students, 20 like math and 18 like science. Some students may like both subjects, and some may like neither. Let $L$ be the largest possible number of students who like both, and let $S$ be the smallest possible number. What is $L - S$?",
+      "answer": "12",
+      "hints": [
+        "For the largest overlap, try to fit one group completely inside the other.",
+        "For the smallest overlap, try to spread the two groups out so they overlap as little as possible — but there are only 32 students."
+      ],
+      "solution": "Largest: all 18 science-lovers could also like math (18 is less than 20). The overlap can't be more than 18, since only 18 like science. So $L = 18$.\n\nSmallest: $20 + 18 = 38$, but there are only 32 students. Even if every student likes at least one subject, at least $38 - 32 = 6$ must be counted twice. So $S = 6$ (this happens when nobody likes neither).\n\n$L - S = 18 - 6 = 12$."
+    },
+    {
+      "id": "cp-probability-01",
+      "topic": "cp-probability",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "A bag holds 3 red marbles, 5 blue marbles, and 2 green marbles. One marble is picked at random. What is the probability that it is blue? Give your answer as a fraction in simplest form.",
+      "answer": "1/2",
+      "hints": [
+        "How many marbles are there in all?",
+        "Probability = (number of blue marbles) ÷ (total number of marbles). Then simplify."
+      ],
+      "solution": "Total marbles: $3 + 5 + 2 = 10$.\n\nBlue marbles: 5.\n\nProbability: $\\frac{5}{10} = \\frac{1}{2}$."
+    },
+    {
+      "id": "cp-probability-02",
+      "topic": "cp-probability",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "Three fair coins are flipped. What is the probability of getting exactly two heads? Give your answer as a fraction in simplest form.",
+      "answer": "3/8",
+      "hints": [
+        "How many equally likely outcomes are there for three coins?",
+        "There are $2 \\times 2 \\times 2 = 8$ outcomes. List the ones with exactly two H's."
+      ],
+      "solution": "Each coin has 2 outcomes, so there are $2 \\times 2 \\times 2 = 8$ equally likely outcomes.\n\nOutcomes with exactly two heads: HHT, HTH, THH. That's 3.\n\nProbability: $\\frac{3}{8}$."
+    },
+    {
+      "id": "cp-probability-03",
+      "topic": "cp-probability",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "Two fair six-sided dice are rolled. What is the probability that the sum of the two numbers is 7?",
+      "choices": [
+        "$\\frac{1}{12}$",
+        "$\\frac{1}{6}$",
+        "$\\frac{7}{36}$",
+        "$\\frac{1}{7}$",
+        "$\\frac{5}{36}$"
+      ],
+      "answer": "B",
+      "hints": [
+        "There are $6 \\times 6 = 36$ equally likely outcomes.",
+        "List the pairs that add to 7: (1, 6), (2, 5), …"
+      ],
+      "solution": "There are $6 \\times 6 = 36$ equally likely outcomes.\n\nPairs with sum 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). That's 6.\n\nProbability: $\\frac{6}{36} = \\frac{1}{6}$. The answer is B."
+    },
+    {
+      "id": "cp-probability-04",
+      "topic": "cp-probability",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A whole number from 1 to 30 is chosen at random, with each number equally likely. What is the probability that it is a multiple of 4 or a multiple of 6 (or both)? Give your answer as a fraction in simplest form.",
+      "answer": "1/3",
+      "hints": [
+        "Count multiples of 4 and multiples of 6 from 1 to 30.",
+        "Numbers like 12 and 24 are multiples of both. Don't count them twice."
+      ],
+      "solution": "Multiples of 4: 4, 8, 12, 16, 20, 24, 28. That's 7.\n\nMultiples of 6: 6, 12, 18, 24, 30. That's 5.\n\nIn both lists: 12 and 24. That's 2.\n\nFavorable: $7 + 5 - 2 = 10$.\n\nProbability: $\\frac{10}{30} = \\frac{1}{3}$."
+    },
+    {
+      "id": "cp-probability-05",
+      "topic": "cp-probability",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Two fair six-sided dice are rolled, and the two numbers are multiplied. What is the probability that the product is even? Give your answer as a fraction in simplest form.",
+      "answer": "3/4",
+      "hints": [
+        "When is a product of two whole numbers odd?",
+        "The product is odd only when BOTH numbers are odd. Find that probability first and subtract from 1."
+      ],
+      "solution": "A product is odd only if both numbers are odd.\n\nEach die shows an odd number (1, 3, 5) in 3 of its 6 outcomes, so both are odd in $3 \\times 3 = 9$ of the 36 outcomes.\n\nP(odd product) $= \\frac{9}{36} = \\frac{1}{4}$.\n\nP(even product) $= 1 - \\frac{1}{4} = \\frac{3}{4}$."
+    },
+    {
+      "id": "cp-probability-06",
+      "topic": "cp-probability",
+      "difficulty": 4,
+      "style": "mc",
+      "prompt": "A box contains 4 red chips and 2 blue chips. Two chips are drawn at random, one after the other, without putting the first chip back. What is the probability that both chips are the same color?",
+      "choices": [
+        "$\\frac{1}{3}$",
+        "$\\frac{7}{15}$",
+        "$\\frac{8}{15}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{1}{2}$"
+      ],
+      "answer": "B",
+      "hints": [
+        "Find P(both red) and P(both blue) separately, then add.",
+        "For both red: the first chip is red with probability $\\frac{4}{6}$. If it was red, what is left in the box for the second draw?"
+      ],
+      "solution": "Both red: first red is $\\frac{4}{6}$; then 3 red remain out of 5, so $\\frac{3}{5}$. Together: $\\frac{4}{6} \\times \\frac{3}{5} = \\frac{12}{30}$.\n\nBoth blue: first blue is $\\frac{2}{6}$; then 1 blue remains out of 5, so $\\frac{1}{5}$. Together: $\\frac{2}{30}$.\n\nSame color: $\\frac{12}{30} + \\frac{2}{30} = \\frac{14}{30} = \\frac{7}{15}$. The answer is B."
+    },
+    {
+      "id": "cp-probability-07",
+      "topic": "cp-probability",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Three fair six-sided dice are rolled. What is the probability that the sum of the three numbers is exactly 10? Give your answer as a fraction in simplest form.",
+      "answer": "1/8",
+      "hints": [
+        "There are $6 \\times 6 \\times 6 = 216$ equally likely outcomes.",
+        "Organize by the first die. If the first die shows 1, the other two must add to 9. How many ways can two dice add to 9? Keep going for first die 2, 3, 4, 5, 6."
+      ],
+      "solution": "There are $6 \\times 6 \\times 6 = 216$ equally likely outcomes.\n\nOrganize by the first die; the other two dice must make the rest of the sum.\n\nFirst die 1: other two sum to 9 → 4 ways. First die 2: sum to 8 → 5 ways. First die 3: sum to 7 → 6 ways. First die 4: sum to 6 → 5 ways. First die 5: sum to 5 → 4 ways. First die 6: sum to 4 → 3 ways.\n\nFavorable: $4 + 5 + 6 + 5 + 4 + 3 = 27$.\n\nProbability: $\\frac{27}{216} = \\frac{1}{8}$."
+    },
+    {
+      "id": "cp-pigeonhole-01",
+      "topic": "cp-pigeonhole",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "A drawer holds 6 red socks and 6 blue socks, all mixed up. In the dark, what is the smallest number of socks you must take out to be sure of getting two socks of the same color?",
+      "answer": "3",
+      "unit": "socks",
+      "hints": [
+        "Imagine being as unlucky as possible. How many socks could you take without getting a match?"
+      ],
+      "solution": "Worst case: your first two socks are one red and one blue — no match yet.\n\nThe third sock must be red or blue, so it matches one of them.\n\nAnswer: 3 socks."
+    },
+    {
+      "id": "cp-pigeonhole-02",
+      "topic": "cp-pigeonhole",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "A drawer holds 10 black socks, 8 white socks, and 6 gray socks. In the dark, what is the smallest number of socks you must pull out to be certain of getting a matching pair (two socks of the same color)?",
+      "answer": "4",
+      "unit": "socks",
+      "hints": [
+        "Do the numbers 10, 8, and 6 really matter here? Think about how many colors there are.",
+        "In the unluckiest case, you get one sock of each color first."
+      ],
+      "solution": "There are 3 colors. In the worst case, your first 3 socks are one black, one white, and one gray — no pair.\n\nThe 4th sock must match one of them.\n\nAnswer: 4 socks. (The amounts 10, 8, and 6 don't matter, as long as each color has at least 2 socks.)"
+    },
+    {
+      "id": "cp-pigeonhole-03",
+      "topic": "cp-pigeonhole",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "What is the smallest number of people that must be in a room to be sure that at least two of them were born in the same month of the year?",
+      "choices": [
+        "12",
+        "13",
+        "24",
+        "25",
+        "366"
+      ],
+      "answer": "B",
+      "hints": [
+        "The \"boxes\" are the months. How many are there?",
+        "How many people could there be with everyone born in a different month?"
+      ],
+      "solution": "There are 12 months. It is possible for 12 people to all have different birth months.\n\nWith 13 people, there are more people than months, so by the Pigeonhole Principle two must share a month.\n\nAnswer: 13. The answer is B."
+    },
+    {
+      "id": "cp-pigeonhole-04",
+      "topic": "cp-pigeonhole",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A bag contains 5 red, 7 blue, and 9 green marbles. Without looking, what is the smallest number of marbles you must take to be sure of having 3 marbles of the same color?",
+      "answer": "7",
+      "unit": "marbles",
+      "hints": [
+        "What is the largest number of marbles you could take and still NOT have 3 of any color?",
+        "In the worst case, you have 2 of each color."
+      ],
+      "solution": "Worst case: you take 2 red, 2 blue, and 2 green. That's 6 marbles with no color appearing 3 times.\n\nThe next marble must be the 3rd of some color.\n\nAnswer: $6 + 1 = 7$ marbles."
+    },
+    {
+      "id": "cp-pigeonhole-05",
+      "topic": "cp-pigeonhole",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "A bag contains 4 red, 6 blue, and 10 yellow cubes. Without looking, what is the smallest number of cubes you must take to be certain that you have at least 2 red cubes?",
+      "answer": "18",
+      "unit": "cubes",
+      "hints": [
+        "This time you need a SPECIFIC color. What's the unluckiest thing that could happen?",
+        "In the worst case, you pull out every blue and every yellow cube before getting any red ones."
+      ],
+      "solution": "Worst case: you take all 6 blue and all 10 yellow cubes first. That's 16 cubes and no reds.\n\nThen you still need 2 red cubes: $16 + 2 = 18$.\n\nWith 17 cubes you could have only 1 red, so 18 is the smallest number that guarantees 2 red cubes."
+    },
+    {
+      "id": "cp-pigeonhole-06",
+      "topic": "cp-pigeonhole",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "What is the smallest number of different whole numbers you must choose from 1, 2, 3, …, 20 to be certain that two of the chosen numbers add up to 21?",
+      "answer": "11",
+      "hints": [
+        "Group the numbers from 1 to 20 into pairs that add to 21.",
+        "The pairs are (1, 20), (2, 19), …, (10, 11). How many numbers can you choose without taking both numbers from any pair?"
+      ],
+      "solution": "Group the numbers into pairs that add to 21: (1, 20), (2, 19), (3, 18), …, (10, 11). There are 10 pairs, and each number is in exactly one pair.\n\nYou can choose 10 numbers with no two adding to 21 — for example, 1 through 10 (one from each pair).\n\nIf you choose 11 numbers, there are more numbers than pairs, so two of them come from the same pair and add to 21.\n\nAnswer: 11."
+    },
+    {
+      "id": "cp-pigeonhole-07",
+      "topic": "cp-pigeonhole",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "A drawer contains 8 red, 8 blue, and 8 green socks. In the dark, what is the smallest number of socks you must take to be certain of having TWO matching pairs? (A matching pair is two socks of the same color. The two pairs may be the same color or different colors, but no sock can be used in both pairs.)",
+      "answer": "6",
+      "unit": "socks",
+      "hints": [
+        "First find the most socks you can have with at most one pair.",
+        "With one color, every 2 socks make a pair. Unpaired \"leftover\" socks can be at most one per color."
+      ],
+      "solution": "Think about how many socks can be left unpaired: at most 1 of each color, so at most 3 leftovers.\n\nWith 5 socks you could have 3 red, 1 blue, 1 green: that is only one pair (two reds) plus 3 leftovers. So 5 is not enough.\n\nWith 6 socks: if all three colors had an odd count, the total would be odd, but 6 is even. So at most 2 socks are leftovers, and the other at least 4 socks form at least 2 pairs.\n\nAnswer: 6 socks."
+    }
+  ]
+}

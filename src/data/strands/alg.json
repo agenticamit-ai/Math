@@ -1,0 +1,646 @@
+{
+  "strand": "alg",
+  "name": "Algebra & Word Problems",
+  "description": "Spot patterns, solve equations, work backwards, and crack age, money, speed, work and average word problems.",
+  "topics": [
+    {
+      "id": "alg-patterns",
+      "name": "Patterns & Sequences",
+      "lesson": {
+        "intro": "Many contest problems hide a pattern that repeats or grows by the same amount each time. Once you spot the rule, you can jump straight to the 100th term without writing out all 100! Let's learn how to find any term, count terms, and add up a whole list quickly.",
+        "keyIdeas": [
+          "In an arithmetic sequence you add the same number (the common difference $d$) each time. The $n$th term is $a_1 + (n-1)d$.",
+          "To count the terms from first to last: $\\frac{\\text{last} - \\text{first}}{d} + 1$. Don't forget the $+1$!",
+          "Sum of an arithmetic sequence = (number of terms) $\\times$ (first + last) $\\div 2$. Pair the first with the last, the second with the second-to-last, and so on.",
+          "For a repeating pattern with a block of length $k$, use the remainder when you divide the position by $k$. A remainder of 0 means the last item of the block.",
+          "The sum of the first $n$ odd numbers is $n^2$."
+        ],
+        "examples": [
+          {
+            "problem": "The 5th term of an arithmetic sequence is 23 and the 12th term is 51. What is the 30th term?",
+            "solution": "From the 5th term to the 12th term is 7 steps, and the value grew by $51 - 23 = 28$.\n\nSo each step adds $28 \\div 7 = 4$.\n\nFrom the 12th term to the 30th term is 18 more steps: $51 + 18 \\times 4 = 51 + 72 = 123$.\n\nThe 30th term is **123**."
+          },
+          {
+            "problem": "Find the sum $2 + 5 + 8 + 11 + \\dots + 59$.",
+            "solution": "The numbers go up by 3. Number of terms: $\\frac{59 - 2}{3} + 1 = 19 + 1 = 20$.\n\nPair the first and last: $2 + 59 = 61$. Every pair adds to 61, and there are $20 \\div 2 = 10$ pairs.\n\nSum $= 10 \\times 61 = 610$."
+          }
+        ],
+        "tip": "When counting terms, test your formula on a tiny case first. For example, 3, 5, 7 has $\\frac{7-3}{2}+1 = 3$ terms, which checks out, so the formula is set up right."
+      }
+    },
+    {
+      "id": "alg-equations",
+      "name": "Equations & Working Backwards",
+      "lesson": {
+        "intro": "An equation is like a balance scale: whatever you do to one side, you must do to the other. Some problems describe a chain of steps and tell you only the ending. For those, the fastest trick is to start at the end and undo each step in reverse!",
+        "keyIdeas": [
+          "Let a letter (like $x$) stand for the unknown, write the equation, then undo operations in reverse order to get $x$ alone.",
+          "Working backwards: start from the final result and undo each step. Adding becomes subtracting, doubling becomes halving, and so on.",
+          "For consecutive integers, call the smallest $n$: then $n, n+1, n+2, \\dots$. For consecutive even or odd numbers, use $n, n+2, n+4, \\dots$.",
+          "The middle number of an odd count of consecutive integers equals their average: the sum divided by how many there are.",
+          "Always check your answer by plugging it back into the story."
+        ],
+        "examples": [
+          {
+            "problem": "Half of a number, increased by 9, equals 25. What is the number?",
+            "solution": "Let the number be $x$. Then $\\frac{x}{2} + 9 = 25$.\n\nSubtract 9 from both sides: $\\frac{x}{2} = 16$.\n\nMultiply both sides by 2: $x = 32$.\n\nCheck: half of 32 is 16, and $16 + 9 = 25$. Correct!"
+          },
+          {
+            "problem": "Leo doubled the number of cards he had, then gave away 10 cards. He ended with 30 cards. How many did he start with?",
+            "solution": "Work backwards from 30.\n\nUndo \"gave away 10\": add 10 to get $30 + 10 = 40$.\n\nUndo \"doubled\": halve it to get $40 \\div 2 = 20$.\n\nLeo started with **20** cards. Check: $20 \\times 2 = 40$, and $40 - 10 = 30$."
+          }
+        ],
+        "tip": "If a problem describes a sequence of actions and gives you only the final amount, don't set up a messy equation. Work backwards and undo the steps in reverse order."
+      }
+    },
+    {
+      "id": "alg-word",
+      "name": "Age, Money & Mixture Problems",
+      "lesson": {
+        "intro": "Word problems about ages, coins, tickets and mixtures look different, but they all use the same idea: turn the story into numbers you can compare. A bar model or a single variable usually does the trick. Some also have a neat shortcut called \"what if they were all the same?\"",
+        "keyIdeas": [
+          "Age problems: everyone gets older by the same amount. The difference between two people's ages never changes.",
+          "\"In $y$ years\" means add $y$ to every age. \"$y$ years ago\" means subtract $y$ from every age.",
+          "Money and coin problems: total value = (number of items) $\\times$ (value of each), added up for each kind.",
+          "All-the-same trick: pretend every item is the cheaper kind, then see how much extra money you still need. Each switch to the pricier kind adds the price difference.",
+          "Mixture problems: keep track of the amount of the pure ingredient (salt, juice), not just the percent."
+        ],
+        "examples": [
+          {
+            "problem": "Dad is 30 years older than Mia. In 5 years, Dad will be 3 times as old as Mia. How old is Mia now?",
+            "solution": "Let Mia be $m$ now, so Dad is $m + 30$.\n\nIn 5 years: Mia is $m + 5$ and Dad is $m + 35$.\n\nSo $m + 35 = 3(m + 5) = 3m + 15$.\n\nSubtract $m$ and 15 from both sides: $20 = 2m$, so $m = 10$.\n\nMia is **10**. Check: in 5 years Mia is 15 and Dad is 45, and $45 = 3 \\times 15$."
+          },
+          {
+            "problem": "Jen has 15 coins, all nickels and dimes, worth 1.10 dollars in total. How many dimes does she have?",
+            "solution": "Pretend all 15 coins are nickels: that is $15 \\times 5 = 75$ cents.\n\nBut she has 110 cents, which is $110 - 75 = 35$ cents more.\n\nEach time we swap a nickel for a dime, the total goes up 5 cents. So there are $35 \\div 5 = 7$ dimes.\n\nCheck: 7 dimes and 8 nickels give $70 + 40 = 110$ cents."
+          }
+        ],
+        "tip": "In age problems, the age difference is a constant. If you know the difference and a ratio, a bar model often solves it in one line."
+      }
+    },
+    {
+      "id": "alg-rates",
+      "name": "Distance, Speed & Work",
+      "lesson": {
+        "intro": "Distance, speed and time are linked by one simple formula: distance = speed $\\times$ time. Work problems use the same idea: work done = rate $\\times$ time. With these two formulas you can race trains, fill pools and paint fences!",
+        "keyIdeas": [
+          "$d = r \\times t$, so also $r = d \\div t$ and $t = d \\div r$. Keep units matched: miles with hours, or feet with seconds.",
+          "Moving toward each other or apart, speeds ADD. Chasing in the same direction, speeds SUBTRACT.",
+          "Average speed = total distance $\\div$ total time. It is usually NOT the average of the two speeds!",
+          "Work rates: if a job takes 6 hours, the rate is $\\frac{1}{6}$ of the job per hour. Rates of people working together add up.",
+          "Convert minutes to hours by dividing by 60: 20 minutes $= \\frac{1}{3}$ hour."
+        ],
+        "examples": [
+          {
+            "problem": "Two cyclists are 60 miles apart and ride toward each other. One rides at 12 mph and the other at 18 mph. How many hours until they meet?",
+            "solution": "They are moving toward each other, so the gap closes at $12 + 18 = 30$ miles per hour.\n\nTime $= 60 \\div 30 = 2$ hours."
+          },
+          {
+            "problem": "Ann can paint a room in 4 hours. Ben can paint the same room in 6 hours. How long does it take them working together?",
+            "solution": "Ann paints $\\frac{1}{4}$ of the room per hour and Ben paints $\\frac{1}{6}$.\n\nTogether: $\\frac{1}{4} + \\frac{1}{6} = \\frac{3}{12} + \\frac{2}{12} = \\frac{5}{12}$ of the room per hour.\n\nTime $= 1 \\div \\frac{5}{12} = \\frac{12}{5} = 2\\frac{2}{5}$ hours, which is 2 hours 24 minutes."
+          }
+        ],
+        "tip": "For round-trip average speed, pick a convenient distance (like the least common multiple of the speeds) and compute total distance $\\div$ total time. Never just average the two speeds."
+      }
+    },
+    {
+      "id": "alg-averages",
+      "name": "Averages",
+      "lesson": {
+        "intro": "The average (mean) of a list is what each number would be if you shared the total out evenly. The most powerful trick is to think about the TOTAL: average $\\times$ count = sum. With that, most average problems become simple subtraction.",
+        "keyIdeas": [
+          "Average = sum $\\div$ count, so sum = average $\\times$ count.",
+          "To find a missing number: (new count $\\times$ new average) $-$ (old sum).",
+          "To combine groups, add their SUMS and divide by the total count. Don't just average the two averages.",
+          "For evenly spaced numbers (like consecutive integers), the average is the middle number, which is also $\\frac{\\text{first} + \\text{last}}{2}$.",
+          "To make one number as big as possible with a fixed sum, make all the others as small as the rules allow."
+        ],
+        "examples": [
+          {
+            "problem": "The average of 4 numbers is 15. When a fifth number is added, the average becomes 17. What is the fifth number?",
+            "solution": "Sum of the first 4 numbers: $4 \\times 15 = 60$.\n\nSum of all 5 numbers: $5 \\times 17 = 85$.\n\nThe fifth number is $85 - 60 = 25$."
+          },
+          {
+            "problem": "What is the average of the seven consecutive integers 13, 14, 15, 16, 17, 18, 19?",
+            "solution": "The numbers are evenly spaced, so the average is the middle number: **16**.\n\nCheck: $\\frac{13 + 19}{2} = 16$, and the sum is $7 \\times 16 = 112$."
+          }
+        ],
+        "tip": "Almost every average problem gets easier when you turn averages into totals right away. Write \"sum = average $\\times$ count\" for each group before doing anything else."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "alg-patterns-01",
+      "topic": "alg-patterns",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "The sequence $5, 9, 13, 17, \\dots$ keeps adding the same amount each time. What is the 20th term?",
+      "answer": "81",
+      "hints": [
+        "How much is added each time?",
+        "To get from the 1st term to the 20th term, you add the difference 19 times."
+      ],
+      "solution": "Each term is 4 more than the one before.\n\nFrom the 1st term to the 20th term there are 19 steps of 4: $19 \\times 4 = 76$.\n\n20th term $= 5 + 76 = 81$."
+    },
+    {
+      "id": "alg-patterns-02",
+      "topic": "alg-patterns",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "The word OLYMPIAD is written over and over without spaces: OLYMPIADOLYMPIADOLYMPIAD... What is the 2026th letter?",
+      "choices": [
+        "O",
+        "L",
+        "Y",
+        "M",
+        "D"
+      ],
+      "answer": "B",
+      "hints": [
+        "The pattern repeats every 8 letters.",
+        "Find the remainder when 2026 is divided by 8."
+      ],
+      "solution": "The block OLYMPIAD has 8 letters, so the pattern repeats every 8 letters.\n\n$2026 = 8 \\times 253 + 2$, so 253 full blocks use up 2024 letters.\n\nThe 2026th letter is the 2nd letter of the block, which is **L**."
+    },
+    {
+      "id": "alg-patterns-03",
+      "topic": "alg-patterns",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "What is the sum $1 + 3 + 5 + 7 + \\dots + 39$ of all the odd numbers from 1 to 39?",
+      "answer": "400",
+      "hints": [
+        "How many odd numbers are there from 1 to 39?",
+        "Try small cases: $1 = 1$, $1 + 3 = 4$, $1 + 3 + 5 = 9$. What do you notice?"
+      ],
+      "solution": "Count the terms: $\\frac{39 - 1}{2} + 1 = 20$ odd numbers.\n\nThe sum of the first $n$ odd numbers is $n^2$, so the sum is $20^2 = 400$.\n\nOr pair them: $1 + 39 = 40$, $3 + 37 = 40$, and so on. There are 10 pairs, so the sum is $10 \\times 40 = 400$."
+    },
+    {
+      "id": "alg-patterns-04",
+      "topic": "alg-patterns",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "How many numbers are in the list $7, 11, 15, 19, \\dots, 403$?",
+      "answer": "100",
+      "hints": [
+        "The numbers go up by 4 each time.",
+        "How many jumps of 4 does it take to get from 7 to 403? Then remember to count the starting number too."
+      ],
+      "solution": "The distance from 7 to 403 is $403 - 7 = 396$.\n\nEach jump is 4, so there are $396 \\div 4 = 99$ jumps.\n\n99 jumps connect 100 numbers (count the first number too), so there are **100** numbers."
+    },
+    {
+      "id": "alg-patterns-05",
+      "topic": "alg-patterns",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Find the sum $4 + 7 + 10 + 13 + \\dots + 61$.",
+      "answer": "650",
+      "hints": [
+        "First figure out how many terms there are.",
+        "Pair the first term with the last, the second with the second-to-last, and so on. What does each pair add up to?"
+      ],
+      "solution": "The terms go up by 3. Number of terms: $\\frac{61 - 4}{3} + 1 = 19 + 1 = 20$.\n\nEach pair (first + last) adds to $4 + 61 = 65$, and there are $20 \\div 2 = 10$ pairs.\n\nSum $= 10 \\times 65 = 650$."
+    },
+    {
+      "id": "alg-patterns-06",
+      "topic": "alg-patterns",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "The counting numbers that are NOT perfect squares are listed in order: $2, 3, 5, 6, 7, 8, 10, 11, \\dots$ What is the 100th number in this list?",
+      "answer": "110",
+      "hints": [
+        "Up to some number $N$, how many perfect squares are there? How many non-squares?",
+        "Up to 100 there are 10 perfect squares. So 100 is not far enough. Go a little further."
+      ],
+      "solution": "Up to a number $N$, the count of non-squares is $N$ minus the number of perfect squares up to $N$.\n\nUp to 100 there are 10 squares ($1, 4, \\dots, 100$), so only 90 non-squares. We need 10 more.\n\nThe next 10 numbers, $101$ through $110$, contain no perfect squares ($11^2 = 121$).\n\nSo the non-squares $101, 102, \\dots, 110$ are the 91st through 100th numbers in the list. The 100th is **110**."
+    },
+    {
+      "id": "alg-patterns-07",
+      "topic": "alg-patterns",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "The counting numbers are written in rows. Row 1 has 1 number, row 2 has 2 numbers, row 3 has 3 numbers, and so on:\n\nRow 1: 1\n\nRow 2: 2, 3\n\nRow 3: 4, 5, 6\n\nRow 4: 7, 8, 9, 10\n\nIn which row does the number 2026 appear?",
+      "answer": "64",
+      "hints": [
+        "Look at the LAST number in each row: 1, 3, 6, 10, ... What is the pattern?",
+        "The last number in row $n$ is $1 + 2 + \\dots + n = \\frac{n(n+1)}{2}$.",
+        "Find the first row whose last number is at least 2026."
+      ],
+      "solution": "The last number in row $n$ is $1 + 2 + 3 + \\dots + n = \\frac{n(n+1)}{2}$, because rows 1 through $n$ hold that many numbers.\n\nTry $n = 63$: $\\frac{63 \\times 64}{2} = 2016$. So row 63 ends at 2016.\n\nTry $n = 64$: $\\frac{64 \\times 65}{2} = 2080$. So row 64 goes from 2017 to 2080.\n\nSince $2017 \\le 2026 \\le 2080$, the number 2026 is in row **64**."
+    },
+    {
+      "id": "alg-equations-01",
+      "topic": "alg-equations",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "I think of a number. I multiply it by 3 and then add 7. The result is 40. What is my number?",
+      "answer": "11",
+      "hints": [
+        "Work backwards from 40.",
+        "Undo \"add 7\" first, then undo \"multiply by 3\"."
+      ],
+      "solution": "Work backwards from 40.\n\nUndo \"add 7\": $40 - 7 = 33$.\n\nUndo \"multiply by 3\": $33 \\div 3 = 11$.\n\nCheck: $3 \\times 11 + 7 = 40$."
+    },
+    {
+      "id": "alg-equations-02",
+      "topic": "alg-equations",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "Solve for $x$: $4x - 9 = 2x + 15$.",
+      "answer": "12",
+      "hints": [
+        "Get all the $x$'s on one side by subtracting $2x$ from both sides.",
+        "After that, add 9 to both sides."
+      ],
+      "solution": "Subtract $2x$ from both sides: $2x - 9 = 15$.\n\nAdd 9 to both sides: $2x = 24$.\n\nDivide by 2: $x = 12$.\n\nCheck: $4(12) - 9 = 39$ and $2(12) + 15 = 39$."
+    },
+    {
+      "id": "alg-equations-03",
+      "topic": "alg-equations",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "The sum of three consecutive integers is 96. What is the largest of the three?",
+      "choices": [
+        "31",
+        "32",
+        "33",
+        "34",
+        "35"
+      ],
+      "answer": "C",
+      "hints": [
+        "The middle number is the average of the three.",
+        "Divide 96 by 3 to find the middle number."
+      ],
+      "solution": "For three consecutive integers, the middle one is the average: $96 \\div 3 = 32$.\n\nSo the numbers are 31, 32, 33, and the largest is **33**.\n\nCheck: $31 + 32 + 33 = 96$."
+    },
+    {
+      "id": "alg-equations-04",
+      "topic": "alg-equations",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Maria spent half of her money on a book. Then she spent 6 dollars on lunch. Then she spent half of what was left on a gift. She had 9 dollars left at the end. How many dollars did Maria start with?",
+      "answer": "48",
+      "unit": "dollars",
+      "hints": [
+        "Work backwards, starting from the 9 dollars.",
+        "Before buying the gift she had twice as much as 9 dollars."
+      ],
+      "solution": "Work backwards from the end.\n\nBefore the gift: she spent half and kept 9, so she had $9 \\times 2 = 18$ dollars.\n\nBefore lunch: $18 + 6 = 24$ dollars.\n\nBefore the book: she spent half and kept 24, so she had $24 \\times 2 = 48$ dollars.\n\nCheck: half of 48 is 24; $24 - 6 = 18$; half of 18 is 9. Correct!"
+    },
+    {
+      "id": "alg-equations-05",
+      "topic": "alg-equations",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "The sum of four consecutive even integers is 244. What is the smallest of the four?",
+      "answer": "58",
+      "hints": [
+        "Call the smallest one $n$. What are the other three?",
+        "The four numbers are $n, n+2, n+4, n+6$."
+      ],
+      "solution": "Let the numbers be $n, n+2, n+4, n+6$.\n\nTheir sum is $4n + 12 = 244$.\n\nSubtract 12: $4n = 232$. Divide by 4: $n = 58$.\n\nCheck: $58 + 60 + 62 + 64 = 244$."
+    },
+    {
+      "id": "alg-equations-06",
+      "topic": "alg-equations",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "A basket holds some apples. Ava takes half of the apples plus 1 more. Then Ben takes half of the remaining apples plus 1 more. Then Cy takes half of the remaining apples plus 1 more. Now exactly 2 apples are left. How many apples were in the basket at the start?",
+      "answer": "30",
+      "unit": "apples",
+      "hints": [
+        "Work backwards. If someone takes half plus 1 and leaves 2, how many were there before?",
+        "Taking \"half plus 1\" and leaving $L$ means half of what was there equals $L + 1$."
+      ],
+      "solution": "If a person takes half plus 1 and leaves $L$ apples, then the other half was $L + 1$, so there were $2(L + 1)$ apples before.\n\nBefore Cy: $2(2 + 1) = 6$.\n\nBefore Ben: $2(6 + 1) = 14$.\n\nBefore Ava: $2(14 + 1) = 30$.\n\nCheck: Ava takes $15 + 1 = 16$, leaving 14. Ben takes $7 + 1 = 8$, leaving 6. Cy takes $3 + 1 = 4$, leaving 2. Correct!"
+    },
+    {
+      "id": "alg-equations-07",
+      "topic": "alg-equations",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Amy, Ben, and Cal share some marbles. First, Amy gives Ben as many marbles as Ben already has. Next, Ben gives Cal as many marbles as Cal already has. Finally, Cal gives Amy as many marbles as Amy already has. Now each of them has 24 marbles. How many marbles did Amy have at the start?",
+      "answer": "33",
+      "unit": "marbles",
+      "hints": [
+        "Work backwards from 24, 24, 24. Undo the LAST step first.",
+        "In the last step, Cal doubled Amy's marbles. So before that step Amy had 12, and Cal had 12 more than 24.",
+        "Keep undoing: in the middle step Ben doubled Cal's pile, and in the first step Amy doubled Ben's pile."
+      ],
+      "solution": "Work backwards from (Amy, Ben, Cal) $= (24, 24, 24)$.\n\nUndo \"Cal gives Amy as many as Amy has\": Amy's pile was doubled to 24, so she had 12, and Cal gave away 12, so he had 36. Now $(12, 24, 36)$.\n\nUndo \"Ben gives Cal as many as Cal has\": Cal had 18 and Ben had $24 + 18 = 42$. Now $(12, 42, 18)$.\n\nUndo \"Amy gives Ben as many as Ben has\": Ben had 21 and Amy had $12 + 21 = 33$. Now $(33, 21, 18)$.\n\nAmy started with **33** marbles. (Check: the total $33 + 21 + 18 = 72 = 3 \\times 24$.)"
+    },
+    {
+      "id": "alg-word-01",
+      "topic": "alg-word",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "Sam is 4 times as old as his sister. The sum of their ages is 30. How old is Sam?",
+      "answer": "24",
+      "unit": "years old",
+      "hints": [
+        "Draw a bar model: the sister is 1 bar and Sam is 4 bars.",
+        "Together they make 5 equal bars worth 30 years."
+      ],
+      "solution": "Sister = 1 part, Sam = 4 parts, so together they make 5 parts.\n\n5 parts = 30, so 1 part = 6. The sister is 6.\n\nSam is $4 \\times 6 = 24$."
+    },
+    {
+      "id": "alg-word-02",
+      "topic": "alg-word",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "In 5 years, Lena will be twice as old as she was 5 years ago. How old is Lena now?",
+      "choices": [
+        "10",
+        "12",
+        "15",
+        "20",
+        "25"
+      ],
+      "answer": "C",
+      "hints": [
+        "Let Lena's age now be $x$. Write her age in 5 years and her age 5 years ago.",
+        "The gap between \"5 years ago\" and \"5 years from now\" is 10 years."
+      ],
+      "solution": "Let Lena's age now be $x$. In 5 years she is $x + 5$, and 5 years ago she was $x - 5$.\n\n$x + 5 = 2(x - 5) = 2x - 10$, so $x = 15$.\n\nQuick way: the two ages are 10 years apart, and one is double the other, so they are 10 and 20. Lena is 15 now.\n\nCheck: 5 years ago she was 10, in 5 years she will be 20, and $20 = 2 \\times 10$."
+    },
+    {
+      "id": "alg-word-03",
+      "topic": "alg-word",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "A mother is 36 years old and her son is 8 years old. In how many years will the mother be exactly 3 times as old as her son?",
+      "answer": "6",
+      "unit": "years",
+      "hints": [
+        "Their age difference is always $36 - 8 = 28$ years.",
+        "When the mother is 3 times as old, the difference equals 2 times the son's age."
+      ],
+      "solution": "The age difference is always $36 - 8 = 28$ years.\n\nWhen Mom is 3 times as old as her son, Mom = 3 parts and son = 1 part, so the difference is 2 parts. 2 parts = 28, so the son will be 14.\n\nThe son is 8 now, so that happens in $14 - 8 = 6$ years.\n\nCheck: in 6 years, Mom is 42 and her son is 14, and $42 = 3 \\times 14$."
+    },
+    {
+      "id": "alg-word-04",
+      "topic": "alg-word",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A jar has 20 coins, all dimes and quarters. Their total value is 3.35 dollars. How many quarters are in the jar?",
+      "answer": "9",
+      "unit": "quarters",
+      "hints": [
+        "Pretend all 20 coins are dimes. How much would they be worth?",
+        "Each time you swap a dime for a quarter, the value goes up 15 cents."
+      ],
+      "solution": "If all 20 coins were dimes, they would be worth $20 \\times 10 = 200$ cents.\n\nThe actual value is 335 cents, which is $335 - 200 = 135$ cents more.\n\nEach swap from dime to quarter adds 15 cents, so there are $135 \\div 15 = 9$ quarters.\n\nCheck: 9 quarters and 11 dimes give $225 + 110 = 335$ cents."
+    },
+    {
+      "id": "alg-word-05",
+      "topic": "alg-word",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "A school play sold 40 tickets. Adult tickets cost 9 dollars each and child tickets cost 5 dollars each. The total sales were 272 dollars. How many adult tickets were sold?",
+      "choices": [
+        "12",
+        "15",
+        "16",
+        "18",
+        "22"
+      ],
+      "answer": "D",
+      "hints": [
+        "Suppose all 40 tickets were child tickets. How much money is that?",
+        "Each adult ticket brings in 4 dollars more than a child ticket."
+      ],
+      "solution": "If all 40 were child tickets: $40 \\times 5 = 200$ dollars.\n\nActual sales were 272 dollars, which is 72 dollars more.\n\nEach adult ticket adds $9 - 5 = 4$ extra dollars, so there were $72 \\div 4 = 18$ adult tickets.\n\nCheck: $18 \\times 9 + 22 \\times 5 = 162 + 110 = 272$."
+    },
+    {
+      "id": "alg-word-06",
+      "topic": "alg-word",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "Three years ago, Ann was 3 times as old as Bob. In 5 years, Ann will be twice as old as Bob. How old is Ann now?",
+      "answer": "27",
+      "unit": "years old",
+      "hints": [
+        "The difference between Ann's and Bob's ages never changes.",
+        "Three years ago, if Bob was 1 part, Ann was 3 parts, so the difference was 2 parts. In 5 years, the difference is 1 of Bob's new parts.",
+        "Let Bob's age 3 years ago be $b$. Then the age difference is $2b$, and in 5 years Bob will be $b + 8$."
+      ],
+      "solution": "Let Bob's age three years ago be $b$. Then Ann was $3b$, so the age difference is $2b$.\n\nIn 5 years (8 years after that), Bob will be $b + 8$ and Ann will be $3b + 8$.\n\nAnn will be twice Bob's age: $3b + 8 = 2(b + 8) = 2b + 16$, so $b = 8$.\n\nThree years ago Bob was 8 and Ann was 24, so Ann is $24 + 3 = 27$ now.\n\nCheck: Bob is 11 now. Three years ago: $24 = 3 \\times 8$. In 5 years: Ann 32, Bob 16, and $32 = 2 \\times 16$."
+    },
+    {
+      "id": "alg-word-07",
+      "topic": "alg-word",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "A 40-liter tank is full of a drink that is 25% juice and 75% water. Some of the drink is drained out and replaced with the same amount of pure juice, so the tank is full again. Now the drink is 40% juice. How many liters were drained and replaced?",
+      "answer": "8",
+      "unit": "liters",
+      "hints": [
+        "Keep track of the liters of juice, not the percent.",
+        "At the start there are 10 liters of juice. At the end there should be $40\\%$ of 40, which is 16 liters.",
+        "Draining $x$ liters removes $0.25x$ liters of juice, and adding $x$ liters of pure juice adds $x$ liters of juice."
+      ],
+      "solution": "At the start the tank has $25\\%$ of 40 $= 10$ liters of juice. At the end it should have $40\\%$ of 40 $= 16$ liters of juice.\n\nSuppose $x$ liters are drained. That removes $0.25x$ liters of juice. Then $x$ liters of pure juice are added.\n\nThe net gain in juice is $x - 0.25x = 0.75x$ liters, and we need a gain of $16 - 10 = 6$ liters.\n\n$0.75x = 6$, so $x = 8$.\n\nCheck: draining 8 liters removes 2 liters of juice, leaving 8. Adding 8 liters of juice gives 16 liters of juice out of 40, which is $40\\%$."
+    },
+    {
+      "id": "alg-rates-01",
+      "topic": "alg-rates",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "A car travels at a steady 48 miles per hour. How many miles does it travel in $2\\frac{1}{2}$ hours?",
+      "answer": "120",
+      "unit": "miles",
+      "hints": [
+        "Distance = speed $\\times$ time.",
+        "In 2 hours the car goes 96 miles. How far in the extra half hour?"
+      ],
+      "solution": "Distance $= 48 \\times 2\\frac{1}{2}$.\n\nIn 2 hours: $48 \\times 2 = 96$ miles. In half an hour: $48 \\div 2 = 24$ miles.\n\nTotal: $96 + 24 = 120$ miles."
+    },
+    {
+      "id": "alg-rates-02",
+      "topic": "alg-rates",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "Two trains leave the same station at the same time and travel in opposite directions. One goes 50 mph and the other goes 70 mph. After how many hours will they be 420 miles apart?",
+      "answer": "3 1/2",
+      "unit": "hours",
+      "hints": [
+        "When moving in opposite directions, the distance between them grows by the sum of the speeds.",
+        "Each hour they get $50 + 70 = 120$ miles farther apart."
+      ],
+      "solution": "Moving in opposite directions, the gap grows by $50 + 70 = 120$ miles every hour.\n\nTime $= 420 \\div 120 = 3.5$ hours, or $3\\frac{1}{2}$ hours.\n\nCheck: $50 \\times 3.5 = 175$ and $70 \\times 3.5 = 245$; $175 + 245 = 420$."
+    },
+    {
+      "id": "alg-rates-03",
+      "topic": "alg-rates",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Pipe A can fill a pool in 6 hours. Pipe B can fill the same pool in 3 hours. If both pipes are turned on together, how many hours does it take to fill the empty pool?",
+      "answer": "2",
+      "unit": "hours",
+      "hints": [
+        "What fraction of the pool does each pipe fill in one hour?",
+        "Add the two fractions to get the combined rate."
+      ],
+      "solution": "Pipe A fills $\\frac{1}{6}$ of the pool per hour. Pipe B fills $\\frac{1}{3} = \\frac{2}{6}$ per hour.\n\nTogether they fill $\\frac{1}{6} + \\frac{2}{6} = \\frac{3}{6} = \\frac{1}{2}$ of the pool per hour.\n\nSo the pool fills in 2 hours.\n\nAnother way: in 6 hours, A fills 1 pool and B fills 2 pools, so together they fill 3 pools in 6 hours, which is 1 pool every 2 hours."
+    },
+    {
+      "id": "alg-rates-04",
+      "topic": "alg-rates",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "Tia drives from her home to the lake at 60 mph, then drives back home along the same road at 40 mph. What is her average speed for the whole round trip, in mph?",
+      "choices": [
+        "45",
+        "48",
+        "50",
+        "52",
+        "100"
+      ],
+      "answer": "B",
+      "hints": [
+        "Average speed is total distance divided by total time, not the average of the two speeds.",
+        "Pick a convenient distance for one way, such as 120 miles."
+      ],
+      "solution": "Suppose the lake is 120 miles away (any distance gives the same answer).\n\nGoing: $120 \\div 60 = 2$ hours. Returning: $120 \\div 40 = 3$ hours.\n\nTotal distance $= 240$ miles, total time $= 5$ hours.\n\nAverage speed $= 240 \\div 5 = 48$ mph.\n\nThe answer is not 50, because Tia spends more time driving at the slower speed."
+    },
+    {
+      "id": "alg-rates-05",
+      "topic": "alg-rates",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Jo walks from home to school at 3 miles per hour and bikes back home along the same route at 12 miles per hour. The two trips take 50 minutes in all. How many miles is it from Jo's home to school?",
+      "answer": "2",
+      "unit": "miles",
+      "hints": [
+        "Walking at 3 mph is 4 times slower than biking at 12 mph. So walking takes 4 times as long.",
+        "Split the 50 minutes into 5 equal parts: 4 parts walking, 1 part biking."
+      ],
+      "solution": "Biking is 4 times as fast as walking, so the walk takes 4 times as long as the ride.\n\nSplit 50 minutes into $4 + 1 = 5$ parts of 10 minutes: the walk takes 40 minutes and the ride takes 10 minutes.\n\nBiking for 10 minutes $= \\frac{1}{6}$ hour at 12 mph covers $12 \\times \\frac{1}{6} = 2$ miles.\n\nCheck: walking 2 miles at 3 mph takes $\\frac{2}{3}$ hour $= 40$ minutes."
+    },
+    {
+      "id": "alg-rates-06",
+      "topic": "alg-rates",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "Three workers can paint 3 fences in 3 hours. All workers paint at the same rate. How many hours would it take 6 workers to paint 12 fences?",
+      "answer": "6",
+      "unit": "hours",
+      "hints": [
+        "How long does it take ONE worker to paint ONE fence?",
+        "3 workers painting 3 fences in 3 hours means each worker paints 1 fence in 3 hours."
+      ],
+      "solution": "3 workers paint 3 fences in 3 hours, so each worker paints 1 fence in 3 hours.\n\n6 workers paint 6 fences every 3 hours.\n\n12 fences is twice as many, so it takes $2 \\times 3 = 6$ hours."
+    },
+    {
+      "id": "alg-rates-07",
+      "topic": "alg-rates",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Working together, Alex and Bea can finish a job in 12 days. Bea and Cruz together can finish it in 15 days. Alex and Cruz together can finish it in 20 days. How many days would it take Alex working alone?",
+      "answer": "30",
+      "unit": "days",
+      "hints": [
+        "Write each pair's rate as a fraction of the job per day: $\\frac{1}{12}$, $\\frac{1}{15}$, $\\frac{1}{20}$.",
+        "If you add all three pair rates, each person is counted twice.",
+        "Find the rate of all three together, then subtract Bea and Cruz's rate."
+      ],
+      "solution": "Daily rates: Alex + Bea $= \\frac{1}{12}$, Bea + Cruz $= \\frac{1}{15}$, Alex + Cruz $= \\frac{1}{20}$.\n\nAdd all three: $\\frac{5}{60} + \\frac{4}{60} + \\frac{3}{60} = \\frac{12}{60} = \\frac{1}{5}$. This counts each person twice.\n\nSo all three together do $\\frac{1}{10}$ of the job per day.\n\nAlex alone $= \\frac{1}{10} - \\frac{1}{15} = \\frac{3}{30} - \\frac{2}{30} = \\frac{1}{30}$ of the job per day.\n\nAlex alone takes **30** days."
+    },
+    {
+      "id": "alg-averages-01",
+      "topic": "alg-averages",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "What is the average of 12, 15, 19, 22, and 27?",
+      "answer": "19",
+      "hints": [
+        "Add the numbers, then divide by how many there are."
+      ],
+      "solution": "Sum: $12 + 15 + 19 + 22 + 27 = 95$.\n\nThere are 5 numbers, so the average is $95 \\div 5 = 19$."
+    },
+    {
+      "id": "alg-averages-02",
+      "topic": "alg-averages",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "Rosa scored 84, 90, and 78 on her first three tests. What score does she need on her fourth test to have an average of exactly 85 on all four tests?",
+      "answer": "88",
+      "unit": "points",
+      "hints": [
+        "What total do four tests need for an average of 85?",
+        "Subtract the total of the first three scores."
+      ],
+      "solution": "For an average of 85 on 4 tests, the total must be $4 \\times 85 = 340$.\n\nHer first three scores total $84 + 90 + 78 = 252$.\n\nShe needs $340 - 252 = 88$."
+    },
+    {
+      "id": "alg-averages-03",
+      "topic": "alg-averages",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "The average of six numbers is 14. When one of the numbers is removed, the average of the remaining five numbers is 12. What number was removed?",
+      "choices": [
+        "2",
+        "12",
+        "14",
+        "22",
+        "24"
+      ],
+      "answer": "E",
+      "hints": [
+        "Turn each average into a total.",
+        "The six numbers add up to $6 \\times 14$. The five remaining numbers add up to $5 \\times 12$."
+      ],
+      "solution": "Total of all six: $6 \\times 14 = 84$.\n\nTotal of the remaining five: $5 \\times 12 = 60$.\n\nThe removed number is $84 - 60 = 24$."
+    },
+    {
+      "id": "alg-averages-04",
+      "topic": "alg-averages",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "The average of 3 numbers is 20. The average of 5 other numbers is 12. What is the average of all 8 numbers together?",
+      "choices": [
+        "14",
+        "15",
+        "16",
+        "17",
+        "32"
+      ],
+      "answer": "B",
+      "hints": [
+        "Don't just average 20 and 12! The groups have different sizes.",
+        "Find the total of each group first."
+      ],
+      "solution": "Total of the first group: $3 \\times 20 = 60$. Total of the second group: $5 \\times 12 = 60$.\n\nTotal of all 8 numbers: $60 + 60 = 120$.\n\nAverage: $120 \\div 8 = 15$.\n\n(The answer 16 is a trap: it averages 20 and 12, which ignores that the groups have different sizes.)"
+    },
+    {
+      "id": "alg-averages-05",
+      "topic": "alg-averages",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "Kai's average on his tests so far is 82. If he scores 97 on his next test, his average will rise to 85. How many tests has Kai taken so far (not counting the next one)?",
+      "answer": "4",
+      "unit": "tests",
+      "hints": [
+        "Let $n$ be the number of tests so far. Their total is $82n$.",
+        "After the new test there are $n + 1$ tests with a total of $85(n+1)$."
+      ],
+      "solution": "Let $n$ be the number of tests so far, with total $82n$.\n\nAfter scoring 97: $82n + 97 = 85(n + 1) = 85n + 85$.\n\nSo $97 - 85 = 85n - 82n$, which gives $12 = 3n$ and $n = 4$.\n\nAnother way to see it: the 97 is 12 points above the new average of 85, and those 12 extra points raise each of the $n$ old tests by 3 points (from 82 to 85). So $n = 12 \\div 3 = 4$.\n\nCheck: 4 tests at 82 total 328. Adding 97 gives 425, and $425 \\div 5 = 85$."
+    },
+    {
+      "id": "alg-averages-06",
+      "topic": "alg-averages",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Five different positive whole numbers have an average of 20. When they are listed from smallest to largest, the middle number is 24. What is the largest possible value of the biggest number?",
+      "answer": "48",
+      "hints": [
+        "The five numbers must add up to $5 \\times 20 = 100$.",
+        "To make the biggest number as large as possible, make the other numbers as small as possible.",
+        "The two numbers below 24 can be as small as 1 and 2. The number just above 24 must be at least 25."
+      ],
+      "solution": "The five numbers add up to $5 \\times 20 = 100$.\n\nTo make the largest number as big as possible, make the other four as small as possible:\n\nThe two smallest must be different positive whole numbers, so use 1 and 2.\n\nThe middle number is 24.\n\nThe fourth number must be bigger than 24, so use 25.\n\nThe largest is $100 - 1 - 2 - 24 - 25 = 48$.\n\nThe list $1, 2, 24, 25, 48$ works: its sum is 100 and its middle number is 24."
+    }
+  ]
+}

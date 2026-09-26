@@ -1,0 +1,665 @@
+{
+  "strand": "geo",
+  "name": "Geometry",
+  "description": "Perimeter, area, angles, circles, 3-D solids, and the coordinate plane, all described in words so you can picture them yourself.",
+  "topics": [
+    {
+      "id": "geo-area",
+      "name": "Perimeter & Area",
+      "lesson": {
+        "intro": "Perimeter is the distance all the way around a shape, like a fence around a yard. Area is how much flat space the shape covers, like the grass inside the fence. Contest problems love to mix the two, so it pays to know exactly which one you are being asked for!",
+        "keyIdeas": [
+          "Rectangle: perimeter $= 2(\\ell + w)$ and area $= \\ell \\times w$. A square with side $s$ has perimeter $4s$ and area $s^2$.",
+          "Triangle: area $= \\frac{1}{2} \\times \\text{base} \\times \\text{height}$, where the height is measured straight up (perpendicular) from the base.",
+          "Composite shapes: split them into rectangles and triangles, or take a big rectangle and subtract the pieces that are missing.",
+          "Cutting a notch out of a corner of a rectangle changes the area but often does NOT change the perimeter, because the edges just move inward.",
+          "If you know the perimeter or area of one piece, work backward to find the side lengths first."
+        ],
+        "examples": [
+          {
+            "problem": "A rectangle has perimeter 30 cm and its length is twice its width. What is its area?",
+            "solution": "Let the width be $w$. Then the length is $2w$.\n\nThe perimeter is $2(w + 2w) = 6w = 30$, so $w = 5$ cm and the length is $10$ cm.\n\nThe area is $10 \\times 5 = 50$ cm²."
+          },
+          {
+            "problem": "A square of side 10 has a right triangle cut off one corner. The triangle's two short sides lie along the square's sides and are 4 and 6 long. What is the area of what is left?",
+            "solution": "The square's area is $10 \\times 10 = 100$.\n\nThe triangle cut off has area $\\frac{1}{2} \\times 4 \\times 6 = 12$.\n\nWhat is left has area $100 - 12 = 88$."
+          }
+        ],
+        "tip": "Before computing, circle the word \"perimeter\" or \"area\" in the question. Many wrong contest answers come from finding the right number for the wrong measurement!"
+      }
+    },
+    {
+      "id": "geo-angles",
+      "name": "Angles & Triangles",
+      "lesson": {
+        "intro": "Angles measure how much something turns, and a full turn is 360 degrees. A few simple rules about straight lines and triangles let you find almost any missing angle. Even clock problems are really angle problems in disguise!",
+        "keyIdeas": [
+          "Angles on a straight line add to $180^\\circ$ (supplementary). Angles that add to $90^\\circ$ are complementary.",
+          "When two lines cross, the angles directly opposite each other (vertical angles) are equal.",
+          "The three angles of any triangle add to $180^\\circ$. In an isosceles triangle, the two base angles are equal.",
+          "A polygon with $n$ sides has interior angles that add to $180^\\circ \\times (n-2)$. In a regular polygon, divide by $n$ to get each angle.",
+          "Clocks: the minute hand moves $6^\\circ$ per minute. The hour hand moves $30^\\circ$ per hour, which is $\\frac{1}{2}^\\circ$ per minute."
+        ],
+        "examples": [
+          {
+            "problem": "What is the measure of each interior angle of a regular hexagon?",
+            "solution": "A hexagon has $n = 6$ sides, so its interior angles add to $180^\\circ \\times (6 - 2) = 720^\\circ$.\n\nAll six angles are equal, so each one is $720^\\circ \\div 6 = 120^\\circ$."
+          },
+          {
+            "problem": "What is the smaller angle between the hands of a clock at 2:00?",
+            "solution": "At 2:00 the minute hand points at the 12 and the hour hand points at the 2.\n\nEach \"hour space\" on the clock is $360^\\circ \\div 12 = 30^\\circ$, and the hands are 2 spaces apart.\n\nThe angle is $2 \\times 30^\\circ = 60^\\circ$."
+          }
+        ],
+        "tip": "When angles are given as a ratio like 2 : 3 : 4, call them $2x$, $3x$, and $4x$, add them up, and set the total equal to $180^\\circ$ (or $360^\\circ$)."
+      }
+    },
+    {
+      "id": "geo-circles",
+      "name": "Circles",
+      "lesson": {
+        "intro": "A circle is all the points that are the same distance (the radius) from a center point. The special number $\\pi$ (about 3.14) connects a circle's size to its distance around and the space inside. In contests, answers are usually left \"in terms of $\\pi$\", like $9\\pi$, so you don't have to multiply by 3.14.",
+        "keyIdeas": [
+          "The diameter is twice the radius: $d = 2r$.",
+          "Circumference (distance around) $= 2\\pi r = \\pi d$.",
+          "Area $= \\pi r^2$. Always find the radius first, even if the problem gives the diameter or circumference.",
+          "If the radius is multiplied by $k$, the circumference is multiplied by $k$ but the area is multiplied by $k^2$.",
+          "A sector (pizza slice) with angle $a^\\circ$ is $\\frac{a}{360}$ of the whole circle, so its arc and area are that fraction of the full circle's."
+        ],
+        "examples": [
+          {
+            "problem": "A circle has circumference $12\\pi$. Its area is $k\\pi$. What is $k$?",
+            "solution": "Circumference $= 2\\pi r = 12\\pi$, so $r = 6$.\n\nArea $= \\pi r^2 = \\pi \\times 36 = 36\\pi$.\n\nSo $k = 36$."
+          },
+          {
+            "problem": "A semicircle (half of a circle) has diameter 10. Its area is $k\\pi$. What is $k$?",
+            "solution": "The diameter is 10, so the radius is 5.\n\nThe whole circle has area $\\pi \\times 5^2 = 25\\pi$.\n\nHalf of that is $12.5\\pi$, so $k = 12.5$ (or $12\\frac{1}{2}$)."
+          }
+        ],
+        "tip": "Leave $\\pi$ alone until the very end. Carry it along like a unit (\"$16\\pi$\"), and you'll avoid messy decimals and rounding mistakes."
+      }
+    },
+    {
+      "id": "geo-3d",
+      "name": "Cubes, Volume & Surface Area",
+      "lesson": {
+        "intro": "Three-dimensional shapes have volume (how many unit cubes fit inside) and surface area (how much wrapping paper covers the outside). Contest favorites include big cubes built from small cubes and then painted. Picturing the shape layer by layer makes these problems much easier.",
+        "keyIdeas": [
+          "A box (rectangular prism) with length $\\ell$, width $w$, and height $h$ has volume $\\ell w h$.",
+          "Its surface area is $2(\\ell w + \\ell h + w h)$: three pairs of matching faces. A cube with edge $s$ has volume $s^3$ and surface area $6s^2$.",
+          "Painted $n \\times n \\times n$ cube: 8 corner cubes have 3 painted faces, edge cubes (not corners) have 2, face-center cubes have 1, and the hidden inside cubes have 0.",
+          "The unpainted inside of an $a \\times b \\times c$ box is a smaller box that is $(a-2) \\times (b-2) \\times (c-2)$.",
+          "To find the surface area of a stack of cubes, count the exposed square faces, direction by direction."
+        ],
+        "examples": [
+          {
+            "problem": "A box is 2 cm by 3 cm by 4 cm. What are its volume and its surface area?",
+            "solution": "Volume $= 2 \\times 3 \\times 4 = 24$ cm³.\n\nThe faces come in pairs: $2 \\times 3 = 6$, $2 \\times 4 = 8$, and $3 \\times 4 = 12$.\n\nSurface area $= 2(6 + 8 + 12) = 2 \\times 26 = 52$ cm²."
+          },
+          {
+            "problem": "A $4 \\times 4 \\times 4$ cube made of 64 unit cubes is painted on the outside. How many unit cubes have exactly one painted face?",
+            "solution": "A cube with exactly one painted face sits in the middle of a big face, not touching any edge of the big cube.\n\nOn each $4 \\times 4$ face, the middle part is a $2 \\times 2$ square, so there are 4 such cubes per face.\n\nThere are 6 faces, so the answer is $6 \\times 4 = 24$."
+          }
+        ],
+        "tip": "For painted-cube problems, sort the small cubes by location: corners, edges, face centers, and inside. The four counts must add up to the total number of cubes, which is a great way to check your work."
+      }
+    },
+    {
+      "id": "geo-coordinates",
+      "name": "Coordinate Geometry",
+      "lesson": {
+        "intro": "The coordinate plane is a grid where every point has an address $(x, y)$: first go left or right, then up or down. Because everything sits on a grid, you can find lengths and areas just by counting and subtracting. Points whose coordinates are both whole numbers are called lattice points.",
+        "keyIdeas": [
+          "Two points with the same $x$-coordinate are on a vertical line; the distance between them is the difference of the $y$-coordinates. Same idea for horizontal lines.",
+          "Walking only along grid lines, the shortest path from $(a, b)$ to $(c, d)$ has length $|a - c| + |b - d|$.",
+          "For a triangle with a horizontal or vertical side, use that side as the base and measure the height straight across to the third point.",
+          "Box method: draw the smallest rectangle around a slanted shape, then subtract the right triangles in the corners.",
+          "Moving from one lattice point to another, you can split the trip into equal steps that land on lattice points; the greatest common factor of the horizontal and vertical distances tells you how many steps."
+        ],
+        "examples": [
+          {
+            "problem": "Find the area of the triangle with vertices $(1, 1)$, $(9, 1)$, and $(4, 7)$.",
+            "solution": "The side from $(1, 1)$ to $(9, 1)$ is horizontal, with length $9 - 1 = 8$. Use it as the base.\n\nThe third point $(4, 7)$ is $7 - 1 = 6$ units above that base, so the height is 6.\n\nArea $= \\frac{1}{2} \\times 8 \\times 6 = 24$."
+          },
+          {
+            "problem": "Three corners of a square are $(2, 1)$, $(6, 1)$, and $(6, 5)$. What is the fourth corner?",
+            "solution": "From $(2, 1)$ to $(6, 1)$ we go 4 to the right. From $(6, 1)$ to $(6, 5)$ we go 4 up.\n\nThe missing corner must be directly above $(2, 1)$ and directly left of $(6, 5)$.\n\nSo it is $(2, 5)$."
+          }
+        ],
+        "tip": "Always make a quick sketch on scratch paper with the points plotted. Even a rough grid shows you which sides are horizontal or vertical, and those are the ones that make the problem easy."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "geo-area-01",
+      "topic": "geo-area",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "A rectangle is 12 cm long and 5 cm wide. What is its perimeter?",
+      "answer": "34",
+      "unit": "cm",
+      "hints": [
+        "The perimeter is the total length of all four sides.",
+        "A rectangle has two sides of length 12 and two sides of length 5."
+      ],
+      "solution": "Add all four sides: $12 + 5 + 12 + 5 = 34$.\n\nOr use $2(\\ell + w) = 2(12 + 5) = 34$.\n\nThe perimeter is **34 cm**."
+    },
+    {
+      "id": "geo-area-02",
+      "topic": "geo-area",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "A square has a perimeter of 36 inches. What is its area?",
+      "answer": "81",
+      "unit": "in²",
+      "hints": [
+        "All four sides of a square are equal. How long is one side?",
+        "One side is $36 \\div 4$."
+      ],
+      "solution": "All four sides are equal, so each side is $36 \\div 4 = 9$ inches.\n\nThe area is $9 \\times 9 = 81$ square inches."
+    },
+    {
+      "id": "geo-area-03",
+      "topic": "geo-area",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "A triangle has a base of 10 m and a height of 7 m. What is its area?",
+      "choices": [
+        "17 m²",
+        "35 m²",
+        "70 m²",
+        "34 m²",
+        "140 m²"
+      ],
+      "answer": "B",
+      "hints": [
+        "The area of a triangle is half of base times height.",
+        "Base times height is $10 \\times 7 = 70$. Now take half."
+      ],
+      "solution": "Area $= \\frac{1}{2} \\times \\text{base} \\times \\text{height} = \\frac{1}{2} \\times 10 \\times 7 = 35$ m².\n\nThe answer is **(B) 35 m²**."
+    },
+    {
+      "id": "geo-area-04",
+      "topic": "geo-area",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A rectangle has an area of 48 square feet. One of its sides is 6 feet long. What is the perimeter of the rectangle?",
+      "answer": "28",
+      "unit": "ft",
+      "hints": [
+        "Use the area to find the other side length.",
+        "The other side is $48 \\div 6$."
+      ],
+      "solution": "Area $=$ length $\\times$ width, so the other side is $48 \\div 6 = 8$ feet.\n\nThe perimeter is $2(6 + 8) = 2 \\times 14 = 28$ feet."
+    },
+    {
+      "id": "geo-area-05",
+      "topic": "geo-area",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Start with a rectangle that is 10 cm wide and 8 cm tall. From its top-right corner, cut away a small rectangle that is 4 cm wide and 3 cm tall, leaving an L-shaped piece. What is the perimeter of the L-shaped piece?",
+      "answer": "36",
+      "unit": "cm",
+      "hints": [
+        "List the sides of the L-shape one at a time as you walk around it.",
+        "The two new edges made by the cut are 4 cm and 3 cm long. Compare them to the edges that were removed.",
+        "The notch moves two edges inward but does not change their total length."
+      ],
+      "solution": "Walk around the L-shape starting at the bottom-left corner: bottom 10, right side 5 (the original 8 minus 3), a step left of 4, up 3, the top 6 (10 minus 4), and the left side 8.\n\n$10 + 5 + 4 + 3 + 6 + 8 = 36$ cm.\n\nNotice this is the same as the original rectangle's perimeter, $2(10 + 8) = 36$: cutting the corner just pushed the corner edges inward. (The area did change, though: $80 - 12 = 68$ cm².)"
+    },
+    {
+      "id": "geo-area-06",
+      "topic": "geo-area",
+      "difficulty": 4,
+      "style": "mc",
+      "prompt": "A square is cut into 3 identical rectangles by drawing two lines parallel to one of its sides. Each of the 3 rectangles has a perimeter of 24 cm. What is the area of the original square?",
+      "choices": [
+        "64 cm²",
+        "72 cm²",
+        "36 cm²",
+        "144 cm²",
+        "81 cm²"
+      ],
+      "answer": "E",
+      "hints": [
+        "If the square has side $s$, each rectangle is $s$ long. How wide is each one?",
+        "Each rectangle is $s$ by $\\frac{s}{3}$. Write its perimeter in terms of $s$."
+      ],
+      "solution": "Let the square have side $s$. Each strip is $s$ long and $\\frac{s}{3}$ wide.\n\nA strip's perimeter is $2\\left(s + \\frac{s}{3}\\right) = 2 \\times \\frac{4s}{3} = \\frac{8s}{3}$.\n\nSet $\\frac{8s}{3} = 24$, so $8s = 72$ and $s = 9$.\n\nThe square's area is $9 \\times 9 = 81$ cm², answer **(E)**."
+    },
+    {
+      "id": "geo-area-07",
+      "topic": "geo-area",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Square $ABCD$ has side length 12, with its corners labeled in order going around the square. Point $E$ is the midpoint of side $BC$, and point $F$ is the midpoint of side $CD$. What is the area of triangle $AEF$?",
+      "answer": "54",
+      "hints": [
+        "The triangle is slanted, so try subtracting instead: square minus the pieces outside the triangle.",
+        "There are three right triangles outside $AEF$: one at corner $B$, one at corner $C$, and one at corner $D$.",
+        "Triangle $ABE$ has legs 12 and 6. Triangle $ECF$ has legs 6 and 6."
+      ],
+      "solution": "The square has area $12 \\times 12 = 144$.\n\nThe parts of the square outside triangle $AEF$ are three right triangles:\n\n- Triangle $ABE$: legs $AB = 12$ and $BE = 6$, area $\\frac{1}{2} \\times 12 \\times 6 = 36$.\n- Triangle $ADF$: legs $AD = 12$ and $DF = 6$, area $36$.\n- Triangle $ECF$: legs $EC = 6$ and $CF = 6$, area $\\frac{1}{2} \\times 6 \\times 6 = 18$.\n\nArea of $AEF = 144 - 36 - 36 - 18 = 54$."
+    },
+    {
+      "id": "geo-angles-01",
+      "topic": "geo-angles",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "Two angles are supplementary. One of them measures $68^\\circ$. What is the measure of the other angle?",
+      "answer": "112",
+      "unit": "degrees",
+      "hints": [
+        "Supplementary angles add up to a straight line.",
+        "A straight line is $180^\\circ$."
+      ],
+      "solution": "Supplementary angles add to $180^\\circ$.\n\n$180 - 68 = 112$, so the other angle is $112^\\circ$."
+    },
+    {
+      "id": "geo-angles-02",
+      "topic": "geo-angles",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "The three angles of a triangle are in the ratio 2 : 3 : 4. What is the measure of the largest angle?",
+      "answer": "80",
+      "unit": "degrees",
+      "hints": [
+        "Call the angles $2x$, $3x$, and $4x$.",
+        "The angles of a triangle add to $180^\\circ$, so $9x = 180$."
+      ],
+      "solution": "Let the angles be $2x$, $3x$, and $4x$.\n\n$2x + 3x + 4x = 9x = 180$, so $x = 20$.\n\nThe largest angle is $4x = 80^\\circ$. (Check: $40 + 60 + 80 = 180$.)"
+    },
+    {
+      "id": "geo-angles-03",
+      "topic": "geo-angles",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Two straight lines cross, making four angles. One of the angles is 4 times as large as an angle right next to it. What is the measure of the larger of these two angles?",
+      "answer": "144",
+      "unit": "degrees",
+      "hints": [
+        "Two angles that sit next to each other where two lines cross together make a straight line.",
+        "If the smaller angle is $x$, the larger is $4x$, and $x + 4x = 180$."
+      ],
+      "solution": "Neighboring angles formed by two crossing lines lie along a straight line, so they add to $180^\\circ$.\n\nLet the smaller angle be $x$. Then $x + 4x = 5x = 180$, so $x = 36$.\n\nThe larger angle is $4 \\times 36 = 144^\\circ$."
+    },
+    {
+      "id": "geo-angles-04",
+      "topic": "geo-angles",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "The interior angles of a polygon add up to $1440^\\circ$. How many sides does the polygon have?",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "12",
+        "14"
+      ],
+      "answer": "C",
+      "hints": [
+        "A polygon with $n$ sides has angles adding to $180^\\circ \\times (n - 2)$.",
+        "$1440 \\div 180 = 8$. What does that tell you about $n - 2$?"
+      ],
+      "solution": "The angle sum is $180 \\times (n - 2) = 1440$.\n\nDivide: $n - 2 = 1440 \\div 180 = 8$, so $n = 10$.\n\nThe polygon has 10 sides, answer **(C)**."
+    },
+    {
+      "id": "geo-angles-05",
+      "topic": "geo-angles",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "What is the measure of the smaller angle between the hour hand and the minute hand of a clock at 3:30?",
+      "choices": [
+        "$60^\\circ$",
+        "$75^\\circ$",
+        "$90^\\circ$",
+        "$105^\\circ$",
+        "$67.5^\\circ$"
+      ],
+      "answer": "B",
+      "hints": [
+        "At 3:30 the hour hand is NOT pointing exactly at the 3. Where is it?",
+        "The hour hand is halfway between the 3 and the 4. The minute hand points at the 6.",
+        "Each number-to-number space on a clock is $30^\\circ$."
+      ],
+      "solution": "At 3:30 the minute hand points straight at the 6.\n\nThe hour hand has moved halfway from the 3 toward the 4.\n\nFrom halfway-between-3-and-4 to the 6 is $2\\frac{1}{2}$ hour spaces, and each space is $30^\\circ$.\n\n$2\\frac{1}{2} \\times 30 = 75^\\circ$, answer **(B)**."
+    },
+    {
+      "id": "geo-angles-06",
+      "topic": "geo-angles",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "An isosceles triangle has one angle that measures $40^\\circ$. Find the sum of all the different possible measures of the triangle's largest angle.",
+      "answer": "170",
+      "unit": "degrees",
+      "hints": [
+        "The $40^\\circ$ angle could be one of the two equal angles, OR it could be the angle that is different.",
+        "Case 1: two angles are $40^\\circ$. Case 2: $40^\\circ$ is the odd one out, and the other two are equal.",
+        "Find the largest angle in each case, then add."
+      ],
+      "solution": "There are two cases.\n\n**Case 1:** $40^\\circ$ is one of the two equal angles. The angles are $40, 40,$ and $180 - 80 = 100$. The largest angle is $100^\\circ$.\n\n**Case 2:** $40^\\circ$ is the different angle. The other two share $180 - 40 = 140$, so each is $70^\\circ$. The angles are $40, 70, 70$, and the largest is $70^\\circ$.\n\nThe sum of the possible largest angles is $100 + 70 = 170$."
+    },
+    {
+      "id": "geo-angles-07",
+      "topic": "geo-angles",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "At exactly 2:00, the hour hand of a clock points at the 2 and the minute hand points at the 12. How many minutes after 2:00 will the hour hand and the minute hand first point in exactly the same direction? Give your answer as a mixed number.",
+      "answer": "10 10/11",
+      "unit": "minutes",
+      "hints": [
+        "Measure both hands in degrees, clockwise from the 12. At 2:00 the hour hand is at $60^\\circ$.",
+        "After $m$ minutes, the minute hand is at $6m$ degrees and the hour hand is at $60 + \\frac{1}{2}m$ degrees.",
+        "Set them equal: $6m = 60 + \\frac{1}{2}m$."
+      ],
+      "solution": "Measure clockwise from the 12.\n\nThe minute hand moves $6^\\circ$ each minute, so after $m$ minutes it is at $6m$ degrees.\n\nThe hour hand starts at $60^\\circ$ (pointing at the 2) and moves $\\frac{1}{2}^\\circ$ each minute, so it is at $60 + \\frac{1}{2}m$ degrees.\n\nThey line up when $6m = 60 + \\frac{1}{2}m$, so $5\\frac{1}{2}m = 60$, which gives $m = 60 \\div \\frac{11}{2} = \\frac{120}{11} = 10\\frac{10}{11}$ minutes."
+    },
+    {
+      "id": "geo-circles-01",
+      "topic": "geo-circles",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "A circle has a radius of 5 cm. Its area is $k\\pi$ square centimeters. What is $k$?",
+      "answer": "25",
+      "hints": [
+        "The area of a circle is $\\pi r^2$."
+      ],
+      "solution": "Area $= \\pi r^2 = \\pi \\times 5^2 = 25\\pi$ cm².\n\nSo $k = 25$."
+    },
+    {
+      "id": "geo-circles-02",
+      "topic": "geo-circles",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "A circle has a diameter of 14 inches. Its circumference is $k\\pi$ inches. What is $k$?",
+      "answer": "14",
+      "hints": [
+        "Circumference can be written as $\\pi d$ or $2\\pi r$.",
+        "The radius is half of 14."
+      ],
+      "solution": "Circumference $= \\pi d = \\pi \\times 14 = 14\\pi$ inches. (Or $2\\pi r = 2 \\times \\pi \\times 7 = 14\\pi$.)\n\nSo $k = 14$."
+    },
+    {
+      "id": "geo-circles-03",
+      "topic": "geo-circles",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "A circle has a circumference of $10\\pi$ meters. What is its area?",
+      "choices": [
+        "$25\\pi$ m²",
+        "$10\\pi$ m²",
+        "$50\\pi$ m²",
+        "$100\\pi$ m²",
+        "$20\\pi$ m²"
+      ],
+      "answer": "A",
+      "hints": [
+        "Use the circumference to find the radius first.",
+        "$2\\pi r = 10\\pi$, so what is $r$?"
+      ],
+      "solution": "From $2\\pi r = 10\\pi$, the radius is $r = 5$ m.\n\nArea $= \\pi r^2 = 25\\pi$ m², answer **(A)**."
+    },
+    {
+      "id": "geo-circles-04",
+      "topic": "geo-circles",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A circle is drawn inside a square with side length 8 so that the circle touches all four sides of the square. The area inside the square but outside the circle can be written as $a - b\\pi$, where $a$ and $b$ are whole numbers. What is $a + b$?",
+      "answer": "80",
+      "hints": [
+        "If the circle touches all four sides, its diameter equals the side of the square.",
+        "The circle's radius is 4. Find the square's area and the circle's area."
+      ],
+      "solution": "The circle's diameter equals the square's side, 8, so its radius is 4.\n\nSquare area: $8 \\times 8 = 64$.\n\nCircle area: $\\pi \\times 4^2 = 16\\pi$.\n\nThe area between them is $64 - 16\\pi$, so $a = 64$, $b = 16$, and $a + b = 80$."
+    },
+    {
+      "id": "geo-circles-05",
+      "topic": "geo-circles",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A bicycle wheel has a diameter of 70 cm. Using $\\pi \\approx \\frac{22}{7}$, how many complete turns does the wheel make as the bicycle rolls 440 meters?",
+      "answer": "200",
+      "unit": "turns",
+      "hints": [
+        "In one full turn, the wheel rolls forward a distance equal to its circumference.",
+        "Circumference $= \\pi d \\approx \\frac{22}{7} \\times 70$ cm. Be careful: the distance is in meters!"
+      ],
+      "solution": "One turn moves the bike forward one circumference: $\\frac{22}{7} \\times 70 = 220$ cm.\n\nThe distance is $440$ m $= 44{,}000$ cm.\n\nNumber of turns: $44{,}000 \\div 220 = 200$."
+    },
+    {
+      "id": "geo-circles-06",
+      "topic": "geo-circles",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "A circular pizza with radius 6 inches is cut into 3 equal slices, each shaped like a sector (two straight cuts from the center to the edge, plus the curved crust). The perimeter of one slice can be written as $a + b\\pi$ inches, where $a$ and $b$ are whole numbers. What is $a + b$?",
+      "answer": "16",
+      "hints": [
+        "The perimeter of a slice has two straight edges and one curved edge.",
+        "Each straight edge is a radius. The curved edge is $\\frac{1}{3}$ of the full circumference."
+      ],
+      "solution": "The two straight edges are radii: $6 + 6 = 12$ inches.\n\nThe full circumference is $2\\pi \\times 6 = 12\\pi$, and one slice gets $\\frac{1}{3}$ of it: $4\\pi$ inches.\n\nThe perimeter is $12 + 4\\pi$, so $a = 12$, $b = 4$, and $a + b = 16$."
+    },
+    {
+      "id": "geo-circles-07",
+      "topic": "geo-circles",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "A square is drawn inside a circle of radius 5 so that all four corners of the square lie on the circle. The area inside the circle but outside the square can be written as $a\\pi - b$, where $a$ and $b$ are whole numbers. What is $a + b$?",
+      "answer": "75",
+      "hints": [
+        "The diagonals of the square pass through the center of the circle. How long is each diagonal?",
+        "Each diagonal is a diameter, 10 long. The two diagonals cut the square into 4 right triangles.",
+        "Each of the 4 triangles has two legs of length 5 (radii)."
+      ],
+      "solution": "The circle has area $\\pi \\times 5^2 = 25\\pi$.\n\nThe square's diagonals are diameters of the circle, and they cross at the center at right angles. They cut the square into 4 right triangles, each with legs equal to the radius, 5.\n\nEach triangle has area $\\frac{1}{2} \\times 5 \\times 5 = 12.5$, so the square has area $4 \\times 12.5 = 50$.\n\nThe area between them is $25\\pi - 50$, so $a = 25$, $b = 50$, and $a + b = 75$."
+    },
+    {
+      "id": "geo-3d-01",
+      "topic": "geo-3d",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "A box is 3 cm long, 4 cm wide, and 5 cm tall. What is its volume?",
+      "answer": "60",
+      "unit": "cm³",
+      "hints": [
+        "Volume of a box is length times width times height."
+      ],
+      "solution": "Volume $= 3 \\times 4 \\times 5 = 60$ cm³."
+    },
+    {
+      "id": "geo-3d-02",
+      "topic": "geo-3d",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "A cube has a volume of 64 cubic inches. What is its total surface area?",
+      "answer": "96",
+      "unit": "in²",
+      "hints": [
+        "What number times itself times itself is 64?",
+        "The edge is 4 inches. A cube has 6 square faces."
+      ],
+      "solution": "The edge length $s$ satisfies $s^3 = 64$, so $s = 4$ inches.\n\nEach face has area $4 \\times 4 = 16$, and there are 6 faces.\n\nSurface area $= 6 \\times 16 = 96$ square inches."
+    },
+    {
+      "id": "geo-3d-03",
+      "topic": "geo-3d",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Twenty-seven unit cubes are glued together to form a $3 \\times 3 \\times 3$ cube, and the entire outside of the big cube is painted red. How many of the unit cubes have red paint on exactly 2 of their faces?",
+      "answer": "12",
+      "hints": [
+        "Which small cubes have exactly two faces showing on the outside? They are not corners.",
+        "They sit along the edges of the big cube, between two corners.",
+        "A cube has 12 edges. How many non-corner small cubes are on each edge?"
+      ],
+      "solution": "A small cube with exactly 2 painted faces lies on an edge of the big cube but is not a corner.\n\nEach edge of the big cube has 3 small cubes; the 2 at the ends are corners, leaving 1 in the middle.\n\nA cube has 12 edges, so there are $12 \\times 1 = 12$ such cubes.\n\n(Check: 8 corners + 12 edges + 6 face centers + 1 hidden center $= 27$.)"
+    },
+    {
+      "id": "geo-3d-04",
+      "topic": "geo-3d",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "The total surface area of a cube is 150 cm². What is the volume of the cube?",
+      "choices": [
+        "25 cm³",
+        "150 cm³",
+        "216 cm³",
+        "125 cm³",
+        "625 cm³"
+      ],
+      "answer": "D",
+      "hints": [
+        "A cube has 6 identical square faces. What is the area of one face?",
+        "One face has area 25 cm², so what is the edge length?"
+      ],
+      "solution": "Each of the 6 faces has area $150 \\div 6 = 25$ cm², so each edge is 5 cm.\n\nVolume $= 5 \\times 5 \\times 5 = 125$ cm³, answer **(D)**."
+    },
+    {
+      "id": "geo-3d-05",
+      "topic": "geo-3d",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "A closed box is 2 m long and 3 m wide. Its total surface area is 62 m². How tall is the box?",
+      "answer": "5",
+      "unit": "m",
+      "hints": [
+        "Write the surface area as $2(\\ell w + \\ell h + w h)$ with $\\ell = 2$ and $w = 3$.",
+        "Half the surface area is $31 = 2 \\times 3 + 2h + 3h$."
+      ],
+      "solution": "Surface area $= 2(\\ell w + \\ell h + wh) = 2(6 + 2h + 3h) = 62$.\n\nDivide by 2: $6 + 5h = 31$, so $5h = 25$ and $h = 5$.\n\nThe box is 5 m tall. (Check: $2(6 + 10 + 15) = 62$.)"
+    },
+    {
+      "id": "geo-3d-06",
+      "topic": "geo-3d",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "A solid box measuring 4 by 5 by 6 is built from 120 unit cubes. The entire outside of the box is painted. How many of the unit cubes have no paint on them at all?",
+      "answer": "24",
+      "hints": [
+        "The unpainted cubes are the ones completely hidden inside.",
+        "Peeling off the outer layer removes one cube from each end of every length."
+      ],
+      "solution": "A cube is unpainted only if it is not on any outside face. Removing the outer layer takes 1 cube off each end in every direction, so the hidden inner box measures\n\n$(4 - 2) \\times (5 - 2) \\times (6 - 2) = 2 \\times 3 \\times 4 = 24$.\n\nSo 24 unit cubes have no paint."
+    },
+    {
+      "id": "geo-3d-07",
+      "topic": "geo-3d",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Start with a $3 \\times 3 \\times 3$ cube made of 27 unit cubes. Remove the center cube of each of the 6 faces and also the very center cube of the big cube, so there are three straight square tunnels going all the way through the middle (front to back, left to right, and top to bottom). What is the total surface area of the solid that remains, counting the inside walls of the tunnels?",
+      "answer": "72",
+      "unit": "square units",
+      "hints": [
+        "First count the cubes left: $27 - 7 = 20$. They are the 8 corners and the 12 edge-middle cubes.",
+        "Count the exposed faces of each kind of cube. A corner cube touches 3 other cubes... or does it?",
+        "Each corner cube touches 3 edge cubes and has 3 faces exposed. Each edge cube touches only 2 corner cubes, so it has 4 faces exposed."
+      ],
+      "solution": "After removing 7 cubes, 20 remain: 8 corner cubes and 12 edge-middle cubes. Now count exposed faces (each unit cube has 6 faces).\n\n**Corner cubes:** each touches 3 edge cubes, so $6 - 3 = 3$ faces are exposed. Total: $8 \\times 3 = 24$.\n\n**Edge cubes:** each touches only the 2 corner cubes at the ends of its edge (its other neighbors were removed), so $6 - 2 = 4$ faces are exposed. Total: $12 \\times 4 = 48$.\n\nSurface area $= 24 + 48 = 72$ square units.\n\n(Another way: the outside is $6 \\times 9 - 6 = 48$, and each of the 6 tunnel openings leads to a short tunnel with 4 walls, giving $6 \\times 4 = 24$ inside faces; $48 + 24 = 72$.)"
+    },
+    {
+      "id": "geo-coordinates-01",
+      "topic": "geo-coordinates",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "What is the distance between the points $(2, 3)$ and $(2, 11)$?",
+      "answer": "8",
+      "unit": "units",
+      "hints": [
+        "Both points have the same $x$-coordinate, so they lie on a vertical line."
+      ],
+      "solution": "The points are on the same vertical line, so the distance is the difference in $y$-coordinates: $11 - 3 = 8$."
+    },
+    {
+      "id": "geo-coordinates-02",
+      "topic": "geo-coordinates",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "Three corners of a rectangle are at $(-3, 2)$, $(5, 2)$, and $(5, -4)$. The sides of the rectangle are horizontal and vertical. If the fourth corner is $(x, y)$, what is $x + y$?",
+      "answer": "-7",
+      "hints": [
+        "Plot the three points. Which corner is missing?",
+        "The missing corner is directly below $(-3, 2)$ and directly left of $(5, -4)$."
+      ],
+      "solution": "$(-3, 2)$ and $(5, 2)$ form the top side. $(5, 2)$ and $(5, -4)$ form the right side.\n\nThe missing corner is at the bottom left: it shares the $x$-coordinate of $(-3, 2)$ and the $y$-coordinate of $(5, -4)$, so it is $(-3, -4)$.\n\n$x + y = -3 + (-4) = -7$."
+    },
+    {
+      "id": "geo-coordinates-03",
+      "topic": "geo-coordinates",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "An ant walks only along the grid lines of the coordinate plane (it can only move left, right, up, or down). What is the length of the shortest path the ant can take from $(-2, 3)$ to $(4, -1)$?",
+      "choices": [
+        "8",
+        "14",
+        "12",
+        "10",
+        "6"
+      ],
+      "answer": "D",
+      "hints": [
+        "Figure out how far the ant has to go left-or-right, and how far up-or-down, separately.",
+        "From $x = -2$ to $x = 4$ is 6 units. From $y = 3$ to $y = -1$ is how many?"
+      ],
+      "solution": "Horizontally the ant must go from $x = -2$ to $x = 4$: that is $4 - (-2) = 6$ units.\n\nVertically it must go from $y = 3$ to $y = -1$: that is $3 - (-1) = 4$ units.\n\nThe shortest grid path is $6 + 4 = 10$ units, answer **(D)**."
+    },
+    {
+      "id": "geo-coordinates-04",
+      "topic": "geo-coordinates",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "What is the area of the triangle with vertices $(0, 0)$, $(8, 0)$, and $(3, 6)$?",
+      "answer": "24",
+      "unit": "square units",
+      "hints": [
+        "The side from $(0, 0)$ to $(8, 0)$ lies on the $x$-axis. Use it as the base.",
+        "The height is how far $(3, 6)$ is above the $x$-axis."
+      ],
+      "solution": "The base from $(0, 0)$ to $(8, 0)$ has length 8.\n\nThe third vertex $(3, 6)$ is 6 units above the base, so the height is 6.\n\nArea $= \\frac{1}{2} \\times 8 \\times 6 = 24$ square units."
+    },
+    {
+      "id": "geo-coordinates-05",
+      "topic": "geo-coordinates",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "What is the area of the triangle with vertices $(1, 2)$, $(7, 4)$, and $(3, 8)$?",
+      "answer": "16",
+      "unit": "square units",
+      "hints": [
+        "None of the sides is horizontal or vertical. Try drawing the smallest rectangle (with horizontal and vertical sides) that surrounds the triangle.",
+        "The rectangle goes from $x = 1$ to $x = 7$ and from $y = 2$ to $y = 8$. Now subtract the three right triangles in the corners.",
+        "The three corner triangles have legs 6 and 2, 4 and 4, and 2 and 6."
+      ],
+      "solution": "Draw the rectangle from $x = 1$ to $x = 7$ and $y = 2$ to $y = 8$. It is $6 \\times 6 = 36$.\n\nSubtract the three right triangles between the rectangle and our triangle:\n\n- From $(1, 2)$ to $(7, 4)$: legs 6 and 2, area $\\frac{1}{2} \\times 6 \\times 2 = 6$.\n- From $(7, 4)$ to $(3, 8)$: legs 4 and 4, area $\\frac{1}{2} \\times 4 \\times 4 = 8$.\n- From $(3, 8)$ to $(1, 2)$: legs 2 and 6, area $\\frac{1}{2} \\times 2 \\times 6 = 6$.\n\nArea $= 36 - 6 - 8 - 6 = 16$ square units."
+    },
+    {
+      "id": "geo-coordinates-06",
+      "topic": "geo-coordinates",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "A straight segment is drawn from $(0, 0)$ to $(12, 18)$. How many lattice points (points whose coordinates are both whole numbers) lie on this segment, including both endpoints?",
+      "answer": "7",
+      "unit": "points",
+      "hints": [
+        "Try to break the trip into equal small steps that each land on a lattice point.",
+        "Moving 12 right and 18 up is the same as repeating a smaller step several times. What is the greatest common factor of 12 and 18?",
+        "The GCF is 6, so the smallest step is 2 right and 3 up."
+      ],
+      "solution": "The greatest common factor of 12 and 18 is 6, so the smallest lattice step along the segment is $(12 \\div 6, 18 \\div 6) = (2, 3)$.\n\nThe lattice points are $(0,0), (2,3), (4,6), (6,9), (8,12), (10,15), (12,18)$.\n\nThat is 6 steps, which means $6 + 1 = 7$ lattice points."
+    },
+    {
+      "id": "geo-coordinates-07",
+      "topic": "geo-coordinates",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "How many lattice points $(x, y)$ (both coordinates whole numbers, possibly negative or zero) satisfy $|x| + |y| \\le 4$?",
+      "answer": "41",
+      "unit": "points",
+      "hints": [
+        "Go row by row: for each value of $y$ from $-4$ to $4$, how many values of $x$ work?",
+        "If $y = 0$, then $|x| \\le 4$, so $x$ can be $-4$ through $4$: 9 values. If $y = 1$ or $y = -1$, then $|x| \\le 3$.",
+        "The row counts are $1, 3, 5, 7, 9, 7, 5, 3, 1$."
+      ],
+      "solution": "Count one horizontal row at a time.\n\n- $y = 0$: $|x| \\le 4$, so 9 values of $x$.\n- $y = \\pm 1$: $|x| \\le 3$, so 7 values each.\n- $y = \\pm 2$: $|x| \\le 2$, so 5 values each.\n- $y = \\pm 3$: $|x| \\le 1$, so 3 values each.\n- $y = \\pm 4$: $x = 0$ only, 1 value each.\n\nTotal: $9 + 2(7 + 5 + 3 + 1) = 9 + 32 = 41$.\n\n(The points form a diamond shape.)"
+    }
+  ]
+}

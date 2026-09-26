@@ -1,0 +1,650 @@
+{
+  "strand": "nt",
+  "name": "Number Theory",
+  "description": "Divisibility, primes and factors, GCF and LCM, remainder cycles, and digit puzzles: the building blocks of whole numbers.",
+  "topics": [
+    {
+      "id": "nt-divisibility",
+      "name": "Divisibility Rules",
+      "lesson": {
+        "intro": "Divisibility rules are shortcuts that tell you whether one number divides another without doing long division. Contest problems love hiding a missing digit inside a number and asking you to find it. Once you know the rules, these become quick puzzles!",
+        "keyIdeas": [
+          "By 2: last digit is even. By 5: last digit is 0 or 5. By 10: last digit is 0.",
+          "By 4: the last two digits form a multiple of 4. By 8: the last three digits form a multiple of 8.",
+          "By 3: the digit sum is a multiple of 3. By 9: the digit sum is a multiple of 9.",
+          "By 11: the alternating sum of the digits (add, subtract, add, ...) is a multiple of 11 (0 counts!).",
+          "To test a number like 6, 12, 36, 45 or 72, split it into factors with no common factor: 12 = 3 × 4, 45 = 5 × 9, 72 = 8 × 9, and check both rules."
+        ],
+        "examples": [
+          {
+            "problem": "The four-digit number $5A2B$ is divisible by 45, and $B$ is not 0. Find $A$.",
+            "solution": "Since $45 = 5 \\times 9$, the number must pass both the 5-rule and the 9-rule.\n\nBy 5: $B$ is 0 or 5, and we are told $B \\neq 0$, so $B = 5$.\n\nBy 9: the digit sum $5 + A + 2 + 5 = 12 + A$ must be a multiple of 9. The only digit that works is $A = 6$ (sum 18).\n\nCheck: $5625 \\div 45 = 125$. So $A = 6$."
+          },
+          {
+            "problem": "Is 918,082 divisible by 11?",
+            "solution": "Take the alternating sum of the digits from left to right: $9 - 1 + 8 - 0 + 8 - 2 = 22$.\n\nSince 22 is a multiple of 11, yes, 918,082 is divisible by 11. (In fact $918082 = 11 \\times 83462$.)"
+          }
+        ],
+        "tip": "When a missing-digit problem uses two rules, apply the rule that pins down a digit first (usually the last-digit rules for 2, 4, 5, 8), then use the digit-sum rule to finish."
+      }
+    },
+    {
+      "id": "nt-factors",
+      "name": "Primes, Factors & Counting Divisors",
+      "lesson": {
+        "intro": "Every whole number bigger than 1 is built by multiplying primes together, like a number made of LEGO bricks. Writing a number as a product of primes (its prime factorization) unlocks almost every factor question. You can even count all the divisors of a number without listing them!",
+        "keyIdeas": [
+          "A prime has exactly two divisors: 1 and itself. 1 is NOT prime. 2 is the only even prime.",
+          "Use a factor tree to write any number as a product of primes, e.g. $360 = 2^3 \\times 3^2 \\times 5$.",
+          "Number of divisors: add 1 to each exponent and multiply. $360 = 2^3 \\times 3^2 \\times 5^1$ has $(3+1)(2+1)(1+1) = 24$ divisors.",
+          "Only perfect squares have an odd number of divisors, because divisors come in pairs except for the square root.",
+          "To check if a number is prime, you only need to test primes up to its square root."
+        ],
+        "examples": [
+          {
+            "problem": "How many positive divisors does 200 have?",
+            "solution": "Factor: $200 = 2 \\times 100 = 2^3 \\times 5^2$.\n\nAdd 1 to each exponent and multiply: $(3+1)(2+1) = 4 \\times 3 = 12$.\n\nSo 200 has 12 divisors: 1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 200."
+          },
+          {
+            "problem": "Is 221 prime?",
+            "solution": "$\\sqrt{221}$ is a little less than 15 (since $15^2 = 225$), so we test the primes 2, 3, 5, 7, 11, 13.\n\n2, 3, 5 fail by the divisibility rules. $221 \\div 7 = 31.57...$, $221 \\div 11 = 20.09...$, but $221 \\div 13 = 17$.\n\nSo $221 = 13 \\times 17$ and it is NOT prime."
+          }
+        ],
+        "tip": "Whenever a problem mentions divisors, factors or perfect squares/cubes, write the prime factorization first. It turns a guessing game into bookkeeping with exponents."
+      }
+    },
+    {
+      "id": "nt-gcd-lcm",
+      "name": "GCF & LCM",
+      "lesson": {
+        "intro": "The Greatest Common Factor (GCF) is the biggest number that divides two numbers, and the Least Common Multiple (LCM) is the smallest number they both divide into. GCF problems are about splitting things into equal groups; LCM problems are about things that repeat and line up again. Learning to tell which one a story needs is half the battle!",
+        "keyIdeas": [
+          "GCF: use the primes they share, each with the SMALLER exponent. LCM: use every prime that appears, each with the LARGER exponent.",
+          "For two numbers: $\\text{GCF} \\times \\text{LCM} = $ the product of the two numbers.",
+          "\"Largest equal groups / biggest square tile / most identical bags\" means GCF.",
+          "\"When will they happen together again / smallest number divisible by all\" means LCM.",
+          "If $N$ leaves the same remainder pattern for several divisors, look at $N + 1$ or $N - 1$ and use the LCM."
+        ],
+        "examples": [
+          {
+            "problem": "Find the GCF and LCM of 84 and 90.",
+            "solution": "$84 = 2^2 \\times 3 \\times 7$ and $90 = 2 \\times 3^2 \\times 5$.\n\nGCF: shared primes with smaller exponents: $2 \\times 3 = 6$.\n\nLCM: all primes with larger exponents: $2^2 \\times 3^2 \\times 5 \\times 7 = 1260$.\n\nCheck: $6 \\times 1260 = 7560 = 84 \\times 90$."
+          },
+          {
+            "problem": "One lighthouse flashes every 10 seconds and another every 14 seconds. They flash together at midnight. How many seconds until they next flash together?",
+            "solution": "We need the smallest time that is a multiple of both 10 and 14, which is the LCM.\n\n$10 = 2 \\times 5$ and $14 = 2 \\times 7$, so LCM $= 2 \\times 5 \\times 7 = 70$.\n\nThey flash together again after 70 seconds."
+          }
+        ],
+        "tip": "Before calculating, ask yourself: is the answer going to be SMALLER than my numbers (GCF, splitting up) or BIGGER (LCM, lining up)? That quick check catches most mix-ups."
+      }
+    },
+    {
+      "id": "nt-remainders",
+      "name": "Remainders, Cycles & Units Digits",
+      "lesson": {
+        "intro": "Lots of things repeat in cycles: days of the week, repeating decimals, and even the last digits of powers. If you can find how long the cycle is, a remainder tells you exactly where you land, even after thousands of steps. This is how you find the units digit of $3^{2026}$ without a giant calculator!",
+        "keyIdeas": [
+          "If a pattern repeats every $k$ steps, the $n$th item matches the item at position (remainder of $n \\div k$). A remainder of 0 means the LAST item of the cycle.",
+          "Days of the week repeat every 7 days.",
+          "Units digits of powers repeat: powers of 2 end in 2, 4, 8, 6; powers of 3 end in 3, 9, 7, 1; powers of 7 end in 7, 9, 3, 1.",
+          "Remainders can be added and multiplied: to find the remainder of a sum or product, you can work with the remainders instead of the huge numbers.",
+          "Once a number in a sum is a multiple of the divisor, every later term (like $4!, 5!, \\dots$ when dividing by 12) adds 0 to the remainder."
+        ],
+        "examples": [
+          {
+            "problem": "What is the units digit of $3^{50}$?",
+            "solution": "The units digits of powers of 3 go $3, 9, 7, 1, 3, 9, 7, 1, \\dots$, a cycle of length 4.\n\n$50 \\div 4 = 12$ remainder $2$, so $3^{50}$ has the same units digit as $3^2$, which is 9."
+          },
+          {
+            "problem": "What is the remainder when $2^{30}$ is divided by 7?",
+            "solution": "$2^3 = 8$, which leaves remainder 1 when divided by 7.\n\n$2^{30} = (2^3)^{10}$, so its remainder is the same as $1^{10} = 1$.\n\nThe remainder is 1."
+          }
+        ],
+        "tip": "Always write out the first few terms of a pattern until it repeats, then divide by the cycle length. Be careful with a remainder of 0: it means the end of a cycle, not the start."
+      }
+    },
+    {
+      "id": "nt-digits",
+      "name": "Digits & Place Value",
+      "lesson": {
+        "intro": "The number 473 really means $4 \\times 100 + 7 \\times 10 + 3$. Thinking this way lets you turn digit puzzles into simple equations. Contest problems also love to ask how many digits it takes to write a list of numbers, so we will practice counting carefully too.",
+        "keyIdeas": [
+          "A two-digit number with tens digit $a$ and units digit $b$ equals $10a + b$. Its reversal is $10b + a$.",
+          "The difference between a two-digit number and its reversal is always $9 \\times$ (difference of the digits).",
+          "Counting digits: 1–9 use 9 digits, 10–99 use 180 digits, 100–999 use 2700 digits.",
+          "\"At least one\" counts are often easier as total minus \"none\".",
+          "For digit-sum counts, think of sharing out the sum among the digit places, remembering the first digit cannot be 0."
+        ],
+        "examples": [
+          {
+            "problem": "A two-digit number is 3 times the sum of its digits. What is it?",
+            "solution": "Let the number be $10a + b$. Then $10a + b = 3(a + b) = 3a + 3b$.\n\nSo $7a = 2b$. Since $b$ is a digit (at most 9), try $a = 2$: $b = 7$.\n\nThe number is 27. Check: $2 + 7 = 9$ and $3 \\times 9 = 27$."
+          },
+          {
+            "problem": "How many digits are needed to write all the whole numbers from 1 to 120?",
+            "solution": "1–9: 9 numbers × 1 digit = 9 digits.\n\n10–99: 90 numbers × 2 digits = 180 digits.\n\n100–120: 21 numbers × 3 digits = 63 digits.\n\nTotal: $9 + 180 + 63 = 252$ digits."
+          }
+        ],
+        "tip": "Name the digits with letters and write the number in expanded form ($100a + 10b + c$). Most digit puzzles turn into a short equation you can solve by trying the few digits that fit."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "nt-divisibility-01",
+      "topic": "nt-divisibility",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "The three-digit number $4A2$ is divisible by 9. What digit is $A$?",
+      "answer": "3",
+      "hints": [
+        "What is the rule for divisibility by 9?",
+        "The sum $4 + A + 2$ must be a multiple of 9."
+      ],
+      "solution": "A number is divisible by 9 when its digit sum is a multiple of 9.\n\nThe digit sum is $4 + A + 2 = 6 + A$. The multiples of 9 near this are 9 and 18. $6 + A = 9$ gives $A = 3$; $6 + A = 18$ would need $A = 12$, which is not a digit.\n\nSo $A = 3$. Check: $432 \\div 9 = 48$."
+    },
+    {
+      "id": "nt-divisibility-02",
+      "topic": "nt-divisibility",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "Which of these numbers is divisible by 6?",
+      "choices": [
+        "2,314",
+        "4,125",
+        "3,108",
+        "5,216",
+        "7,330"
+      ],
+      "answer": "C",
+      "hints": [
+        "A number is divisible by 6 exactly when it is divisible by both 2 and 3.",
+        "Cross out the odd numbers first, then check the digit sums of the rest."
+      ],
+      "solution": "Divisible by 6 means divisible by 2 (even) AND by 3 (digit sum a multiple of 3).\n\n4,125 is odd, so it is out.\n\nDigit sums of the even ones: 2,314 → 10; 3,108 → 12; 5,216 → 14; 7,330 → 13.\n\nOnly 12 is a multiple of 3, so the answer is 3,108 (C). Check: $3108 \\div 6 = 518$."
+    },
+    {
+      "id": "nt-divisibility-03",
+      "topic": "nt-divisibility",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "How many whole numbers from 1 to 100 are divisible by 4 but NOT divisible by 8?",
+      "answer": "13",
+      "hints": [
+        "First count the multiples of 4 from 1 to 100.",
+        "Every multiple of 8 is also a multiple of 4. Subtract those."
+      ],
+      "solution": "Multiples of 4 from 1 to 100: $100 \\div 4 = 25$ of them.\n\nMultiples of 8 from 1 to 100: $100 \\div 8 = 12.5$, so 12 of them (8, 16, ..., 96).\n\nAll multiples of 8 are also multiples of 4, so remove them: $25 - 12 = 13$."
+    },
+    {
+      "id": "nt-divisibility-04",
+      "topic": "nt-divisibility",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "The five-digit number $3A71B$ is divisible by 72. What is the five-digit number?",
+      "answer": "35712",
+      "hints": [
+        "$72 = 8 \\times 9$. Which rule should you use first?",
+        "For 8, the last three digits $71B$ must be a multiple of 8. Which of 710–719 works?",
+        "Once you know $B$, use the digit-sum rule for 9 to find $A$."
+      ],
+      "solution": "Since $72 = 8 \\times 9$, the number must be divisible by both 8 and 9.\n\nBy 8: the last three digits $71B$ must be a multiple of 8. Checking 710 to 719, only $712 = 8 \\times 89$ works, so $B = 2$.\n\nBy 9: the digit sum $3 + A + 7 + 1 + 2 = 13 + A$ must be a multiple of 9. So $13 + A = 18$ and $A = 5$.\n\nThe number is 35712. Check: $35712 \\div 72 = 496$."
+    },
+    {
+      "id": "nt-divisibility-05",
+      "topic": "nt-divisibility",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "What is the smallest positive whole number that is divisible by 12 and whose digits are all 2s and 3s? (It does not have to use both digits.)",
+      "answer": "2232",
+      "hints": [
+        "Divisible by 12 means divisible by 4 and by 3.",
+        "For 4, look at the last two digits. Which of 22, 23, 32, 33 is a multiple of 4?",
+        "The number must end in 32. Now add digits in front until the digit sum is a multiple of 3."
+      ],
+      "solution": "12 = 3 × 4, so the number must be divisible by both 4 and 3.\n\nBy 4: the last two digits are one of 22, 23, 32, 33, and only 32 is a multiple of 4. So the number ends in 32.\n\nBy 3: the digit sum must be a multiple of 3. The digits 3 and 2 already add to 5.\n\nTwo digits: 32 has sum 5. No.\n\nThree digits: 232 (sum 7), 332 (sum 8). No.\n\nFour digits, from smallest: 2232 has sum $2+2+3+2 = 9$. Yes!\n\nSo the answer is 2232. Check: $2232 \\div 12 = 186$."
+    },
+    {
+      "id": "nt-divisibility-06",
+      "topic": "nt-divisibility",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "Six-digit numbers are made by using each of the digits 1, 2, 3, 4, 5, 6 exactly once. How many of these numbers are divisible by 12?",
+      "answer": "192",
+      "hints": [
+        "$12 = 3 \\times 4$. What is the digit sum of every such number?",
+        "Every arrangement is divisible by 3, so you only need to worry about divisibility by 4, which depends on the last two digits.",
+        "List the two-digit endings, using two different digits from 1–6, that are multiples of 4. Then count how many ways to arrange the other four digits."
+      ],
+      "solution": "Divisible by 12 means divisible by 3 and by 4.\n\nBy 3: the digit sum is always $1+2+3+4+5+6 = 21$, a multiple of 3. So every arrangement is divisible by 3!\n\nBy 4: the last two digits must form a multiple of 4, using two different digits from 1–6. The possibilities are 12, 16, 24, 32, 36, 52, 56, 64. That's 8 endings.\n\nFor each ending, the other 4 digits can go in the first four places in $4 \\times 3 \\times 2 \\times 1 = 24$ ways.\n\nTotal: $8 \\times 24 = 192$."
+    },
+    {
+      "id": "nt-divisibility-07",
+      "topic": "nt-divisibility",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Seven-digit numbers are made by using each of the digits 1, 2, 3, 4, 5, 6, 7 exactly once. How many of these numbers are divisible by 11?",
+      "answer": "576",
+      "hints": [
+        "Use the 11-rule: (sum of digits in the 1st, 3rd, 5th, 7th places) minus (sum of digits in the 2nd, 4th, 6th places) must be a multiple of 11.",
+        "The two sums add to 28. Can their difference be 11 or 22? Remember that the two sums add to an even number.",
+        "The difference must be 0, so the three digits in the even places add to 14. Find all such groups of three digits, then count arrangements."
+      ],
+      "solution": "Call $O$ the sum of the digits in places 1, 3, 5, 7 (four digits) and $E$ the sum in places 2, 4, 6 (three digits). The number is divisible by 11 when $O - E$ is a multiple of 11.\n\n$O + E = 1+2+\\dots+7 = 28$. Since $O + E$ is even, $O - E$ is also even, so it can't be $\\pm 11$. It can't be $\\pm 22$ either: that would need $E = 3$ or $O = 3$, but three different digits add to at least 6. So $O - E = 0$, giving $O = E = 14$.\n\nGroups of three different digits from 1–7 that add to 14: $\\{1,6,7\\}, \\{2,5,7\\}, \\{3,4,7\\}, \\{3,5,6\\}$. That's 4 groups.\n\nFor each group, arrange those 3 digits in the even places ($3! = 6$ ways) and the other 4 digits in the odd places ($4! = 24$ ways).\n\nTotal: $4 \\times 6 \\times 24 = 576$."
+    },
+    {
+      "id": "nt-factors-01",
+      "topic": "nt-factors",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "How many prime numbers are between 30 and 50?",
+      "answer": "5",
+      "hints": [
+        "Only check the odd numbers; even numbers above 2 are never prime.",
+        "To test a number below 50, you only need to try dividing by 2, 3, 5 and 7."
+      ],
+      "solution": "Check the odd numbers from 31 to 49, crossing out any divisible by 3, 5 or 7:\n\n33, 39, 45 (by 3), 35 (by 5), 49 (by 7) are not prime.\n\nThe primes left are 31, 37, 41, 43, 47. That's 5 primes."
+    },
+    {
+      "id": "nt-factors-02",
+      "topic": "nt-factors",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "What is the sum of the different prime numbers that divide 360?",
+      "answer": "10",
+      "hints": [
+        "Make a factor tree for 360.",
+        "Only add each prime once, even if it appears several times in the factorization."
+      ],
+      "solution": "$360 = 36 \\times 10 = 2^2 \\times 3^2 \\times 2 \\times 5 = 2^3 \\times 3^2 \\times 5$.\n\nThe different primes are 2, 3 and 5.\n\nTheir sum is $2 + 3 + 5 = 10$."
+    },
+    {
+      "id": "nt-factors-03",
+      "topic": "nt-factors",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "How many positive whole numbers divide 72 evenly?",
+      "choices": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "14"
+      ],
+      "answer": "D",
+      "hints": [
+        "Write 72 as a product of primes.",
+        "$72 = 2^3 \\times 3^2$. Add 1 to each exponent and multiply."
+      ],
+      "solution": "Prime factorization: $72 = 8 \\times 9 = 2^3 \\times 3^2$.\n\nNumber of divisors $= (3 + 1)(2 + 1) = 4 \\times 3 = 12$.\n\nYou can check by listing the pairs: $1 \\times 72, 2 \\times 36, 3 \\times 24, 4 \\times 18, 6 \\times 12, 8 \\times 9$, which gives 12 divisors. The answer is D."
+    },
+    {
+      "id": "nt-factors-04",
+      "topic": "nt-factors",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "Which of these numbers is the smallest positive whole number that has exactly 10 positive divisors?",
+      "choices": [
+        "36",
+        "48",
+        "60",
+        "64",
+        "72"
+      ],
+      "answer": "B",
+      "hints": [
+        "Count the divisors of each choice using its prime factorization.",
+        "$10 = 10 \\times 1$ or $5 \\times 2$, so the exponents (plus 1) must multiply to 10."
+      ],
+      "solution": "Count divisors of each choice:\n\n$36 = 2^2 \\times 3^2$: $3 \\times 3 = 9$ divisors.\n\n$48 = 2^4 \\times 3$: $5 \\times 2 = 10$ divisors.\n\n$60 = 2^2 \\times 3 \\times 5$: $3 \\times 2 \\times 2 = 12$ divisors.\n\n$64 = 2^6$: 7 divisors.\n\n$72 = 2^3 \\times 3^2$: $4 \\times 3 = 12$ divisors.\n\nIs anything smaller than 48 possible? For 10 divisors the number must look like $p^9$ (at least $2^9 = 512$) or $p^4 \\times q$ (smallest is $2^4 \\times 3 = 48$). So 48 is the smallest. The answer is B."
+    },
+    {
+      "id": "nt-factors-05",
+      "topic": "nt-factors",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "How many whole numbers from 1 to 50 have an odd number of positive divisors?",
+      "answer": "7",
+      "hints": [
+        "Divisors usually come in pairs, like $3 \\times 8 = 24$. When does a divisor pair up with itself?",
+        "Only perfect squares have an odd number of divisors."
+      ],
+      "solution": "Divisors come in pairs that multiply to the number, e.g. for 24: (1, 24), (2, 12), (3, 8), (4, 6). This gives an even count.\n\nThe only way to get an odd count is if one divisor is paired with itself, which happens exactly when the number is a perfect square (like $6 \\times 6 = 36$).\n\nPerfect squares from 1 to 50: 1, 4, 9, 16, 25, 36, 49. That's 7 numbers."
+    },
+    {
+      "id": "nt-factors-06",
+      "topic": "nt-factors",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "How many positive divisors of 720 are multiples of 6?",
+      "answer": "16",
+      "hints": [
+        "A divisor of 720 that is a multiple of 6 can be written as $6 \\times k$.",
+        "If $6k$ divides 720, then $k$ must divide $720 \\div 6 = 120$.",
+        "Count the divisors of 120."
+      ],
+      "solution": "Any divisor of 720 that is a multiple of 6 has the form $6k$. For $6k$ to divide 720, $k$ must divide $720 \\div 6 = 120$.\n\nSo we just count the divisors of 120.\n\n$120 = 2^3 \\times 3 \\times 5$, so it has $(3+1)(1+1)(1+1) = 16$ divisors.\n\nThe answer is 16."
+    },
+    {
+      "id": "nt-factors-07",
+      "topic": "nt-factors",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "How many whole numbers less than 100 have exactly 4 positive divisors?",
+      "answer": "32",
+      "hints": [
+        "Which prime factorizations give exactly 4 divisors? Think about $(a+1)(b+1) = 4$.",
+        "The number must be either $p^3$ (a prime cubed) or $p \\times q$ (two different primes).",
+        "For $p \\times q$, fix the smaller prime and count the larger primes that keep the product under 100."
+      ],
+      "solution": "A number has exactly 4 divisors when its factorization is $p^3$ (divisors $1, p, p^2, p^3$) or $p \\times q$ with different primes $p < q$.\n\nCubes of primes under 100: $8, 27$. That's 2.\n\nProducts $p \\times q < 100$:\n\n$p = 2$: $q$ can be 3, 5, 7, ..., 47 (primes up to 49): 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47. That's 14.\n\n$p = 3$: $q$ from 5 to 31 (up to 33): 5, 7, 11, 13, 17, 19, 23, 29, 31. That's 9.\n\n$p = 5$: $q$ from 7 to 19: 7, 11, 13, 17, 19. That's 5.\n\n$p = 7$: $q$ from 11 to 13 (up to 14): 11, 13. That's 2.\n\n$p = 11$ or more: $11 \\times 13 = 143$ is too big.\n\nTotal: $2 + 14 + 9 + 5 + 2 = 32$."
+    },
+    {
+      "id": "nt-gcd-lcm-01",
+      "topic": "nt-gcd-lcm",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "What is the greatest common factor of 36 and 60?",
+      "answer": "12",
+      "hints": [
+        "List the factors of 36 and see which ones also divide 60.",
+        "$36 = 2^2 \\times 3^2$ and $60 = 2^2 \\times 3 \\times 5$."
+      ],
+      "solution": "$36 = 2^2 \\times 3^2$ and $60 = 2^2 \\times 3 \\times 5$.\n\nThe shared primes with the smaller exponents are $2^2$ and $3$.\n\nGCF $= 4 \\times 3 = 12$."
+    },
+    {
+      "id": "nt-gcd-lcm-02",
+      "topic": "nt-gcd-lcm",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "The red bus leaves the station every 12 minutes and the blue bus leaves every 18 minutes. Both buses leave together at 8:00 a.m. How many minutes later will they next leave together?",
+      "answer": "36",
+      "unit": "minutes",
+      "hints": [
+        "Is this a GCF or an LCM situation? Are you splitting up or lining up?",
+        "List the multiples of 18 and find the first one that is also a multiple of 12."
+      ],
+      "solution": "They leave together at times that are multiples of both 12 and 18, so we need the LCM.\n\nMultiples of 18: 18, 36, ... and 36 is a multiple of 12 ($12 \\times 3$).\n\nSo they next leave together after 36 minutes (at 8:36 a.m.)."
+    },
+    {
+      "id": "nt-gcd-lcm-03",
+      "topic": "nt-gcd-lcm",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "What is the least common multiple of 8, 12 and 15?",
+      "choices": [
+        "60",
+        "96",
+        "120",
+        "180",
+        "1440"
+      ],
+      "answer": "C",
+      "hints": [
+        "Write each number as a product of primes.",
+        "Take each prime with its highest exponent: $8 = 2^3$, $12 = 2^2 \\times 3$, $15 = 3 \\times 5$."
+      ],
+      "solution": "$8 = 2^3$, $12 = 2^2 \\times 3$, $15 = 3 \\times 5$.\n\nLCM uses each prime with the largest exponent: $2^3 \\times 3 \\times 5 = 120$.\n\nCheck: $120 \\div 8 = 15$, $120 \\div 12 = 10$, $120 \\div 15 = 8$. The answer is C."
+    },
+    {
+      "id": "nt-gcd-lcm-04",
+      "topic": "nt-gcd-lcm",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Ms. Rivera has 48 pencils, 72 erasers and 60 stickers. She packs them into identical goody bags, using every item, so that each bag has the same number of pencils, the same number of erasers and the same number of stickers. She makes as many bags as possible. How many erasers are in each bag?",
+      "answer": "6",
+      "hints": [
+        "The number of bags must divide 48, 72 and 60. Is this GCF or LCM?",
+        "Find the GCF of 48, 72 and 60 to get the number of bags."
+      ],
+      "solution": "The number of bags must divide all three amounts evenly, and we want as many bags as possible, so we need the GCF of 48, 72 and 60.\n\n$48 = 2^4 \\times 3$, $72 = 2^3 \\times 3^2$, $60 = 2^2 \\times 3 \\times 5$. GCF $= 2^2 \\times 3 = 12$ bags.\n\nErasers per bag: $72 \\div 12 = 6$."
+    },
+    {
+      "id": "nt-gcd-lcm-05",
+      "topic": "nt-gcd-lcm",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Two whole numbers have a greatest common factor of 6 and a least common multiple of 180. One of the numbers is 36. What is the other number?",
+      "answer": "30",
+      "hints": [
+        "There is a special connection between GCF, LCM and the two numbers.",
+        "GCF × LCM = (first number) × (second number)."
+      ],
+      "solution": "For any two whole numbers, GCF × LCM = product of the numbers.\n\nSo $6 \\times 180 = 36 \\times n$, which means $1080 = 36n$ and $n = 30$.\n\nCheck: $30 = 2 \\times 3 \\times 5$ and $36 = 2^2 \\times 3^2$. GCF $= 2 \\times 3 = 6$ and LCM $= 2^2 \\times 3^2 \\times 5 = 180$. Correct!"
+    },
+    {
+      "id": "nt-gcd-lcm-06",
+      "topic": "nt-gcd-lcm",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "What is the smallest positive whole number that leaves a remainder of 2 when divided by 3, a remainder of 3 when divided by 4, and a remainder of 4 when divided by 5?",
+      "answer": "59",
+      "hints": [
+        "In each case, the remainder is exactly one less than the divisor.",
+        "What happens if you add 1 to the number?",
+        "$N + 1$ must be a multiple of 3, 4 and 5."
+      ],
+      "solution": "Notice that each remainder is one less than the divisor. So if we add 1 to the number $N$, the result divides evenly by 3, by 4 and by 5.\n\nThe smallest positive number divisible by 3, 4 and 5 is their LCM: $3 \\times 4 \\times 5 = 60$.\n\nSo $N + 1 = 60$ and $N = 59$.\n\nCheck: $59 = 3 \\times 19 + 2 = 4 \\times 14 + 3 = 5 \\times 11 + 4$."
+    },
+    {
+      "id": "nt-gcd-lcm-07",
+      "topic": "nt-gcd-lcm",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Two different whole numbers $a$ and $b$, with $a < b$, have a greatest common factor of 12 and a least common multiple of 360. How many such pairs $(a, b)$ are there?",
+      "answer": "4",
+      "hints": [
+        "Both numbers are multiples of 12, so write $a = 12x$ and $b = 12y$.",
+        "Then $x$ and $y$ have no common factor except 1, and $x \\times y = 360 \\div 12 = 30$.",
+        "Split the primes of $30 = 2 \\times 3 \\times 5$ between $x$ and $y$ without sharing any prime."
+      ],
+      "solution": "Write $a = 12x$ and $b = 12y$. Because the GCF is exactly 12, $x$ and $y$ share no common factor other than 1. Then the LCM is $12xy$, so $12xy = 360$ and $xy = 30$.\n\n$30 = 2 \\times 3 \\times 5$. Each prime must go entirely to $x$ or to $y$. With $x < y$, the pairs are:\n\n$(1, 30), (2, 15), (3, 10), (5, 6)$.\n\nThese give $(a, b) = (12, 360), (24, 180), (36, 120), (60, 72)$. That's 4 pairs."
+    },
+    {
+      "id": "nt-remainders-01",
+      "topic": "nt-remainders",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "What is the remainder when 1000 is divided by 7?",
+      "answer": "6",
+      "hints": [
+        "Find the biggest multiple of 7 that is at most 1000.",
+        "$7 \\times 142 = 994$."
+      ],
+      "solution": "$7 \\times 140 = 980$ and $7 \\times 142 = 994$. The next multiple, $7 \\times 143 = 1001$, is too big.\n\n$1000 - 994 = 6$, so the remainder is 6."
+    },
+    {
+      "id": "nt-remainders-02",
+      "topic": "nt-remainders",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "Today is Wednesday. What day of the week will it be 100 days from today?",
+      "choices": [
+        "Monday",
+        "Tuesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "answer": "D",
+      "hints": [
+        "The days of the week repeat every 7 days.",
+        "Find the remainder when 100 is divided by 7, then count forward that many days from Wednesday."
+      ],
+      "solution": "The week repeats every 7 days, so after 98 days ($7 \\times 14$) it is Wednesday again.\n\n$100 = 98 + 2$, so count 2 more days: Thursday, Friday.\n\nIt will be Friday. The answer is D."
+    },
+    {
+      "id": "nt-remainders-03",
+      "topic": "nt-remainders",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "What is the units (ones) digit of $7^{23}$?",
+      "answer": "3",
+      "hints": [
+        "Write out the units digits of $7^1, 7^2, 7^3, 7^4, 7^5$. Do you see a pattern?",
+        "The units digits repeat in a cycle of 4: 7, 9, 3, 1."
+      ],
+      "solution": "Units digits of powers of 7: $7^1 \\to 7$, $7^2 = 49 \\to 9$, $7^3 \\to 3$ (since $9 \\times 7 = 63$), $7^4 \\to 1$ (since $3 \\times 7 = 21$), then it repeats: 7, 9, 3, 1, ...\n\n$23 \\div 4 = 5$ remainder $3$, so $7^{23}$ has the same units digit as $7^3$, which is 3."
+    },
+    {
+      "id": "nt-remainders-04",
+      "topic": "nt-remainders",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "The fraction $\\frac{1}{7}$ written as a decimal is $0.142857142857\\ldots$, where the block 142857 repeats forever. What is the 100th digit after the decimal point?",
+      "answer": "8",
+      "hints": [
+        "How many digits are in the repeating block?",
+        "Divide 100 by 6 and look at the remainder."
+      ],
+      "solution": "The repeating block 142857 has 6 digits.\n\n$100 \\div 6 = 16$ remainder $4$. So after 16 full blocks (96 digits), the 100th digit is the 4th digit of the block.\n\nThe block is 1, 4, 2, 8, 5, 7, so the 4th digit is 8."
+    },
+    {
+      "id": "nt-remainders-05",
+      "topic": "nt-remainders",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "What is the units digit of $2^{2026} + 3^{2026}$?",
+      "answer": "3",
+      "hints": [
+        "Find the units digit of each power separately, then add.",
+        "Powers of 2 end in 2, 4, 8, 6 and powers of 3 end in 3, 9, 7, 1. Both cycles have length 4."
+      ],
+      "solution": "Both cycles have length 4. $2026 \\div 4 = 506$ remainder $2$.\n\n$2^{2026}$ has the same units digit as $2^2 = 4$.\n\n$3^{2026}$ has the same units digit as $3^2 = 9$.\n\n$4 + 9 = 13$, so the units digit of the sum is 3."
+    },
+    {
+      "id": "nt-remainders-06",
+      "topic": "nt-remainders",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "What is the remainder when $1! + 2! + 3! + \\dots + 100!$ is divided by 12? (Recall $n! = 1 \\times 2 \\times 3 \\times \\dots \\times n$, so $4! = 24$.)",
+      "answer": "9",
+      "hints": [
+        "Is $4!$ divisible by 12? What about $5!$, $6!$, and so on?",
+        "Every factorial from $4!$ onward is a multiple of 12, so only the first three terms matter."
+      ],
+      "solution": "$4! = 24 = 2 \\times 12$, which is a multiple of 12. Every later factorial ($5!, 6!, \\dots$) is $4!$ times more numbers, so it is also a multiple of 12. Those terms add nothing to the remainder.\n\nThat leaves $1! + 2! + 3! = 1 + 2 + 6 = 9$.\n\nSince $9 < 12$, the remainder is 9."
+    },
+    {
+      "id": "nt-remainders-07",
+      "topic": "nt-remainders",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "What is the units digit of $1^1 + 2^2 + 3^3 + 4^4 + \\dots + 20^{20}$?",
+      "answer": "4",
+      "hints": [
+        "Only the units digit of each term matters. The units digit of $n^n$ depends only on the units digit of $n$ and on where $n$ falls in that digit's cycle.",
+        "Work out the units digit of each of the 20 terms, e.g. $3^3 = 27 \\to 7$ and $13^{13}$ ends like $3^{13}$.",
+        "Terms 1–10 have units digits 1, 4, 7, 6, 5, 6, 3, 6, 9, 0. Now do terms 11–20."
+      ],
+      "solution": "Find the units digit of each term using the cycles (2: 2,4,8,6; 3: 3,9,7,1; 4: 4,6; 7: 7,9,3,1; 8: 8,4,2,6; 9: 9,1; digits 0, 1, 5, 6 never change).\n\n$1^1 \\to 1$, $2^2 \\to 4$, $3^3 \\to 7$, $4^4 \\to 6$, $5^5 \\to 5$, $6^6 \\to 6$, $7^7 \\to 3$, $8^8 \\to 6$, $9^9 \\to 9$, $10^{10} \\to 0$. Sum: 47.\n\n$11^{11} \\to 1$, $12^{12} \\to 6$ ($12 \\div 4$ rem 0), $13^{13} \\to 3$ (rem 1), $14^{14} \\to 6$ (even power), $15^{15} \\to 5$, $16^{16} \\to 6$, $17^{17} \\to 7$ (rem 1), $18^{18} \\to 4$ (rem 2), $19^{19} \\to 9$ (odd power), $20^{20} \\to 0$. Sum: 47.\n\nTotal of the units digits: $47 + 47 = 94$, so the units digit of the whole sum is 4."
+    },
+    {
+      "id": "nt-digits-01",
+      "topic": "nt-digits",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "In the number 3,752, what is the value of the digit 7 minus the value of the digit 5?",
+      "answer": "650",
+      "hints": [
+        "The digit 7 is in the hundreds place. What is it worth?",
+        "The 7 is worth 700 and the 5 is worth 50."
+      ],
+      "solution": "In 3,752 the 7 is in the hundreds place, so it is worth 700. The 5 is in the tens place, so it is worth 50.\n\n$700 - 50 = 650$."
+    },
+    {
+      "id": "nt-digits-02",
+      "topic": "nt-digits",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "The digits of a two-digit number add up to 11. When the digits are reversed, the new number is 27 more than the original number. What is the original number?",
+      "choices": [
+        "38",
+        "47",
+        "56",
+        "74",
+        "29"
+      ],
+      "answer": "B",
+      "hints": [
+        "Reversing the digits changes the number by 9 times the difference of the digits.",
+        "So the units digit is 3 more than the tens digit ($27 \\div 9 = 3$), and the digits add to 11."
+      ],
+      "solution": "Let the number be $10a + b$. Its reversal is $10b + a$.\n\n$(10b + a) - (10a + b) = 9b - 9a = 27$, so $b - a = 3$.\n\nWe also know $a + b = 11$. Adding: $2b = 14$, so $b = 7$ and $a = 4$.\n\nThe number is 47. Check: $74 - 47 = 27$ and $4 + 7 = 11$. The answer is B."
+    },
+    {
+      "id": "nt-digits-03",
+      "topic": "nt-digits",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "How many three-digit numbers have digits that add up to 5?",
+      "answer": "15",
+      "hints": [
+        "The hundreds digit can be 1, 2, 3, 4 or 5. It can't be 0!",
+        "For each hundreds digit, count how many ways the tens and units digits can add to what is left."
+      ],
+      "solution": "Go through the hundreds digit:\n\nHundreds 1: tens + units = 4, which has 5 ways (04, 13, 22, 31, 40).\n\nHundreds 2: tens + units = 3, 4 ways.\n\nHundreds 3: tens + units = 2, 3 ways.\n\nHundreds 4: tens + units = 1, 2 ways.\n\nHundreds 5: tens + units = 0, 1 way (500).\n\nTotal: $5 + 4 + 3 + 2 + 1 = 15$."
+    },
+    {
+      "id": "nt-digits-04",
+      "topic": "nt-digits",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "The pages of a book are numbered 1, 2, 3, and so on. Exactly 492 digits are used to number all the pages. How many pages does the book have?",
+      "answer": "200",
+      "hints": [
+        "How many digits are used for pages 1–9? For pages 10–99?",
+        "Pages 1–99 use $9 + 180 = 189$ digits. How many digits are left, and how many digits does each page from 100 on use?"
+      ],
+      "solution": "Pages 1–9 use 9 digits. Pages 10–99 are 90 pages with 2 digits each: 180 digits. So far: 189 digits.\n\nDigits left: $492 - 189 = 303$. Each page from 100 on uses 3 digits, so there are $303 \\div 3 = 101$ three-digit pages: pages 100 to 200.\n\nThe book has 200 pages."
+    },
+    {
+      "id": "nt-digits-05",
+      "topic": "nt-digits",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "What is the sum of the digits of the number $10^{25} - 25$?",
+      "answer": "219",
+      "hints": [
+        "Try smaller cases first: $10^3 - 25 = 975$, $10^4 - 25 = 9975$. What pattern do you see?",
+        "$10^{25}$ is a 1 followed by 25 zeros, so $10^{25} - 25$ has 25 digits.",
+        "It is a string of nines followed by 75. How many nines?"
+      ],
+      "solution": "Look at small cases: $10^3 - 25 = 975$, $10^4 - 25 = 9975$, $10^5 - 25 = 99975$. The answer always ends in 75 with nines in front, and has as many digits as there are zeros.\n\nSo $10^{25} - 25$ has 25 digits: 23 nines followed by 7 and 5.\n\nDigit sum: $23 \\times 9 + 7 + 5 = 207 + 12 = 219$."
+    },
+    {
+      "id": "nt-digits-06",
+      "topic": "nt-digits",
+      "difficulty": 4,
+      "style": "mc",
+      "prompt": "How many whole numbers from 1 to 1000 contain at least one digit 7?",
+      "choices": [
+        "243",
+        "271",
+        "280",
+        "300",
+        "729"
+      ],
+      "answer": "B",
+      "hints": [
+        "It is easier to count the numbers with NO 7 at all.",
+        "Think of 0 to 999 as three-digit strings from 000 to 999. How many use no 7?"
+      ],
+      "solution": "Count the numbers WITHOUT a 7 and subtract.\n\nWrite 0 to 999 as three-digit strings 000 to 999. Each of the 3 places can be any of the 9 digits other than 7, giving $9 \\times 9 \\times 9 = 729$ strings with no 7. That includes 000, which isn't in our list, but 1000 (which has no 7) is, so there are still 729 numbers from 1 to 1000 with no 7.\n\nNumbers with at least one 7: $1000 - 729 = 271$. The answer is B."
+    },
+    {
+      "id": "nt-digits-07",
+      "topic": "nt-digits",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "A four-digit number $ABCD$ has the property that $4 \\times ABCD = DCBA$ (the same digits in reverse order). What is the number $ABCD$?",
+      "answer": "2178",
+      "hints": [
+        "$4 \\times ABCD$ is still a four-digit number, so $ABCD$ is less than 2500. What does that tell you about $A$?",
+        "$DCBA$ is a multiple of 4, so it is even, so $A$ is even. Then $A = 2$. What must $D$ be so that $4 \\times D$ ends in 2 and $DCBA$ starts with $D$?",
+        "You should get $A = 2$ and $D = 8$. Now work out the middle digits $B$ and $C$."
+      ],
+      "solution": "Since $4 \\times ABCD$ has only four digits, $ABCD < 2500$, so $A$ is 1 or 2. Also $DCBA$ is a multiple of 4, so it is even and its last digit $A$ is even. So $A = 2$.\n\nThe product starts with $D$ and is at least $4 \\times 2000 = 8000$, so $D$ is 8 or 9. The units digit of $4 \\times D$ must be $A = 2$: $4 \\times 8 = 32$ works, $4 \\times 9 = 36$ doesn't. So $D = 8$.\n\nNow $4 \\times (2000 + 100B + 10C + 8) = 8000 + 100C + 10B + 2$. Simplify: $8032 + 400B + 40C = 8002 + 100C + 10B$, so $390B + 30 = 60C$, which means $13B + 1 = 2C$.\n\nSince $C \\le 9$, $13B + 1 \\le 18$, so $B = 0$ or $1$. $B = 0$ gives $2C = 1$ (not a whole number). $B = 1$ gives $C = 7$.\n\nThe number is 2178. Check: $4 \\times 2178 = 8712$."
+    }
+  ]
+}

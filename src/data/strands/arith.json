@@ -1,0 +1,581 @@
+{
+  "strand": "arith",
+  "name": "Arithmetic & Number Sense",
+  "description": "Compute cleverly and confidently with whole numbers, fractions, decimals, percents, and ratios.",
+  "topics": [
+    {
+      "id": "arith-clever",
+      "name": "Order of Operations & Clever Computation",
+      "lesson": {
+        "intro": "Contest problems often look like huge calculations, but they almost always hide a shortcut. If you spot the pattern, you can finish in seconds instead of minutes. This topic is about looking before you calculate!",
+        "keyIdeas": [
+          "Order of operations: parentheses, then exponents, then multiplication and division (left to right), then addition and subtraction (left to right).",
+          "Regroup to make friendly numbers: $25 \\times 4 = 100$ and $125 \\times 8 = 1000$ can be multiplied first.",
+          "Use the distributive property backwards: $37 \\times 99 + 37 = 37 \\times (99 + 1) = 3700$.",
+          "Pair terms in long sums: $1 + 2 + \\cdots + n = \\frac{n(n+1)}{2}$ because the first and last terms add to the same total as every other pair.",
+          "Telescoping: write each term as a difference, like $\\frac{1}{k(k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$, so most terms cancel."
+        ],
+        "examples": [
+          {
+            "problem": "Compute $1 + 2 + 3 + \\cdots + 40$.",
+            "solution": "Pair the first and last numbers: $1 + 40 = 41$, $2 + 39 = 41$, and so on.\n\nThere are 40 numbers, so there are 20 pairs, each adding to 41.\n\nThe sum is $20 \\times 41 = 820$."
+          },
+          {
+            "problem": "Compute $48 \\times 125$.",
+            "solution": "Since $125 \\times 8 = 1000$, split 48 as $6 \\times 8$.\n\n$48 \\times 125 = 6 \\times (8 \\times 125) = 6 \\times 1000 = 6000$."
+          }
+        ],
+        "tip": "Before multiplying anything big, scan the problem for a common factor, numbers that pair up nicely, or terms that cancel. If the arithmetic looks awful, there is almost always a trick."
+      }
+    },
+    {
+      "id": "arith-fractions",
+      "name": "Fractions & Decimals",
+      "lesson": {
+        "intro": "Fractions and decimals are two ways of writing parts of a whole. Contest problems love to mix them, chain them together, and ask about \"a fraction of what is left.\" Once you are comfortable switching between forms, these problems become much easier.",
+        "keyIdeas": [
+          "To add or subtract fractions, use a common denominator: $\\frac{2}{3} + \\frac{1}{4} = \\frac{8}{12} + \\frac{3}{12} = \\frac{11}{12}$.",
+          "To multiply, multiply tops and bottoms (cancel first!). To divide, multiply by the reciprocal.",
+          "Change mixed numbers to improper fractions before multiplying: $2\\frac{1}{2} = \\frac{5}{2}$.",
+          "\"A fraction of what is left\" means multiply the remaining fractions: if you use $\\frac{1}{3}$, then $\\frac{2}{3}$ is left.",
+          "Know common conversions: $\\frac{1}{8} = 0.125$, $\\frac{3}{8} = 0.375$, $\\frac{1}{3} = 0.333\\ldots$, $\\frac{1}{11} = 0.0909\\ldots$"
+        ],
+        "examples": [
+          {
+            "problem": "A ribbon is cut so that $\\frac{2}{5}$ of it is used. Then $\\frac{1}{3}$ of the remaining ribbon is used. What fraction of the original ribbon is left?",
+            "solution": "After the first cut, $1 - \\frac{2}{5} = \\frac{3}{5}$ is left.\n\nUsing $\\frac{1}{3}$ of that leaves $\\frac{2}{3}$ of it: $\\frac{2}{3} \\times \\frac{3}{5} = \\frac{2}{5}$.\n\nSo $\\frac{2}{5}$ of the ribbon is left."
+          },
+          {
+            "problem": "Compute $0.25 \\times 3\\frac{1}{5} \\div \\frac{2}{5}$.",
+            "solution": "Write everything as fractions: $0.25 = \\frac{1}{4}$ and $3\\frac{1}{5} = \\frac{16}{5}$.\n\nDividing by $\\frac{2}{5}$ means multiplying by $\\frac{5}{2}$.\n\n$\\frac{1}{4} \\times \\frac{16}{5} \\times \\frac{5}{2} = \\frac{16}{8} = 2$."
+          }
+        ],
+        "tip": "When a problem mixes decimals and fractions, convert everything to fractions first. Fractions cancel nicely; long decimals do not."
+      }
+    },
+    {
+      "id": "arith-percents",
+      "name": "Percents",
+      "lesson": {
+        "intro": "Percent means \"out of 100,\" so 30% is just $\\frac{30}{100}$ or 0.3. Stores, sports stats, and test scores all use percents. Contest problems test whether you know what the percent is taken OF.",
+        "keyIdeas": [
+          "To find $p\\%$ of a number, multiply by $\\frac{p}{100}$: 15% of 80 is $0.15 \\times 80 = 12$.",
+          "A discount of 25% means you pay 75%, so multiply by 0.75.",
+          "Percent change $= \\frac{\\text{change}}{\\text{original}} \\times 100\\%$. Always divide by the ORIGINAL amount.",
+          "Successive changes multiply: up 10% then up 10% is $1.1 \\times 1.1 = 1.21$, a 21% increase (not 20%).",
+          "Percent of a percent multiplies too: 50% of 40% is $0.5 \\times 0.4 = 0.2$, which is 20%."
+        ],
+        "examples": [
+          {
+            "problem": "A game costs 50 dollars. It goes on sale for 20% off, and then a coupon takes another 10% off the sale price. What is the final price?",
+            "solution": "20% off means paying 80%: $50 \\times 0.8 = 40$ dollars.\n\n10% off that means paying 90%: $40 \\times 0.9 = 36$ dollars.\n\nThe final price is 36 dollars. (Notice this is 28% off in total, not 30%.)"
+          },
+          {
+            "problem": "After a 25% raise, Lee earns 15 dollars per hour. What did Lee earn before the raise?",
+            "solution": "A 25% raise means the new pay is 125% of the old pay.\n\n$1.25 \\times (\\text{old}) = 15$, so old $= 15 \\div 1.25 = 12$ dollars per hour."
+          }
+        ],
+        "tip": "When you work backward from a price after a percent change, divide by the multiplier. Don't subtract the percent from the new price; that uses the wrong \"whole.\""
+      }
+    },
+    {
+      "id": "arith-ratios",
+      "name": "Ratios, Rates & Proportions",
+      "lesson": {
+        "intro": "A ratio compares two amounts, like 3 boys for every 5 girls. A rate is a ratio with units, like 60 miles per hour. Many contest problems become simple once you think of a ratio as \"parts.\"",
+        "keyIdeas": [
+          "A ratio $3:5$ means 3 parts and 5 parts, so 8 parts in all. Find the size of one part first.",
+          "Distance $=$ rate $\\times$ time. Work problems use the same idea: work $=$ rate $\\times$ time.",
+          "Average speed is total distance divided by total time, NOT the average of the speeds.",
+          "When things work together, add their rates: a job done in 3 hours has a rate of $\\frac{1}{3}$ job per hour.",
+          "To combine $a:b$ and $b:c$, rewrite them so the $b$ values match."
+        ],
+        "examples": [
+          {
+            "problem": "The ratio of cats to dogs at a shelter is $4:7$. There are 21 more dogs than cats. How many cats are there?",
+            "solution": "Think in parts: cats are 4 parts and dogs are 7 parts, so dogs have 3 more parts.\n\n3 parts $= 21$ animals, so 1 part $= 7$.\n\nCats $= 4 \\times 7 = 28$."
+          },
+          {
+            "problem": "Maya can mow a lawn in 2 hours. Her brother can mow it in 3 hours. How long does it take them working together?",
+            "solution": "Maya mows $\\frac{1}{2}$ of the lawn per hour and her brother mows $\\frac{1}{3}$.\n\nTogether: $\\frac{1}{2} + \\frac{1}{3} = \\frac{5}{6}$ of the lawn per hour.\n\nTime $= 1 \\div \\frac{5}{6} = \\frac{6}{5}$ hours, which is 1 hour 12 minutes."
+          }
+        ],
+        "tip": "When a ratio problem gives you a difference or a total, turn it into \"parts\" and find the value of one part. That single number unlocks everything."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "arith-clever-01",
+      "topic": "arith-clever",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "Compute $25 \\times 37 \\times 4$.",
+      "answer": "3700",
+      "hints": [
+        "You are allowed to multiply in any order.",
+        "Which two of these numbers multiply to a very friendly number?"
+      ],
+      "solution": "Multiply the friendly pair first: $25 \\times 4 = 100$.\n\nThen $100 \\times 37 = 3700$."
+    },
+    {
+      "id": "arith-clever-02",
+      "topic": "arith-clever",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "Find the sum $1 + 2 + 3 + \\cdots + 49 + 50$.",
+      "answer": "1275",
+      "hints": [
+        "Try pairing the first number with the last number.",
+        "$1 + 50 = 51$, $2 + 49 = 51$, ... How many such pairs are there?"
+      ],
+      "solution": "Pair numbers from the outside in: $1 + 50 = 51$, $2 + 49 = 51$, $3 + 48 = 51$, and so on.\n\nThere are 50 numbers, so there are 25 pairs.\n\nThe sum is $25 \\times 51 = 1275$."
+    },
+    {
+      "id": "arith-clever-03",
+      "topic": "arith-clever",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "What is the value of $99 \\times 47 + 47$?",
+      "choices": [
+        "4653",
+        "4700",
+        "4747",
+        "4600",
+        "4800"
+      ],
+      "answer": "B",
+      "hints": [
+        "Both parts of the sum contain 47.",
+        "$47$ is the same as $1 \\times 47$. Can you factor out 47?"
+      ],
+      "solution": "Factor out 47: $99 \\times 47 + 1 \\times 47 = (99 + 1) \\times 47$.\n\nThat is $100 \\times 47 = 4700$, choice B."
+    },
+    {
+      "id": "arith-clever-04",
+      "topic": "arith-clever",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Compute $100 - 98 + 96 - 94 + 92 - 90 + \\cdots + 4 - 2$.",
+      "answer": "50",
+      "hints": [
+        "Group the numbers two at a time: $(100 - 98) + (96 - 94) + \\cdots$",
+        "Each group equals 2. How many groups are there?"
+      ],
+      "solution": "Group the terms in pairs: $(100 - 98) + (96 - 94) + \\cdots + (4 - 2)$.\n\nEach pair equals 2.\n\nThe even numbers from 2 to 100 are 50 numbers, making 25 pairs.\n\nThe total is $25 \\times 2 = 50$."
+    },
+    {
+      "id": "arith-clever-05",
+      "topic": "arith-clever",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Compute $1234 \\times 1234 - 1233 \\times 1235$.",
+      "answer": "1",
+      "hints": [
+        "Write $1233$ as $1234 - 1$ and $1235$ as $1234 + 1$.",
+        "Try a small version first: $5 \\times 5 - 4 \\times 6 = ?$"
+      ],
+      "solution": "Let $n = 1234$. Then the expression is $n \\times n - (n - 1)(n + 1)$.\n\nMultiply out: $(n - 1)(n + 1) = n \\times n + n - n - 1 = n \\times n - 1$.\n\nSo the expression is $n \\times n - (n \\times n - 1) = 1$.\n\n(Check with a small case: $5 \\times 5 - 4 \\times 6 = 25 - 24 = 1$.)"
+    },
+    {
+      "id": "arith-clever-06",
+      "topic": "arith-clever",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "Compute $\\frac{1}{1 \\times 2} + \\frac{1}{2 \\times 3} + \\frac{1}{3 \\times 4} + \\cdots + \\frac{1}{9 \\times 10}$.",
+      "answer": "9/10",
+      "hints": [
+        "Check that $\\frac{1}{2 \\times 3} = \\frac{1}{2} - \\frac{1}{3}$.",
+        "Rewrite every term as a difference like that. What cancels?"
+      ],
+      "solution": "Each term splits into a difference: $\\frac{1}{k \\times (k+1)} = \\frac{1}{k} - \\frac{1}{k+1}$. For example, $\\frac{1}{2} - \\frac{1}{3} = \\frac{3 - 2}{6} = \\frac{1}{6}$.\n\nSo the sum is $\\left(1 - \\frac{1}{2}\\right) + \\left(\\frac{1}{2} - \\frac{1}{3}\\right) + \\cdots + \\left(\\frac{1}{9} - \\frac{1}{10}\\right)$.\n\nEverything in the middle cancels, leaving $1 - \\frac{1}{10} = \\frac{9}{10}$."
+    },
+    {
+      "id": "arith-clever-07",
+      "topic": "arith-clever",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "The pattern of signs \"$+, +, -$\" repeats in the sum\n\n$1 + 2 - 3 + 4 + 5 - 6 + 7 + 8 - 9 + \\cdots + 298 + 299 - 300$.\n\nWhat is the value of the sum?",
+      "answer": "14850",
+      "hints": [
+        "Group the numbers in threes: $(1 + 2 - 3) + (4 + 5 - 6) + \\cdots$",
+        "The groups equal $0, 3, 6, 9, \\ldots$ How many groups are there, and what is the last one?"
+      ],
+      "solution": "Group in threes: $(1 + 2 - 3) + (4 + 5 - 6) + (7 + 8 - 9) + \\cdots + (298 + 299 - 300)$.\n\nThe groups equal $0, 3, 6, 9, \\ldots$ In general, the group ending in $3k$ is $(3k - 2) + (3k - 1) - 3k = 3k - 3$.\n\nThere are $300 \\div 3 = 100$ groups, with values $0, 3, 6, \\ldots, 297$.\n\nThat is $3 \\times (0 + 1 + 2 + \\cdots + 99) = 3 \\times 4950 = 14850$."
+    },
+    {
+      "id": "arith-clever-08",
+      "topic": "arith-clever",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Compute $1^2 - 2^2 + 3^2 - 4^2 + 5^2 - 6^2 + \\cdots + 99^2 - 100^2$.",
+      "answer": "-5050",
+      "hints": [
+        "Group in pairs: $(1^2 - 2^2) + (3^2 - 4^2) + \\cdots$",
+        "A difference of squares factors: $a^2 - b^2 = (a - b)(a + b)$.",
+        "$1^2 - 2^2 = (1 - 2)(1 + 2) = -(1 + 2)$."
+      ],
+      "solution": "Group in pairs: $(1^2 - 2^2) + (3^2 - 4^2) + \\cdots + (99^2 - 100^2)$.\n\nUse $a^2 - b^2 = (a - b)(a + b)$. Each pair has $a - b = -1$, so each pair equals $-(a + b)$:\n\n$1^2 - 2^2 = -(1 + 2)$, $3^2 - 4^2 = -(3 + 4)$, and so on.\n\nAdding all the pairs gives $-(1 + 2 + 3 + \\cdots + 100) = -5050$."
+    },
+    {
+      "id": "arith-fractions-01",
+      "topic": "arith-fractions",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "Compute $\\frac{2}{3} + \\frac{1}{4}$. Give your answer as a fraction in simplest form.",
+      "answer": "11/12",
+      "hints": [
+        "Find a common denominator for 3 and 4.",
+        "Rewrite both fractions with denominator 12."
+      ],
+      "solution": "The common denominator is 12.\n\n$\\frac{2}{3} = \\frac{8}{12}$ and $\\frac{1}{4} = \\frac{3}{12}$.\n\n$\\frac{8}{12} + \\frac{3}{12} = \\frac{11}{12}$."
+    },
+    {
+      "id": "arith-fractions-02",
+      "topic": "arith-fractions",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "Compute $1\\frac{3}{4} \\times 2\\frac{2}{7}$.",
+      "answer": "4",
+      "hints": [
+        "Change both mixed numbers into improper fractions.",
+        "$1\\frac{3}{4} = \\frac{7}{4}$. What is $2\\frac{2}{7}$?"
+      ],
+      "solution": "Convert: $1\\frac{3}{4} = \\frac{7}{4}$ and $2\\frac{2}{7} = \\frac{16}{7}$.\n\nMultiply and cancel: $\\frac{7}{4} \\times \\frac{16}{7} = \\frac{16}{4} = 4$."
+    },
+    {
+      "id": "arith-fractions-03",
+      "topic": "arith-fractions",
+      "difficulty": 2,
+      "style": "mc",
+      "prompt": "Which of these numbers is the largest?",
+      "choices": [
+        "$\\frac{5}{8}$",
+        "$0.66$",
+        "$\\frac{7}{11}$",
+        "$\\frac{2}{3}$",
+        "$0.6$"
+      ],
+      "answer": "D",
+      "hints": [
+        "Change each fraction into a decimal.",
+        "$\\frac{2}{3} = 0.666\\ldots$ Compare that carefully with $0.66$."
+      ],
+      "solution": "Convert each to a decimal:\n\n$\\frac{5}{8} = 0.625$, $0.66$, $\\frac{7}{11} = 0.6363\\ldots$, $\\frac{2}{3} = 0.6666\\ldots$, $0.6$.\n\nThe largest is $\\frac{2}{3}$, because $0.6666\\ldots$ is a little more than $0.66$. The answer is D."
+    },
+    {
+      "id": "arith-fractions-04",
+      "topic": "arith-fractions",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Sam ate $\\frac{1}{3}$ of a pizza. Then Lea ate $\\frac{1}{4}$ of what was left. Then Max ate $\\frac{1}{2}$ of what was left after that. Now 3 slices remain. How many slices were in the whole pizza?",
+      "answer": "12",
+      "unit": "slices",
+      "hints": [
+        "After Sam eats $\\frac{1}{3}$, what fraction of the pizza is left?",
+        "After each person eats, multiply the fraction left by the part they did NOT eat."
+      ],
+      "solution": "After Sam: $1 - \\frac{1}{3} = \\frac{2}{3}$ of the pizza is left.\n\nLea eats $\\frac{1}{4}$ of that, leaving $\\frac{3}{4} \\times \\frac{2}{3} = \\frac{1}{2}$ of the pizza.\n\nMax eats half of that, leaving $\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$ of the pizza.\n\nSo $\\frac{1}{4}$ of the pizza is 3 slices, and the whole pizza had $4 \\times 3 = 12$ slices."
+    },
+    {
+      "id": "arith-fractions-05",
+      "topic": "arith-fractions",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Compute $1 + \\cfrac{1}{1 + \\cfrac{1}{1 + \\cfrac{1}{2}}}$. Give your answer as a fraction in simplest form.",
+      "answer": "8/5",
+      "hints": [
+        "Start at the very bottom and work upward.",
+        "$1 + \\frac{1}{2} = \\frac{3}{2}$, so the next piece up is $\\frac{1}{3/2} = \\frac{2}{3}$."
+      ],
+      "solution": "Work from the bottom up.\n\n$1 + \\frac{1}{2} = \\frac{3}{2}$.\n\n$1 + \\frac{1}{3/2} = 1 + \\frac{2}{3} = \\frac{5}{3}$.\n\n$1 + \\frac{1}{5/3} = 1 + \\frac{3}{5} = \\frac{8}{5}$."
+    },
+    {
+      "id": "arith-fractions-06",
+      "topic": "arith-fractions",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "A water tank is $\\frac{2}{5}$ full. After 21 liters of water are added, the tank is $\\frac{3}{4}$ full. How many liters does the full tank hold?",
+      "choices": [
+        "48",
+        "56",
+        "60",
+        "64",
+        "72"
+      ],
+      "answer": "C",
+      "hints": [
+        "What fraction of the tank do the 21 liters fill?",
+        "$\\frac{3}{4} - \\frac{2}{5} = \\frac{15}{20} - \\frac{8}{20}$."
+      ],
+      "solution": "The 21 liters filled $\\frac{3}{4} - \\frac{2}{5} = \\frac{15}{20} - \\frac{8}{20} = \\frac{7}{20}$ of the tank.\n\nSo $\\frac{1}{20}$ of the tank is $21 \\div 7 = 3$ liters, and the full tank holds $20 \\times 3 = 60$ liters. The answer is C."
+    },
+    {
+      "id": "arith-fractions-07",
+      "topic": "arith-fractions",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "When $\\frac{1}{7}$ is written as a decimal, what digit is in the 2026th place after the decimal point?",
+      "answer": "8",
+      "hints": [
+        "Divide 1 by 7 and look for a repeating block of digits.",
+        "$\\frac{1}{7} = 0.142857142857\\ldots$ The block has 6 digits. What is the remainder when 2026 is divided by 6?"
+      ],
+      "solution": "$\\frac{1}{7} = 0.\\overline{142857}$, so the digits repeat in blocks of 6: 1, 4, 2, 8, 5, 7.\n\n$2026 = 6 \\times 337 + 4$, so after 337 full blocks we need the 4th digit of the block.\n\nThe 4th digit of 142857 is 8."
+    },
+    {
+      "id": "arith-fractions-08",
+      "topic": "arith-fractions",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Tom has a jug of juice. On Monday he drinks $\\frac{1}{2}$ of the juice. On Tuesday he drinks $\\frac{1}{3}$ of what is left. On Wednesday he drinks $\\frac{1}{4}$ of what is left, and so on, until on Sunday he drinks $\\frac{1}{8}$ of what is left. Altogether he drinks 350 mL. How many mL of juice were in the jug at the start?",
+      "answer": "400",
+      "unit": "mL",
+      "hints": [
+        "After each day, the fraction left is multiplied by $\\frac{1}{2}$, then $\\frac{2}{3}$, then $\\frac{3}{4}$, ...",
+        "$\\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{3}{4} \\times \\cdots \\times \\frac{7}{8}$ collapses nicely. What fraction is left at the end?",
+        "If that fraction is left, what fraction did he drink?"
+      ],
+      "solution": "Monday through Sunday is 7 days. The fractions left after each day are multiplied:\n\n$\\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{3}{4} \\times \\frac{4}{5} \\times \\frac{5}{6} \\times \\frac{6}{7} \\times \\frac{7}{8}$.\n\nEach numerator cancels the denominator before it, leaving $\\frac{1}{8}$.\n\nSo $\\frac{1}{8}$ of the juice is left, which means he drank $\\frac{7}{8}$ of it.\n\n$\\frac{7}{8}$ of the jug $= 350$ mL, so $\\frac{1}{8}$ is $50$ mL and the jug held $8 \\times 50 = 400$ mL."
+    },
+    {
+      "id": "arith-percents-01",
+      "topic": "arith-percents",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "What is 15% of 80?",
+      "answer": "12",
+      "hints": [
+        "10% of 80 is 8. What is 5% of 80?"
+      ],
+      "solution": "10% of 80 is 8, and 5% of 80 is half of that, 4.\n\n15% of 80 is $8 + 4 = 12$."
+    },
+    {
+      "id": "arith-percents-02",
+      "topic": "arith-percents",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "A jacket costs 60 dollars. It is on sale for 25% off. What is the sale price?",
+      "answer": "45",
+      "unit": "dollars",
+      "hints": [
+        "25% is the same as $\\frac{1}{4}$.",
+        "Find the discount, then subtract it from 60."
+      ],
+      "solution": "25% of 60 is $\\frac{1}{4} \\times 60 = 15$ dollars.\n\nThe sale price is $60 - 15 = 45$ dollars."
+    },
+    {
+      "id": "arith-percents-03",
+      "topic": "arith-percents",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "The price of a book rises from 40 dollars to 50 dollars. By what percent did the price increase?",
+      "answer": "25",
+      "unit": "%",
+      "hints": [
+        "First find how much the price went up.",
+        "Percent increase compares the increase to the ORIGINAL price."
+      ],
+      "solution": "The increase is $50 - 40 = 10$ dollars.\n\nCompare it to the original price: $\\frac{10}{40} = \\frac{1}{4} = 25\\%$."
+    },
+    {
+      "id": "arith-percents-04",
+      "topic": "arith-percents",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "A store raises the price of a bike by 20%. A month later it lowers the new price by 20%. Compared with the original price, the final price is:",
+      "choices": [
+        "the same",
+        "4% lower",
+        "4% higher",
+        "2% lower",
+        "40% lower"
+      ],
+      "answer": "B",
+      "hints": [
+        "Try an easy starting price like 100 dollars.",
+        "The 20% decrease is taken from the NEW, larger price."
+      ],
+      "solution": "Start with 100 dollars.\n\nAfter a 20% increase: $100 \\times 1.2 = 120$ dollars.\n\nAfter a 20% decrease: $120 \\times 0.8 = 96$ dollars.\n\nThe final price is 4 dollars less than 100, which is 4% lower. The answer is B."
+    },
+    {
+      "id": "arith-percents-05",
+      "topic": "arith-percents",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "What is 30% of 40% of 500?",
+      "answer": "60",
+      "hints": [
+        "Work from the inside out: first find 40% of 500.",
+        "Then find 30% of that answer."
+      ],
+      "solution": "40% of 500 is $0.4 \\times 500 = 200$.\n\n30% of 200 is $0.3 \\times 200 = 60$."
+    },
+    {
+      "id": "arith-percents-06",
+      "topic": "arith-percents",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "A shop buys a lamp and marks the price up 50% above what it paid. Later the lamp goes on sale for 30% off the marked price, and it sells for 84 dollars. How many dollars did the shop pay for the lamp?",
+      "answer": "80",
+      "unit": "dollars",
+      "hints": [
+        "A 50% markup multiplies the cost by 1.5. A 30% discount multiplies by 0.7.",
+        "Cost $\\times 1.5 \\times 0.7 = 84$."
+      ],
+      "solution": "Let the cost be $c$.\n\nMarked price: $1.5c$. Sale price: $0.7 \\times 1.5c = 1.05c$.\n\nSo $1.05c = 84$, which gives $c = 84 \\div 1.05 = 80$ dollars.\n\nCheck: $80 \\times 1.5 = 120$, and 30% off 120 is $120 - 36 = 84$."
+    },
+    {
+      "id": "arith-percents-07",
+      "topic": "arith-percents",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "In a club, 60% of the members are girls. Then 5 boys join the club and no one leaves. Now exactly 50% of the members are girls. How many girls are in the club?",
+      "answer": "15",
+      "unit": "girls",
+      "hints": [
+        "The number of girls does not change.",
+        "If there were $n$ members at first, then $0.6n = 0.5(n + 5)$."
+      ],
+      "solution": "Let $n$ be the number of members at first. The number of girls is $0.6n$, and it stays the same.\n\nAfter 5 boys join, there are $n + 5$ members and girls are half: $0.6n = 0.5(n + 5)$.\n\n$0.6n = 0.5n + 2.5$, so $0.1n = 2.5$ and $n = 25$.\n\nThe number of girls is $0.6 \\times 25 = 15$.\n\nCheck: 15 girls out of 30 members is 50%."
+    },
+    {
+      "id": "arith-percents-08",
+      "topic": "arith-percents",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "A 50 kg pile of fresh grapes is 90% water by weight. The grapes are dried in the sun until they are only 80% water by weight. How many kilograms do the dried grapes weigh?",
+      "answer": "25",
+      "unit": "kg",
+      "hints": [
+        "Only water leaves when the grapes dry. The non-water part stays the same.",
+        "How many kilograms of the fresh grapes are NOT water?",
+        "After drying, that non-water part is 20% of the new weight."
+      ],
+      "solution": "Fresh grapes are 90% water, so $10\\%$ is not water: $0.1 \\times 50 = 5$ kg of non-water.\n\nDrying removes only water, so there are still 5 kg of non-water.\n\nAfter drying, the non-water part is $100\\% - 80\\% = 20\\%$ of the total.\n\nSo 20% of the new weight is 5 kg, and the new weight is $5 \\div 0.2 = 25$ kg. (Surprise: the grapes lost half their weight!)"
+    },
+    {
+      "id": "arith-ratios-01",
+      "topic": "arith-ratios",
+      "difficulty": 1,
+      "style": "short",
+      "prompt": "A class has 32 students. The ratio of boys to girls is $3:5$. How many girls are in the class?",
+      "answer": "20",
+      "unit": "girls",
+      "hints": [
+        "The ratio $3:5$ means 3 parts boys and 5 parts girls. How many parts in all?"
+      ],
+      "solution": "There are $3 + 5 = 8$ parts.\n\nEach part is $32 \\div 8 = 4$ students.\n\nGirls: $5 \\times 4 = 20$."
+    },
+    {
+      "id": "arith-ratios-02",
+      "topic": "arith-ratios",
+      "difficulty": 2,
+      "style": "short",
+      "prompt": "A car travels 150 miles in 3 hours. At the same speed, how many miles does it travel in 5 hours?",
+      "answer": "250",
+      "unit": "miles",
+      "hints": [
+        "How far does the car go in 1 hour?"
+      ],
+      "solution": "The speed is $150 \\div 3 = 50$ miles per hour.\n\nIn 5 hours: $50 \\times 5 = 250$ miles."
+    },
+    {
+      "id": "arith-ratios-03",
+      "topic": "arith-ratios",
+      "difficulty": 3,
+      "style": "mc",
+      "prompt": "If $a:b = 2:3$ and $b:c = 4:5$, what is $a:c$?",
+      "choices": [
+        "$2:5$",
+        "$8:15$",
+        "$3:5$",
+        "$5:6$",
+        "$4:15$"
+      ],
+      "answer": "B",
+      "hints": [
+        "Make the $b$ parts match in both ratios.",
+        "The least common multiple of 3 and 4 is 12."
+      ],
+      "solution": "Rewrite both ratios so $b$ is 12.\n\n$a:b = 2:3 = 8:12$ and $b:c = 4:5 = 12:15$.\n\nSo $a:b:c = 8:12:15$, and $a:c = 8:15$. The answer is B."
+    },
+    {
+      "id": "arith-ratios-04",
+      "topic": "arith-ratios",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Four painters can paint 6 rooms in 3 hours. Working at the same rate, how many rooms can 6 painters paint in 5 hours?",
+      "answer": "15",
+      "unit": "rooms",
+      "hints": [
+        "Find how many rooms ONE painter paints in ONE hour.",
+        "4 painters for 3 hours is 12 \"painter-hours.\""
+      ],
+      "solution": "4 painters working 3 hours is $4 \\times 3 = 12$ painter-hours, and that paints 6 rooms.\n\nSo each painter-hour paints $\\frac{6}{12} = \\frac{1}{2}$ room.\n\n6 painters for 5 hours is $6 \\times 5 = 30$ painter-hours, which paints $30 \\times \\frac{1}{2} = 15$ rooms."
+    },
+    {
+      "id": "arith-ratios-05",
+      "topic": "arith-ratios",
+      "difficulty": 3,
+      "style": "short",
+      "prompt": "Kira drives from home to her aunt's house at 30 miles per hour and drives back home along the same road at 60 miles per hour. What is her average speed for the whole round trip, in miles per hour?",
+      "answer": "40",
+      "unit": "mph",
+      "hints": [
+        "Average speed is NOT the average of 30 and 60.",
+        "Pick a distance, like 60 miles each way, and find the total time."
+      ],
+      "solution": "Suppose the distance each way is 60 miles.\n\nGoing takes $60 \\div 30 = 2$ hours. Coming back takes $60 \\div 60 = 1$ hour.\n\nTotal: 120 miles in 3 hours, so the average speed is $120 \\div 3 = 40$ miles per hour.\n\n(Any distance gives the same answer.)"
+    },
+    {
+      "id": "arith-ratios-06",
+      "topic": "arith-ratios",
+      "difficulty": 4,
+      "style": "short",
+      "prompt": "A bag holds red and blue marbles in the ratio $5:3$. After 10 more blue marbles are put in the bag, the ratio of red to blue is $5:4$. How many red marbles are in the bag?",
+      "answer": "50",
+      "unit": "marbles",
+      "hints": [
+        "The number of red marbles stays the same.",
+        "Say there are $5k$ red and $3k$ blue marbles. Then $\\frac{5k}{3k + 10} = \\frac{5}{4}$."
+      ],
+      "solution": "Let there be $5k$ red and $3k$ blue marbles.\n\nThe red number stays at $5k$. With ratio $5:4$, the blue must now be $4k$.\n\nSo adding 10 blue took the blue from $3k$ to $4k$: $k = 10$.\n\nRed marbles: $5 \\times 10 = 50$. (Check: 50 red and 30 blue is $5:3$; 50 red and 40 blue is $5:4$.)"
+    },
+    {
+      "id": "arith-ratios-07",
+      "topic": "arith-ratios",
+      "difficulty": 4,
+      "style": "mc",
+      "prompt": "Pipe A can fill a pool in 4 hours. Pipe B can fill it in 6 hours. A drain can empty the full pool in 12 hours. If the pool starts empty and both pipes and the drain are all open, how many hours will it take to fill the pool?",
+      "choices": [
+        "2",
+        "$2\\frac{1}{2}$",
+        "3",
+        "$3\\frac{1}{2}$",
+        "4"
+      ],
+      "answer": "C",
+      "hints": [
+        "Find what fraction of the pool each pipe fills in one hour.",
+        "The drain works against the pipes, so subtract its rate."
+      ],
+      "solution": "In one hour: Pipe A fills $\\frac{1}{4}$, Pipe B fills $\\frac{1}{6}$, and the drain empties $\\frac{1}{12}$.\n\nTogether: $\\frac{3}{12} + \\frac{2}{12} - \\frac{1}{12} = \\frac{4}{12} = \\frac{1}{3}$ of the pool per hour.\n\nSo it takes 3 hours to fill the pool. The answer is C."
+    },
+    {
+      "id": "arith-ratios-08",
+      "topic": "arith-ratios",
+      "difficulty": 5,
+      "style": "short",
+      "prompt": "Jug A holds a drink that is juice and water in the ratio $1:4$. Jug B holds a drink that is juice and water in the ratio $2:3$. Some of jug A is mixed with some of jug B to make 12 liters of a drink that is juice and water in the ratio $1:2$. How many liters come from jug A?",
+      "answer": "4",
+      "unit": "liters",
+      "hints": [
+        "Turn each ratio into the fraction of the drink that is juice.",
+        "Jug A is $\\frac{1}{5}$ juice, jug B is $\\frac{2}{5}$ juice, and the mix should be $\\frac{1}{3}$ juice.",
+        "If $x$ liters come from A, then $12 - x$ come from B. Count the liters of juice."
+      ],
+      "solution": "Jug A is $\\frac{1}{5}$ juice, jug B is $\\frac{2}{5}$ juice, and the mix must be $\\frac{1}{3}$ juice, so the 12 liters must contain $\\frac{1}{3} \\times 12 = 4$ liters of juice.\n\nLet $x$ liters come from A and $12 - x$ from B. Juice: $\\frac{1}{5}x + \\frac{2}{5}(12 - x) = 4$.\n\nMultiply by 5: $x + 24 - 2x = 20$, so $x = 4$.\n\nCheck: 4 liters of A has 0.8 L juice; 8 liters of B has 3.2 L juice; total 4 L juice in 12 L, which is $1:2$."
+    }
+  ]
+}
