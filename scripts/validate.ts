@@ -1,7 +1,7 @@
 import { topics } from "../src/content/topics";
 import { answersMatch } from "../src/lib/answers";
 import { explainNotes } from "../src/lib/explain-notes";
-import { freshState, markConcept, recordAttempt } from "../src/lib/progress";
+import { freshState, markConcept, noteVisit, recordAttempt } from "../src/lib/progress";
 
 const slugs = new Set<string>();
 const ids = new Set<string>();
@@ -60,6 +60,14 @@ if (explained.title !== "Ratios") throw new Error(`Title parsed as ${explained.t
 if (!explained.concept.some((line) => line.includes("compares"))) throw new Error("Concept missing");
 if (!explained.tricks.some((trick) => /tape diagram/i.test(trick.body))) throw new Error("Trick missing");
 if (!explained.practice.some((item) => item.prompt.includes("20%"))) throw new Error("Practice prompt missing");
+
+let visited = noteVisit(freshState(), "number-sense", "concept");
+const visitedAgain = noteVisit(visited, "number-sense", "concept");
+if (visitedAgain !== visited) throw new Error("Repeating a lesson visit must not create new progress state");
+const practiced = noteVisit(visited, "number-sense", "practice");
+if (noteVisit(practiced, "number-sense", "concept") !== practiced) {
+  throw new Error("A concept visit must not rewind an in-progress practice lesson");
+}
 
 let progress = markConcept(freshState(), "algebra");
 if (progress.streakDays !== 1) throw new Error("First practice day should start a streak");

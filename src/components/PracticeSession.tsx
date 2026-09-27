@@ -21,15 +21,17 @@ export function PracticeSession({ topic }: { topic: Topic }) {
   const [tries, setTries] = useState(0);
   const [session, setSession] = useState({ correct: 0, xp: 0 });
   const settled = useRef(false);
+  const stateRef = useRef(state);
+  stateRef.current = state;
 
   useEffect(() => {
     if (!ready || booted) return;
-    const progress = topicProgress(state, topic.slug);
+    const progress = topicProgress(stateRef.current, topic.slug);
     const firstOpen = topic.questions.findIndex((question) => !progress.correctIds.includes(question.id));
     setIndex(firstOpen === -1 ? 0 : firstOpen);
     setBooted(true);
     noteVisit(topic.slug, "practice");
-  }, [booted, noteVisit, ready, state, topic]);
+  }, [booted, noteVisit, ready, topic]);
 
   const finished = booted && index >= topic.questions.length;
   const question = topic.questions[index];

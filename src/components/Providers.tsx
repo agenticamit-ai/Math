@@ -55,10 +55,8 @@ export function Providers({ children }: { children: ReactNode }) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [ready, state]);
 
-  const api = useMemo<ProgressApi>(
+const actions = useMemo<Omit<ProgressApi, "ready" | "state">>(
     () => ({
-      ready,
-      state,
       markConcept: (slug) => setState((prev) => markConceptState(prev, slug)),
       markTricks: (slug) => setState((prev) => markTricksState(prev, slug)),
       noteVisit: (slug, stage) => setState((prev) => noteVisitState(prev, slug, stage)),
@@ -76,8 +74,10 @@ export function Providers({ children }: { children: ReactNode }) {
       deleteNote: (id) => setState((prev) => deleteNoteState(prev, id)),
       reset: () => setState(freshState()),
     }),
-    [ready, state],
+    [],
   );
+
+  const api = useMemo<ProgressApi>(() => ({ ready, state, ...actions }), [actions, ready, state]);
 
   return <ProgressContext.Provider value={api}>{children}</ProgressContext.Provider>;
 }

@@ -139,11 +139,11 @@ export function markTricks(state: LearnerState, slug: string): LearnerState {
   return withTopic(next, slug, (topic) => ({ ...topic, tricksChecked: true, xp: topic.xp + 5 }));
 }
 
+const STAGE_RANK: Record<LastLesson["stage"], number> = { concept: 0, tricks: 1, practice: 2 };
+
 export function noteVisit(state: LearnerState, slug: string, stage: LastLesson["stage"]): LearnerState {
-  if (state.lastLesson?.topicSlug === slug && state.lastLesson.stage === "practice" && stage !== "practice") {
-    return state;
-  }
-  if (state.lastLesson?.topicSlug === slug && state.lastLesson.stage === "tricks" && stage === "concept") {
+  const current = state.lastLesson;
+  if (current?.topicSlug === slug && STAGE_RANK[current.stage] >= STAGE_RANK[stage]) {
     return state;
   }
   return { ...state, lastLesson: { topicSlug: slug, stage } };
