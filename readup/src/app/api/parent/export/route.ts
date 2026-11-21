@@ -19,6 +19,7 @@ export async function GET() {
   const answers = sids.length ? await db.select().from(schema.answer).where(inArray(schema.answer.sessionId, sids)) : [];
   const summaries = sids.length ? await db.select().from(schema.summary).where(inArray(schema.summary.sessionId, sids)) : [];
   const vocab = ids.length ? await db.select().from(schema.vocabItem).where(inArray(schema.vocabItem.readerId, ids)) : [];
+  const recall = ids.length ? await db.select().from(schema.recallAttempt).where(inArray(schema.recallAttempt.readerId, ids)) : [];
   const mastery = ids.length ? await db.select().from(schema.skillMastery).where(inArray(schema.skillMastery.readerId, ids)) : [];
   const body = {
     exportedAt: new Date().toISOString(),
@@ -29,6 +30,7 @@ export async function GET() {
     summaries,
     vocab,
     skillMastery: mastery,
+    recallQuizzes: recall,
   };
   return new NextResponse(JSON.stringify(body, null, 2), {
     headers: {

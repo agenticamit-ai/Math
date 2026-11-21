@@ -7,6 +7,7 @@ import { getDb, schema } from "@/db";
 import { requireReader } from "@/lib/auth";
 import { GENRE_LABELS } from "@/lib/constants";
 import { bandLabel } from "@/lib/format";
+import { dueRecalls } from "@/lib/recall";
 import { newsPicks, readerOverview, recommendations } from "@/lib/reader";
 import { SKILL_LABELS } from "@/lib/scoring";
 
@@ -25,6 +26,7 @@ export default async function ReaderHome() {
   const ov = (await readerOverview(s.rid))!;
   const cards = await recommendations(s.rid);
   const news = cards[0]?.kind === "placement" ? [] : await newsPicks(s.rid);
+  const [recall] = await dueRecalls(s.rid);
   const db = getDb();
   const [unfinished] = await db
     .select({ id: schema.readingSession.id, title: schema.passage.title })
@@ -49,6 +51,16 @@ export default async function ReaderHome() {
           <GoalRing minutes={ov.minutesToday} goal={reader.dailyGoalMinutes} />
         </div>
       </div>
+
+      {recall && (
+        <div className="card mt-6 flex flex-wrap items-center justify-between gap-3 border-brand/40 bg-brand-soft/40">
+          <div>
+            <p className="font-serif text-xl font-bold">Remember this?</p>
+            <p className="text-sm text-muted">3 quick questions about &ldquo;{recall.title},&rdquo; which you read last week.</p>
+          </div>
+          <Link href={`/recall/${recall.passageId}`} className="btn-primary px-4 py-2">Take the quiz</Link>
+        </div>
+      )}
 
       {unfinished && (
         <div className="card mt-6 flex flex-wrap items-center justify-between gap-3 border-brand/40">

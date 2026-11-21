@@ -340,3 +340,24 @@ export const contentJobLog = pgTable("content_job_log", {
   queued: integer("queued").notNull().default(0),
   ...timestamps,
 });
+
+/** A finished 7-day "Remember this?" quiz for one news passage. */
+export const recallAttempt = pgTable(
+  "recall_attempt",
+  {
+    id: id(),
+    readerId: uuid("reader_id")
+      .notNull()
+      .references(() => reader.id, { onDelete: "cascade" }),
+    passageId: uuid("passage_id")
+      .notNull()
+      .references(() => passage.id, { onDelete: "cascade" }),
+    /** Days between finishing the passage and taking the quiz. */
+    delayDays: integer("delay_days").notNull(),
+    correct: integer("correct").notNull(),
+    total: integer("total").notNull(),
+    answers: jsonb("answers").$type<{ questionId: string; selected: string; isCorrect: boolean }[]>().notNull(),
+    ...timestamps,
+  },
+  (t) => [uniqueIndex("recall_reader_passage").on(t.readerId, t.passageId)],
+);

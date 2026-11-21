@@ -13,6 +13,7 @@ import { GENRE_LABELS } from "@/lib/constants";
 import { bandLabel, dateTime, num, pct, shortDate } from "@/lib/format";
 import { APPROX_GRADE_BENCHMARK, mean } from "@/lib/metrics";
 import { isColdValid, masteryMap, readerOverview } from "@/lib/reader";
+import { retention } from "@/lib/recall";
 import { SKILL_LABELS, TRAP_LABELS, trapsChosen } from "@/lib/scoring";
 
 export const metadata = { title: "Reader progress" };
@@ -52,6 +53,7 @@ export default async function ReaderDetail({
 
   // Skill table: mastery, attempts, and the trap type picked most often.
   const mastery = await masteryMap(id);
+  const recall = await retention(id);
   const answered = await db
     .select({ skill: schema.question.skill, options: schema.question.options, correct: schema.question.correct, format: schema.question.format, evidenceStart: schema.question.evidenceStart, evidenceEnd: schema.question.evidenceEnd, response: schema.answer.response })
     .from(schema.answer)
@@ -93,11 +95,12 @@ export default async function ReaderDetail({
         </p>
       )}
 
-      <section className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+      <section className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-5">
         <Stat label="Effective rate change" value={errChange === null ? "–" : `${errChange >= 0 ? "+" : ""}${Math.round(errChange * 100)}%`} note="Last 5 vs first 5 valid reads (needs 10)" />
         <Stat label="Accuracy, 30 days" value={pct(recentAcc)} note="Closed-book items count 1.5×" />
         <Stat label="Current level" value={bandLabel(reader.currentBand)} note="Bands 5–6 ≈ grade 6–7" />
         <Stat label="Sessions this week" value={sessions.filter((x) => x.completedAt!.getTime() >= weekAgo).length} note="Target: 4+" />
+        <Stat label="7-day recall" value={pct(recall.rate)} note={recall.quizzes ? `${recall.quizzes} quiz${recall.quizzes > 1 ? "zes" : ""} · target 70%+` : "After news reads · target 70%+"} />
       </section>
 
       <section className="card mt-6">

@@ -16,7 +16,9 @@ This folder holds **Phase 1 (MVP)** of the ReadUp build spec plus the first part
 - Tap-a-word definitions saved to a word list.
 - Parent dashboard: headline stats, WPM/ERR chart, skill table with most common trap, session log with valid/invalid filter, profile settings, blocked topics, JSON export, and delete.
 
-Not built yet (rest of Phases 2–3): SpeedIndex against a frozen 8-session baseline, skill lessons, spaced-repetition flashcards, the 7-day recall quiz screen (the pipeline already writes its facts and questions), A/B/A technique experiments, read-aloud mode, and the weekly parent summary.
+**Phase 2 so far:** the daily news pipeline (below) and the 7-day "Remember this?" quiz. A week after a reader finishes a news explainer, Home offers a 3-question quiz from memory, built from that passage's recall facts. Results show the answers with the evidence, and knowledge retention (% remembered, target 70%+) appears on the reader's Progress page and the parent's reader page.
+
+Not built yet (rest of Phases 2–3): SpeedIndex against a frozen 8-session baseline, skill lessons, spaced-repetition flashcards, A/B/A technique experiments, read-aloud mode, and the weekly parent summary.
 
 ## Run it locally
 

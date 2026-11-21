@@ -9,6 +9,7 @@ import { INTEREST_OPTIONS } from "@/lib/constants";
 import { bandLabel, num, pct, shortDate } from "@/lib/format";
 import { mean } from "@/lib/metrics";
 import { isColdValid, masteryMap, readerOverview } from "@/lib/reader";
+import { retention } from "@/lib/recall";
 import { SKILL_LABELS } from "@/lib/scoring";
 import { SKILLS } from "@/db/schema";
 
@@ -21,6 +22,7 @@ export default async function ProgressPage() {
   const cold = ov.sessions.filter(isColdValid);
   const chart = [...cold].reverse().map((x) => ({ label: shortDate(x.completedAt!, ov.timezone), wpm: x.wpm ?? 0, err: x.err ?? 0, title: x.title }));
   const mastery = await masteryMap(s.rid);
+  const recall = await retention(s.rid);
 
   const ids = [...new Set(ov.sessions.map((x) => x.passageId))];
   const tagsRows = ids.length ? await getDb().select({ tags: schema.passage.topicTags }).from(schema.passage).where(inArray(schema.passage.id, ids)) : [];
@@ -36,6 +38,11 @@ export default async function ProgressPage() {
         <Stat label="Avg speed (last 5)" value={`${num(mean(cold.slice(0, 5).map((x) => x.wpm ?? 0)))} WPM`} />
         <Stat label="Accuracy (last 5)" value={pct(mean(ov.sessions.filter((x) => x.isValid).slice(0, 5).map((x) => x.accuracy ?? 0)))} />
       </div>
+      {recall.quizzes > 0 && (
+        <p className="mt-3 text-sm text-muted">
+          <strong className="text-ink">{pct(recall.rate)}</strong> remembered on {recall.quizzes} &ldquo;Remember this?&rdquo; quiz{recall.quizzes > 1 ? "zes" : ""}, a week after reading.
+        </p>
+      )}
 
       <section className="card mt-6">
         <h2 className="font-bold">Speed and effective rate</h2>
