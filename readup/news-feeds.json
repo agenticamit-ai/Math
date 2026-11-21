@@ -1,0 +1,13 @@
+{
+  "_note": "Daily current-affairs sources. ReadUp only uses article text to check facts; it writes its own explainers and links back to the source. Review each source's terms of use before relying on it.",
+  "feeds": [
+    { "category": "space", "name": "NASA news releases", "url": "https://www.nasa.gov/news-release/feed/" },
+    { "category": "science", "name": "Science News Explores", "url": "https://www.snexplores.org/feed" },
+    { "category": "science", "name": "ScienceDaily top science", "url": "https://www.sciencedaily.com/rss/top/science.xml" },
+    { "category": "tech", "name": "ScienceDaily computers and math", "url": "https://www.sciencedaily.com/rss/computers_math.xml" },
+    { "category": "world", "name": "ScienceDaily earth and climate", "url": "https://www.sciencedaily.com/rss/earth_climate.xml" },
+    { "category": "sports", "name": "BBC Sport", "url": "https://feeds.bbci.co.uk/sport/rss.xml" },
+    { "category": "movies", "name": "BBC entertainment and arts", "url": "https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml" },
+    { "category": "world", "name": "BBC science and environment", "url": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml" }
+  ]
+}

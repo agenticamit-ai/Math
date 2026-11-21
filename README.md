@@ -77,3 +77,7 @@ npm run validate
 4. Geometry basics
 5. Counting & probability
 6. Word problems & contest strategy
+
+## ReadUp
+
+The [`readup/`](readup/) folder holds ReadUp, a separate reading speed and comprehension app. See [`readup/README.md`](readup/README.md).
