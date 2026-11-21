@@ -164,6 +164,48 @@ export function nextBand(current: number, history: CompletedSession[]): number {
   return clampBand(proposed);
 }
 
+async function readStoryKeys(readerId: string): Promise<Set<string>> {
+  const rows = await db()
+    .selectDistinct({ key: schema.passage.storyKey })
+    .from(schema.readingSession)
+    .innerJoin(schema.passage, eq(schema.passage.id, schema.readingSession.passageId))
+    .where(and(eq(schema.readingSession.readerId, readerId), isNotNull(schema.passage.storyKey)));
+  return new Set(rows.map((r) => r.key!));
+}
+
+/** Up to two current, unread news stories, each in the version closest to the reader's band. */
+export async function newsPicks(readerId: string) {
+  const info = await readerWithParent(readerId);
+  if (!info) return [];
+  const readStories = await readStoryKeys(readerId);
+  const [parent] = await db().select({ settings: schema.parent.settings }).from(schema.parent).where(eq(schema.parent.id, info.reader.parentId));
+  const blocked = new Set((parent?.settings.blockedTopics ?? []).map((t) => t.toLowerCase()));
+  const rows = await db()
+    .select({
+      id: schema.passage.id,
+      title: schema.passage.title,
+      genre: schema.passage.genre,
+      difficultyScore: schema.passage.difficultyScore,
+      wordCount: schema.passage.wordCount,
+      topicTags: schema.passage.topicTags,
+      storyKey: schema.passage.storyKey,
+      publishedAt: schema.passage.publishedAt,
+      expiresAt: schema.passage.expiresAt,
+    })
+    .from(schema.passage)
+    .where(and(eq(schema.passage.status, "published"), eq(schema.passage.sourceType, "current_affairs")));
+  const now = new Date();
+  const byStory = new Map<string, (typeof rows)[number]>();
+  for (const r of rows) {
+    if (!r.storyKey || readStories.has(r.storyKey) || (r.expiresAt && r.expiresAt <= now)) continue;
+    if (r.topicTags.some((t) => blocked.has(t.toLowerCase()))) continue;
+    const cur = byStory.get(r.storyKey);
+    const band = info.reader.currentBand;
+    if (!cur || Math.abs(r.difficultyScore - band) < Math.abs(cur.difficultyScore - band)) byStory.set(r.storyKey, r);
+  }
+  return [...byStory.values()].sort((a, b) => (b.publishedAt?.getTime() ?? 0) - (a.publishedAt?.getTime() ?? 0)).slice(0, 2);
+}
+
 type Card = {
   kind: "placement" | "level" | "stretch" | "skill";
   label: string;
@@ -179,6 +221,7 @@ export async function recommendations(readerId: string): Promise<Card[]> {
   const { reader } = info;
   const history = await completedSessions(readerId);
   const read = new Set(history.map((s) => s.passageId));
+  const readStories = await readStoryKeys(readerId);
   const parent = await db().select({ settings: schema.parent.settings }).from(schema.parent).where(eq(schema.parent.id, reader.parentId));
   const blocked = new Set((parent[0]?.settings.blockedTopics ?? []).map((t) => t.toLowerCase()));
 
@@ -191,10 +234,17 @@ export async function recommendations(readerId: string): Promise<Card[]> {
         difficultyScore: schema.passage.difficultyScore,
         wordCount: schema.passage.wordCount,
         topicTags: schema.passage.topicTags,
+        storyKey: schema.passage.storyKey,
+        sourceType: schema.passage.sourceType,
+        expiresAt: schema.passage.expiresAt,
       })
       .from(schema.passage)
       .where(eq(schema.passage.status, "published"))
-  ).filter((p) => !p.topicTags.some((t) => blocked.has(t.toLowerCase())));
+  )
+    .filter((p) => !p.topicTags.some((t) => blocked.has(t.toLowerCase())))
+    // Live news gets its own card on Home; once a story expires it joins the regular library.
+    .filter((p) => !(p.sourceType === "current_affairs" && p.expiresAt && p.expiresAt > new Date()))
+    .filter((p) => !(p.storyKey && readStories.has(p.storyKey) && !read.has(p.id)));
 
   const unread = all.filter((p) => !read.has(p.id));
   const pool = unread.length >= 3 ? unread : all;

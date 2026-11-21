@@ -13,12 +13,15 @@
     "seed": "tsx scripts/seed.ts",
     "validate": "tsx scripts/validate-content.ts",
     "vercel-build": "npm run db:migrate && npm run seed && next build",
-    "test": "tsx scripts/test-logic.ts"
+    "test": "tsx scripts/test-logic.ts",
+    "news": "tsx scripts/daily-pipeline.ts",
+    "test:pipeline": "tsx scripts/test-pipeline.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.12.0",
     "bcryptjs": "^3.0.3",
     "drizzle-orm": "^0.45.4",
+    "fast-xml-parser": "^5.12.1",
     "jose": "^6.2.18",
     "next": "^15.5.4",
     "postgres": "^4.1.1",

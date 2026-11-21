@@ -7,7 +7,7 @@ import { getDb, schema } from "@/db";
 import { requireReader } from "@/lib/auth";
 import { GENRE_LABELS } from "@/lib/constants";
 import { bandLabel } from "@/lib/format";
-import { readerOverview, recommendations } from "@/lib/reader";
+import { newsPicks, readerOverview, recommendations } from "@/lib/reader";
 import { SKILL_LABELS } from "@/lib/scoring";
 
 export const metadata = { title: "Home" };
@@ -24,6 +24,7 @@ export default async function ReaderHome() {
   const s = await requireReader();
   const ov = (await readerOverview(s.rid))!;
   const cards = await recommendations(s.rid);
+  const news = cards[0]?.kind === "placement" ? [] : await newsPicks(s.rid);
   const db = getDb();
   const [unfinished] = await db
     .select({ id: schema.readingSession.id, title: schema.passage.title })
@@ -56,6 +57,25 @@ export default async function ReaderHome() {
           </p>
           <Link href={`/session/${unfinished.id}`} className="btn-primary px-4 py-2">Continue</Link>
         </div>
+      )}
+
+      {news.length > 0 && (
+        <section className="mt-8">
+          <h2 className="text-lg font-bold">Fresh from the news</h2>
+          <p className="mt-1 text-sm text-muted">Explainers written for ReadUp about real stories from the past few days.</p>
+          <div className="mt-3 grid gap-4 md:grid-cols-2">
+            {news.map((n) => (
+              <article key={n.id} className="card flex flex-col border-sun/40">
+                <span className="self-start rounded-full bg-sun-soft px-2.5 py-0.5 text-xs font-bold">News</span>
+                <h3 className="mt-3 font-serif text-xl font-bold leading-snug">{n.title}</h3>
+                <p className="mt-1 text-sm text-muted">{n.wordCount} words · about {Math.max(1, Math.round(n.wordCount / 150))} min</p>
+                <div className="mt-auto pt-4">
+                  <StartButton passageId={n.id}>Read this</StartButton>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       )}
 
       <h2 className="mt-8 text-lg font-bold">Pick your next read</h2>

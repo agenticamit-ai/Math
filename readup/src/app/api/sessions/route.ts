@@ -41,7 +41,7 @@ export async function POST(req: Request) {
   const qs = await db
     .select({ id: schema.question.id, skill: schema.question.skill, phase: schema.question.phase })
     .from(schema.question)
-    .where(and(eq(schema.question.passageId, passage.id), eq(schema.question.status, "published")))
+    .where(and(eq(schema.question.passageId, passage.id), eq(schema.question.status, "published"), eq(schema.question.isRecall, false)))
     .orderBy(asc(schema.question.ordinal));
 
   // Required skills first (main_idea, inference), then weakest skills: weight (1 - mastery).

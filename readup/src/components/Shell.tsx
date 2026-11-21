@@ -49,5 +49,6 @@ export const READER_NAV: NavItem[] = [
 
 export const PARENT_NAV: NavItem[] = [
   { href: "/parent", label: "Dashboard" },
+  { href: "/parent/news", label: "News queue" },
   { href: "/parent/settings", label: "Settings" },
 ];

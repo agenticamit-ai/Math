@@ -61,6 +61,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
           questions={ordered}
           answers={new Map(answers.map((a) => [a.questionId, a]))}
           summary={summary ?? null}
+          sourceUrls={passage.sourceType === "current_affairs" ? passage.sourceUrls : []}
         />
       </Shell>
     );

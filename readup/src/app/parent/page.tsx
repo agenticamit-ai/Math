@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { and, count, desc, eq } from "drizzle-orm";
 import Link from "next/link";
 import { logout } from "@/app/actions";
 import { PARENT_NAV, Shell } from "@/components/Shell";
@@ -17,6 +17,12 @@ export default async function ParentDashboard() {
   const readers = await db.select({ id: schema.reader.id }).from(schema.reader).where(eq(schema.reader.parentId, s.pid)).orderBy(schema.reader.createdAt);
   const overviews = (await Promise.all(readers.map((r) => readerOverview(r.id)))).filter((o) => o !== null);
   const weekAgo = Date.now() - 7 * 86400000;
+  const [waiting] = await db
+    .select({ n: count() })
+    .from(schema.passage)
+    .where(and(eq(schema.passage.sourceType, "current_affairs"), eq(schema.passage.status, "review")));
+  const [lastRun] = await db.select().from(schema.contentJobLog).orderBy(desc(schema.contentJobLog.runDate)).limit(1);
+  const lowRun = lastRun && Date.now() - lastRun.runDate.getTime() < 2 * 86400000 && lastRun.published + lastRun.queued < 2;
 
   return (
     <Shell
@@ -34,6 +40,17 @@ export default async function ParentDashboard() {
         </div>
         <Link href="/parent/readers/new" className="btn-ghost">+ Add reader</Link>
       </div>
+
+      {waiting.n > 0 && (
+        <Link href="/parent/news" className="mt-4 block rounded-xl bg-sun-soft px-4 py-3 text-sm hover:underline">
+          <strong>{waiting.n} news explainer{waiting.n > 1 ? "s" : ""}</strong> waiting for your review →
+        </Link>
+      )}
+      {lowRun && (
+        <Link href="/parent/news" className="mt-4 block rounded-xl bg-bad/10 px-4 py-3 text-sm text-bad hover:underline">
+          The latest daily news run produced only {lastRun.published + lastRun.queued} item(s). See what happened →
+        </Link>
+      )}
 
       {overviews.length === 0 && (
         <div className="card mt-6 text-center">

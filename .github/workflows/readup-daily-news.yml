@@ -1,0 +1,40 @@
+name: ReadUp daily news
+
+on:
+  schedule:
+    # 13:00 UTC = 5:00 AM Pacific standard time (6:00 AM during daylight saving time).
+    - cron: "0 13 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: readup-daily-news
+  cancel-in-progress: false
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: readup
+    env:
+      DATABASE_URL: ${{ secrets.READUP_DATABASE_URL }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      PIPELINE_STORIES: ${{ vars.READUP_STORIES_PER_DAY || '3' }}
+      PIPELINE_VERSIONS: "2"
+      PIPELINE_MAX_CALLS: "40"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: readup/package-lock.json
+      - run: npm ci
+      - name: Apply database migrations
+        run: npm run db:migrate
+      - name: Run the news pipeline
+        # Exits with an error when fewer than 2 items are produced, so GitHub emails the repo owner.
+        run: npm run news

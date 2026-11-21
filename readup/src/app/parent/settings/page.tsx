@@ -4,7 +4,7 @@ import { ParentSettingsForm } from "@/components/ParentSettingsForm";
 import { PARENT_NAV, Shell } from "@/components/Shell";
 import { getDb, schema } from "@/db";
 import { requireParent } from "@/lib/auth";
-import { INTEREST_OPTIONS } from "@/lib/constants";
+import { INTEREST_OPTIONS, NEWS_CATEGORY_OPTIONS } from "@/lib/constants";
 
 export const metadata = { title: "Settings" };
 
@@ -20,7 +20,11 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
       <section className="card mt-6">
         <h2 className="text-lg font-bold">Content</h2>
         <p className="mt-1 mb-4 text-sm text-muted">Topic tags in the library: {INTEREST_OPTIONS.join(", ")}. Interests and daily goals are set on each reader&apos;s page.</p>
-        <ParentSettingsForm blockedTopics={parent.settings.blockedTopics ?? []} />
+        <ParentSettingsForm
+          blockedTopics={parent.settings.blockedTopics ?? []}
+          newsCategories={parent.settings.newsCategories ?? [...NEWS_CATEGORY_OPTIONS]}
+          reviewBeforePublish={parent.settings.reviewBeforePublish !== false}
+        />
       </section>
 
       <section className="card mt-6">

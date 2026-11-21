@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import { getDb, schema } from "@/db";
 import { clearSession, getSession, requireParent, setSession } from "@/lib/auth";
-import { INTEREST_OPTIONS } from "@/lib/constants";
+import { INTEREST_OPTIONS, NEWS_CATEGORY_OPTIONS } from "@/lib/constants";
 
 export type FormState = { error?: string; ok?: string } | undefined;
 
@@ -149,11 +149,13 @@ export async function updateParentSettings(_: FormState, form: FormData): Promis
     .map((t) => t.trim().toLowerCase())
     .filter(Boolean)
     .slice(0, 50);
+  const newsCategories = form.getAll("newsCategories").map(String).filter((c) => (NEWS_CATEGORY_OPTIONS as readonly string[]).includes(c));
+  const reviewBeforePublish = form.get("reviewBeforePublish") === "on";
   const db = getDb();
   const [p] = await db.select({ settings: schema.parent.settings }).from(schema.parent).where(eq(schema.parent.id, s.pid));
   await db
     .update(schema.parent)
-    .set({ settings: { ...p.settings, blockedTopics } })
+    .set({ settings: { ...p.settings, blockedTopics, newsCategories, reviewBeforePublish } })
     .where(eq(schema.parent.id, s.pid));
   revalidatePath("/parent/settings");
   return { ok: "Saved." };
@@ -172,4 +174,18 @@ export async function enterReader(_: FormState, form: FormData): Promise<FormSta
   if (!r || !(await bcrypt.compare(pin, r.pinHash))) return { error: "That PIN isn't right. Try again." };
   await setSession({ pid: s.pid, mode: "reader", rid: r.id });
   redirect("/home");
+}
+
+/** Content queue: approve or reject a current-affairs passage waiting for review. */
+export async function reviewPassage(form: FormData) {
+  await requireParent();
+  const id = String(form.get("passageId") ?? "");
+  const decision = String(form.get("decision") ?? "");
+  if (!/^[0-9a-f-]{36}$/i.test(id) || !["approve", "reject"].includes(decision)) return;
+  const now = new Date();
+  await getDb()
+    .update(schema.passage)
+    .set(decision === "approve" ? { status: "published", publishedAt: now, expiresAt: new Date(now.getTime() + 30 * 86400000) } : { status: "retired" })
+    .where(and(eq(schema.passage.id, id), eq(schema.passage.status, "review")));
+  revalidatePath("/parent/news");
 }

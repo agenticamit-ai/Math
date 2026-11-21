@@ -34,6 +34,7 @@ type Props = {
   questions: ResultQuestion[];
   answers: Map<string, { response: AnswerResponse; score: number; isCorrect: boolean }>;
   summary: { text: string; aiScore: number | null; aiFeedback: string | null } | null;
+  sourceUrls?: string[];
 };
 
 /** The paragraph(s) holding the evidence, with the evidence itself marked. */
@@ -81,6 +82,18 @@ export function Results(p: Props) {
         +{p.xp} XP · {p.streak}-day streak{p.isPlacement ? " · Placement read" : ""}
         {p.attemptNumber > 1 ? ` · Re-read #${p.attemptNumber}` : ""}
       </p>
+
+      {p.sourceUrls && p.sourceUrls.length > 0 && (
+        <p className="mt-2 text-sm text-muted">
+          Based on reporting at{" "}
+          {p.sourceUrls.map((u) => (
+            <a key={u} href={u} target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-dark underline">
+              {new URL(u).hostname.replace(/^www\./, "")}
+            </a>
+          ))}
+          . Ask a parent before visiting.
+        </p>
+      )}
 
       {p.isValid === false && (
         <p className="mt-4 rounded-xl bg-sun-soft px-4 py-3 text-sm">

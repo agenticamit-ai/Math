@@ -69,7 +69,10 @@ export const parent = pgTable("parent", {
 
 export type ParentSettings = {
   blockedTopics?: string[];
+  /** Defaults to true: new current-affairs passages wait for parent approval. */
   reviewBeforePublish?: boolean;
+  /** News categories to fetch; all when unset. */
+  newsCategories?: string[];
   targets?: Record<string, number>;
 };
 
@@ -111,6 +114,8 @@ export const passage = pgTable("passage", {
   knowledgeDemand: integer("knowledge_demand").notNull().default(2),
   status: contentStatusEnum("status").notNull().default("review"),
   promptVersion: text("prompt_version"),
+  /** Groups the reading-level versions of one current-affairs story, so a reader gets only one. */
+  storyKey: text("story_key"),
   publishedAt: timestamp("published_at", { withTimezone: true }),
   expiresAt: timestamp("expires_at", { withTimezone: true }),
   ...timestamps,
@@ -148,6 +153,8 @@ export const question = pgTable(
     difficulty: integer("difficulty").notNull().default(3),
     irtB: real("irt_b"),
     phase: phaseEnum("phase").notNull(),
+    /** Recall questions back the 7-day "Remember this?" quiz and are never asked during a session. */
+    isRecall: boolean("is_recall").notNull().default(false),
     status: contentStatusEnum("status").notNull().default("review"),
     ...timestamps,
   },
@@ -327,5 +334,9 @@ export const contentJobLog = pgTable("content_job_log", {
   generated: integer("generated").notNull().default(0),
   published: integer("published").notNull().default(0),
   errors: jsonb("errors").notNull().default(sql`'[]'::jsonb`),
+  /** Every rejected headline with its reason, for the parent to audit. */
+  rejections: jsonb("rejections").$type<{ title: string; url: string; reason: string }[]>().notNull().default(sql`'[]'::jsonb`),
+  llmCalls: integer("llm_calls").notNull().default(0),
+  queued: integer("queued").notNull().default(0),
   ...timestamps,
 });
